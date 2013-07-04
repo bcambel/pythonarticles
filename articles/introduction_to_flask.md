@@ -1,4 +1,3 @@
-
 Flask is the minimalistic simple Web Framework for Python. Want to start serving page immediately ? 
 
 ```
@@ -26,5 +25,12 @@ if __name__ == "__main__":
 
 ```shell
 python server.py
-# Console output > * Running on http://127.0.0.1:5000/
+# * Running on http://127.0.0.1:5000/
 ```
+
+Navigate to ```http://localhost:5000/``` and you will get the Hello World message.
+
+Flask comes with the [http://werkzeug.pocoo.org/](Werkzeug server) and [http://jinja.pocoo.org/](Jinja2 templating) which both of them done by [http://lucumr.pocoo.org/projects/](Armin Ronacher).
+
+
+
