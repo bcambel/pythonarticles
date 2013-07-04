@@ -30,7 +30,7 @@ python server.py
 
 Navigate to ```http://localhost:5000/``` and you will get the Hello World message.
 
-Flask comes with the [http://werkzeug.pocoo.org/](Werkzeug server) and [http://jinja.pocoo.org/](Jinja2 templating) which both of them done by [http://lucumr.pocoo.org/projects/](Armin Ronacher).
+Flask comes with the [Werkzeug server](http://werkzeug.pocoo.org/) and [Jinja2 templating](http://jinja.pocoo.org/) which both of them done by [Armin Ronacher](http://lucumr.pocoo.org/projects/).
 
 
 
