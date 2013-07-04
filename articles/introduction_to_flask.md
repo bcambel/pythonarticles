@@ -41,5 +41,34 @@ Navigate to ```http://localhost:5000/``` and you will get the Hello World messag
 
 Flask comes with the [Werkzeug server](http://werkzeug.pocoo.org/) and [Jinja2 templating](http://jinja.pocoo.org/) which both of them done by [Armin Ronacher](http://lucumr.pocoo.org/projects/).
 
+Templating
+-----------------
+
+Create a folder named ```templates``` and lets add a basic HTML page under the templates folder.
+```html
+<!DOCTYPE html>
+<html>
+    <body>
+        Hello world from flask
+    </body>
+</html>
+```
 
 
+```python
+from flask import Flask, render_template
+import os
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+template_folder = os.path.join(current_dir, 'templates')
+app = Flask(__name__, template_folder=template_folder)
+
+@app.route("/")
+def hello():
+    #return "Hello World!"
+    return render_template("hello.html")
+    
+
+if __name__ == "__main__":
+    app.run(debug=True)
+```
