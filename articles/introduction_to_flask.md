@@ -1,8 +1,8 @@
-Flask is the minimalistic simple Web Framework for Python. Want to start serving page immediately ? 
+[Flask](http://flask.pocoo.org/) is the minimalistic simple Web Framework for Python. 
+Want to start serving page immediately ? 
 
 
-
-```
+```bash
 mkdir flask101
 cd flask101
 virtualenv venv
@@ -10,7 +10,7 @@ virtualenv venv
 curl -O https://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.9.1.tar.gz
 tar xvfz virtualenv-1.9.1.tar.gz
 cd virtualenv-1.9.1
-[sudo] python setup.py install
+sudo python setup.py install
 # now activate the virtualenv
 source venv/bin/activate
 pip install Flask
@@ -71,4 +71,28 @@ def hello():
 
 if __name__ == "__main__":
     app.run(debug=True)
+```
+
+How to send a parameter to Flask template ?
+--------------------------------------------
+
+Adding our parameter to the ```hello.html```
+
+```html
+<!DOCTYPE html>
+<html>
+    <body>
+        Hello world from flask! My name is {{name}}
+    </body>
+</html>
+```
+
+As you see, <code>{{name}}</code> added to our HTML file. All we need to do, add ```name``` as a named parameter to our
+<code>render_template</code>
+
+```python
+@app.route("/")
+def hello():
+    #return "Hello World!"
+    return render_template("hello.html", name='Bahadir')
 ```
