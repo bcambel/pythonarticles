@@ -96,3 +96,35 @@ def hello():
     #return "Hello World!"
     return render_template("hello.html", name='Bahadir')
 ```
+
+How to serve static files from Flask ? 
+-------------------------------------
+
+Our previous code was 
+
+```python
+if __name__ == "__main__":
+    app.run(debug=True)
+```
+
+We would like to serve our static files in our development environment. Let's create a static folder under our project
+to put <code>JavaScript</code>, <code>CSS</code>, <code>Images</code>
+
+```bash
+mkdir static && cd static
+mkdir img && mkdir js && mkdir css
+```
+
+```python
+if __name__ == "__main__":
+    if app.debug:
+       from werkzeug import SharedDataMiddleware
+
+       app.wsgi_app = SharedDataMiddleware(app.wsgi_app, {
+            '/static': static_folder
+        })
+    app.run(debug=True, use_debugger=True, use_reloader=True)
+
+```
+
+Set <code>use_reloader=True</code> to restart flask server whenever a Python file changes. Very handy!
