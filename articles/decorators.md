@@ -107,7 +107,7 @@ def intercept_me(intercepted_function_reference):
         # store the return of the function in a parameter
         logging.info("==I'm the timer within the decorator=intercept_me")
         actual_result = intercepted_function_reference(*args, **kwargs)
-        logging.info("Completed function call")
+        logging.info("Completed function call. Result => %s" % actual_result)
         return actual_result
     # return our inner function which will intercept the call
     return timer
@@ -122,14 +122,17 @@ logging.info(some_slow_function())
 logging.info("Done....")
 
 ```
+The result of the implementation is as follows. Decorator's implementation. After **Line#15**
 
 ```
 [2013-07-09 13:57:43,315](test.py#14)INFO    ==I'm the timer within the decorator=intercept_me
 [2013-07-09 13:57:43,315](test.py#23)INFO    Will sleep a bit..
-[2013-07-09 13:57:46,316](test.py#16)INFO    Completed function call
+[2013-07-09 13:57:46,316](test.py#16)INFO    Completed function call. Result => boohoo
 [2013-07-09 13:57:46,316](test.py#27)INFO    boohoo
 [2013-07-09 13:57:46,317](test.py#28)INFO    Done....
 ```
+
+
 
 ```python
 from functools import wraps
