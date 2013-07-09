@@ -134,12 +134,14 @@ After **Line#15** the actual call is made which you will get the next (**Line#23
 [2013-07-09 14:20:13,904](test.py#28)INFO    Done....
 ```
 
-
+Final version
+------------------------
 
 ```python
 import time
 import logging
 import random 
+from functools import wraps
 from datetime import datetime as dt
 
 logging.basicConfig(format='[%(asctime)s](%(filename)s#%(lineno)d)%(levelname)-7s %(message)s',
@@ -147,8 +149,9 @@ logging.basicConfig(format='[%(asctime)s](%(filename)s#%(lineno)d)%(levelname)-7
 
 
 def intercept_me(intercepted_function_reference):
-    # *args and **kwargs are the parameters that are supplied to our original function
+    @wraps(intercepted_function_reference)
     def timer(*args, **kwargs):
+        '''*args and **kwargs are the parameters that are supplied to our original function'''
         # get our actual function name
         function_name = intercepted_function_reference.func_name
         # call our actual function
