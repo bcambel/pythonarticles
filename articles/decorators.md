@@ -137,6 +137,8 @@ After **Line#15** the actual call is made which you will get the next (**Line#23
 Final version
 ------------------------
 
+Here is the [latest version of the code](https://github.com/bcambel/pythonarticles/blob/master/examples/decorators/part1/ver2.py)
+
 ```python
 import time
 import logging
