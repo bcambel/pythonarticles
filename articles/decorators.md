@@ -41,4 +41,4 @@ for i in range(1,10):
 ```
 
 
-Thanks to @thijsdezoete for the kick in..
+Thanks to [@thijsdezoete](https://github.com/thijsdezoete) for the kick in..
