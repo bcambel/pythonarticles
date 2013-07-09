@@ -46,3 +46,68 @@ will output
 6
 Done iterating..
 ```
+
+Combinations
+---------------------
+
+Excepts a iterable(1,2,3) and the length of the combinations(2) in our case.
+
+```python
+from itertools import combinations
+
+for i in combinations((1,2,3,4,),2):
+	print i
+
+for i in combinations((1,2,3,4,),3):
+	print i
+	
+# Console Output
+# (1, 2)
+# (1, 3)
+# (1, 4)
+# (2, 3)
+# (2, 4)
+# (3, 4)
+# (1, 2, 3)
+# (1, 2, 4)
+# (1, 3, 4)
+# (2, 3, 4)
+```
+
+Compress
+-------------
+
+
+GroupBy
+------------
+
+IFilter
+-----------
+
+IMap
+-----------
+
+ISlice
+-----------
+
+IZip
+----------
+
+Permutations
+-------------
+
+Product
+-------------
+
+Repeat
+-------------
+
+Starmap
+------------
+
+TakeWhile
+-----------
+
+
+
+
