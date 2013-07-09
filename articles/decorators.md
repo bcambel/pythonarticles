@@ -33,14 +33,40 @@ def some_slow_function2():
     print 'Hello world 22!'
     return 'boohoo 222'
 
-some_slow_function()
-some_slow_function2()
+
 for i in range(1,10):
   some_slow_function()
+
+some_slow_function2()
+
+```
+
+As you see ```time_me``` is a function which returns a function. 
+
+```python
+# f is our actual function that is passed by the python. 
+# In this case it will be some_slow_function
+def time_me(f):
+    # *args and **kwargs are the parameters that are supplied to our original function
+    def timer(*args, **kwargs):
+        # call our actual function
+        # store the return of the function in a parameter
+        res = f(*args, **kwargs)
+        # return the result
+        return res
+    # return our inner function which will intercept the call
+    return timer
+    
+@time_me
+def some_slow_function():
+    time.sleep(int(random.random() * 10))
+    return 'boohoo'
 
 ```
 
 Shameless plug
 -------------
-Well I literally stole Thijs's initial code and made minor modifications.
-Thanks to [@thijsdezoete](https://github.com/thijsdezoete) for the kick in..
+Thanks to [@thijsdezoete](https://github.com/thijsdezoete) for the initial kick in..
+
+Well I literally stole Thijs's initial code and made minor modifications. We were talking about how to implement a 
+performance tracker. 
