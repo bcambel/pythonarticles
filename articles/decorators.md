@@ -105,9 +105,9 @@ def intercept_me(intercepted_function_reference):
     def timer(*args, **kwargs):
         # call our actual function
         # store the return of the function in a parameter
-        logging.info("==I'm the timer within the decorator=intercept_me")
+        logging.debug("==I'm the timer within the decorator=intercept_me")
         actual_result = intercepted_function_reference(*args, **kwargs)
-        logging.info("Completed function call. Result => %s" % actual_result)
+        logging.debug("Completed function call. Result => %s" % actual_result)
         return actual_result
     # return our inner function which will intercept the call
     return timer
@@ -120,16 +120,18 @@ def some_slow_function():
 
 logging.info(some_slow_function())
 logging.info("Done....")
+```
+The result of the implementation is as follows. All the decorator related logging statements are DEBUG and the rest is INFO
+After **Line#15** the actual call is made which you will get the next (**Line#23**) INFO logging. 
+**Boohoo** is printed after the DEBUG statement **line#16** because the return of the function call is used within the 
+**line#23** <code>logging.info(some_slow_function())</code>
 
 ```
-The result of the implementation is as follows. Decorator's implementation. After **Line#15**
-
-```
-[2013-07-09 13:57:43,315](test.py#14)INFO    ==I'm the timer within the decorator=intercept_me
-[2013-07-09 13:57:43,315](test.py#23)INFO    Will sleep a bit..
-[2013-07-09 13:57:46,316](test.py#16)INFO    Completed function call. Result => boohoo
-[2013-07-09 13:57:46,316](test.py#27)INFO    boohoo
-[2013-07-09 13:57:46,317](test.py#28)INFO    Done....
+[2013-07-09 14:20:08,903](test.py#14)DEBUG   ==I'm the timer within the decorator=intercept_me
+[2013-07-09 14:20:08,903](test.py#23)INFO    Will sleep a bit..
+[2013-07-09 14:20:13,903](test.py#16)DEBUG   Completed function call. Result => boohoo
+[2013-07-09 14:20:13,904](test.py#27)INFO    boohoo
+[2013-07-09 14:20:13,904](test.py#28)INFO    Done....
 ```
 
 
