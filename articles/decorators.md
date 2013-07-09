@@ -9,15 +9,15 @@ In this example we will use the following function as the starting point
 import time
 
 def some_slow_function():
-    time.sleep(int(random.random() * 10))
+    time.sleep(1+ int(random.random()))
     return 'boohoo'
 ```
-It will sleep between 1-10 seconds and return **boohoo**. 
+It will sleep between 1 to 2 seconds and return **boohoo**. 
 
 Adding some flavor into the mix with the following code; Let's call our slow function 3 times.
 
 ```python
-for i in range(1,3):
+for i in range(0,3):
     print some_slow_function()
 ```
 
@@ -50,14 +50,42 @@ def intercept_me(intercepted_function_reference):
     
 @intercept_me
 def some_slow_function():
-    time.sleep(int(random.random() * 10))
+    time.sleep(1+ int(random.random()))
     return 'boohoo'
+
+# lets make a call to see the output
+print some_slow_function()    
 
 ```
 
-As you see ```time_me``` is a function which returns a function which will intercept the call, do or decide something
-to do or not. 
+As you see ```time_me``` is a function which returns a function which will intercept the call, but not going to do anything. 
+Exactly the same.
 
+```
+boohoo
+```
+
+Let's rewrite our decorator
+
+```python
+def intercept_me(intercepted_function_reference):
+    # *args and **kwargs are the parameters that are supplied to our original function
+    def timer(*args, **kwargs):
+        # call our actual function
+        # store the return of the function in a parameter
+        print "==I'm the timer within the decorator=intercept_me"
+        actual_result = intercepted_function_reference(*args, **kwargs)
+        return actual_result
+    # return our inner function which will intercept the call
+    return timer
+
+```
+and when you run the code you will get
+
+```
+==I'm the timer within the decorator=intercept_me
+boohoo
+```
 
 
 ```python
@@ -91,7 +119,7 @@ def some_slow_function2():
     return 'boohoo 222'
 
 
-for i in range(1,10):
+for i in range(0,10):
   some_slow_function()
 
 some_slow_function2()
