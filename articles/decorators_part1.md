@@ -141,11 +141,11 @@ Final version
 Here is the [latest version of the code](https://github.com/bcambel/pythonarticles/blob/master/examples/decorators/part1/ver2.py)
 
 When you look carefully to the latest version of the sample, you will see the **@wrap(intercepted_function_reference)**
-decorator added to our inner function(**timer**). The reason for that is 
-
+decorator added to our inner function(**timer**). The reason for that is ;
+```
 Without the use of this decorator factory, the name of the example function would have been 'wrapper', and the docstring of the original example() would have been lost.
 Take a look at the [origin documentation](http://docs.python.org/2/library/functools.html#functools.wraps)
-
+```
 
 ```python
 import time
