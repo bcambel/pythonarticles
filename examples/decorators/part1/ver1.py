@@ -27,8 +27,8 @@ def some_slow_function():
 logging.info(some_slow_function())
 logging.info("Done....")
 
-# [2013-07-09 13:57:43,315](test.py#14)INFO    ==I'm the timer within the decorator=intercept_me
-# [2013-07-09 13:57:43,315](test.py#23)INFO    Will sleep a bit..
-# [2013-07-09 13:57:46,316](test.py#16)INFO    Completed function call
-# [2013-07-09 13:57:46,316](test.py#27)INFO    boohoo
-# [2013-07-09 13:57:46,317](test.py#28)INFO    Done....
+#[2013-07-09 14:46:39,311](test.py#14)DEBUG   ==I'm the timer within the decorator=intercept_me
+#[2013-07-09 14:46:39,311](test.py#23)INFO    Will sleep a bit..
+#[2013-07-09 14:46:40,312](test.py#16)DEBUG   Completed function call. Result => boohoo
+#[2013-07-09 14:46:40,312](test.py#27)INFO    boohoo
+#[2013-07-09 14:46:40,312](test.py#28)INFO    Done....
