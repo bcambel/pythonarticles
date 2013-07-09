@@ -40,5 +40,7 @@ for i in range(1,10):
 
 ```
 
-
+Shameless plug
+-------------
+Well I literally stole Thijs's initial code and made minor modifications.
 Thanks to [@thijsdezoete](https://github.com/thijsdezoete) for the kick in..
