@@ -137,55 +137,97 @@ After **Line#15** the actual call is made which you will get the next (**Line#23
 
 
 ```python
-from functools import wraps
-from datetime import datetime as dt
 import time
-import random
+import logging
+import random 
+from datetime import datetime as dt
 
-def time_me(f):
-    @wraps(f)
+logging.basicConfig(format='[%(asctime)s](%(filename)s#%(lineno)d)%(levelname)-7s %(message)s',
+                    level=logging.NOTSET)
+
+
+def intercept_me(intercepted_function_reference):
+    # *args and **kwargs are the parameters that are supplied to our original function
     def timer(*args, **kwargs):
+        # get our actual function name
+        function_name = intercepted_function_reference.func_name
+        # call our actual function
+        # store the return of the function in a parameter
+        logging.debug("Starting capturing the time of the executing '%s'" % function_name)
         start = dt.now()
-        # make the call to the actual function and get the result
-        res = f(*args, **kwargs)
+        actual_result = intercepted_function_reference(*args, **kwargs)
         stop = dt.now()
         execution_time = stop - start
-        print 'Function: [{fnc}] => [{timed}]'.format(fnc=f.func_name, timed=execution_time)
-        return res
+        logging.debug('Function: [{fnc}] => Took [{timed}]'.format(fnc=function_name, timed=execution_time))
+        
+        return actual_result
+    # return our inner function which will intercept the call
     return timer
 
-@time_me
+@intercept_me
 def some_slow_function():
-    time.sleep(int(random.random() * 10))
-    print 'Hello world!'
+    logging.info("Will sleep a bit..")
+    time.sleep(1+ int((random.random()*10)%5))
     return 'boohoo'
 
-@time_me
-def some_slow_function2():
-    time.sleep(2)
-    print 'Hello world 22!'
-    return 'boohoo 222'
-
-
 for i in range(0,10):
-  some_slow_function()
-
-some_slow_function2()
+    logging.info("{0} Starting iter {1}{0}".format(20*"=",i+1))
+    logging.info(some_slow_function())
 
 ```
 
 Here is the results;
 ```
-Hello world!
-Function: [some_slow_function] => [0:00:03.000403]
-Hello world 22!
-Function: [some_slow_function2] => [0:00:02.000421]
-Hello world!
-Function: [some_slow_function] => [0:00:01.000756]
-Hello world!
-Function: [some_slow_function] => [0:00:05.000722]
-Hello world!
-Function: [some_slow_function] => [0:00:08.000489]
+[2013-07-09 14:30:56,366](ver2.py#35)INFO    ==================== Starting iter 1====================
+[2013-07-09 14:30:56,366](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
+[2013-07-09 14:30:56,366](ver2.py#30)INFO    Will sleep a bit..
+[2013-07-09 14:31:00,367](ver2.py#22)DEBUG   Function: [some_slow_function] => Took [0:00:04.001038]
+[2013-07-09 14:31:00,367](ver2.py#36)INFO    boohoo
+[2013-07-09 14:31:00,367](ver2.py#35)INFO    ==================== Starting iter 2====================
+[2013-07-09 14:31:00,367](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
+[2013-07-09 14:31:00,368](ver2.py#30)INFO    Will sleep a bit..
+[2013-07-09 14:31:02,368](ver2.py#22)DEBUG   Function: [some_slow_function] => Took [0:00:02.000702]
+[2013-07-09 14:31:02,368](ver2.py#36)INFO    boohoo
+[2013-07-09 14:31:02,369](ver2.py#35)INFO    ==================== Starting iter 3====================
+[2013-07-09 14:31:02,369](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
+[2013-07-09 14:31:02,369](ver2.py#30)INFO    Will sleep a bit..
+[2013-07-09 14:31:03,370](ver2.py#22)DEBUG   Function: [some_slow_function] => Took [0:00:01.000704]
+[2013-07-09 14:31:03,370](ver2.py#36)INFO    boohoo
+[2013-07-09 14:31:03,370](ver2.py#35)INFO    ==================== Starting iter 4====================
+[2013-07-09 14:31:03,370](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
+[2013-07-09 14:31:03,370](ver2.py#30)INFO    Will sleep a bit..
+[2013-07-09 14:31:08,371](ver2.py#22)DEBUG   Function: [some_slow_function] => Took [0:00:05.000781]
+[2013-07-09 14:31:08,371](ver2.py#36)INFO    boohoo
+[2013-07-09 14:31:08,371](ver2.py#35)INFO    ==================== Starting iter 5====================
+[2013-07-09 14:31:08,371](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
+[2013-07-09 14:31:08,371](ver2.py#30)INFO    Will sleep a bit..
+[2013-07-09 14:31:13,372](ver2.py#22)DEBUG   Function: [some_slow_function] => Took [0:00:05.000993]
+[2013-07-09 14:31:13,373](ver2.py#36)INFO    boohoo
+[2013-07-09 14:31:13,373](ver2.py#35)INFO    ==================== Starting iter 6====================
+[2013-07-09 14:31:13,373](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
+[2013-07-09 14:31:13,373](ver2.py#30)INFO    Will sleep a bit..
+[2013-07-09 14:31:14,374](ver2.py#22)DEBUG   Function: [some_slow_function] => Took [0:00:01.001138]
+[2013-07-09 14:31:14,374](ver2.py#36)INFO    boohoo
+[2013-07-09 14:31:14,375](ver2.py#35)INFO    ==================== Starting iter 7====================
+[2013-07-09 14:31:14,375](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
+[2013-07-09 14:31:14,375](ver2.py#30)INFO    Will sleep a bit..
+[2013-07-09 14:31:17,376](ver2.py#22)DEBUG   Function: [some_slow_function] => Took [0:00:03.001073]
+[2013-07-09 14:31:17,376](ver2.py#36)INFO    boohoo
+[2013-07-09 14:31:17,376](ver2.py#35)INFO    ==================== Starting iter 8====================
+[2013-07-09 14:31:17,376](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
+[2013-07-09 14:31:17,376](ver2.py#30)INFO    Will sleep a bit..
+[2013-07-09 14:31:22,378](ver2.py#22)DEBUG   Function: [some_slow_function] => Took [0:00:05.001008]
+[2013-07-09 14:31:22,378](ver2.py#36)INFO    boohoo
+[2013-07-09 14:31:22,378](ver2.py#35)INFO    ==================== Starting iter 9====================
+[2013-07-09 14:31:22,378](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
+[2013-07-09 14:31:22,378](ver2.py#30)INFO    Will sleep a bit..
+[2013-07-09 14:31:27,379](ver2.py#22)DEBUG   Function: [some_slow_function] => Took [0:00:05.000956]
+[2013-07-09 14:31:27,379](ver2.py#36)INFO    boohoo
+[2013-07-09 14:31:27,380](ver2.py#35)INFO    ==================== Starting iter 10====================
+[2013-07-09 14:31:27,380](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
+[2013-07-09 14:31:27,380](ver2.py#30)INFO    Will sleep a bit..
+[2013-07-09 14:31:30,381](ver2.py#22)DEBUG   Function: [some_slow_function] => Took [0:00:03.000916]
+[2013-07-09 14:31:30,381](ver2.py#36)INFO    boohoo
 ```
 
 Shameless plug
