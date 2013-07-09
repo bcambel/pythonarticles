@@ -1,4 +1,5 @@
-Decorators are really nice way of doing some work with or without effecting the actual implementation. 
+Decorators are really nice way of doing some work without effecting the actual implementation. Its similar to wire tapping but 
+with additional functionality.
 
 Let's start with a simple example; say you have functions that takes a bit time to complete, and you want to log 
 how much time did it take ?
@@ -65,7 +66,7 @@ Exactly the same.
 boohoo
 ```
 
-Let's rewrite our decorator
+Let's rewrite our decorator. Focus on the print line. 
 
 ```python
 def intercept_me(intercepted_function_reference):
@@ -87,6 +88,48 @@ and when you run the code you will get
 boohoo
 ```
 
+As you see, the print statement within the decorator, was printed before the **boohoo**. 
+Let's add more logging statements to see the code flow more clear.
+
+```python
+import time
+import logging
+import random 
+
+logging.basicConfig(format='[%(asctime)s](%(filename)s#%(lineno)d)%(levelname)-7s %(message)s',
+                    level=logging.NOTSET)
+
+
+def intercept_me(intercepted_function_reference):
+    # *args and **kwargs are the parameters that are supplied to our original function
+    def timer(*args, **kwargs):
+        # call our actual function
+        # store the return of the function in a parameter
+        logging.info("==I'm the timer within the decorator=intercept_me")
+        actual_result = intercepted_function_reference(*args, **kwargs)
+        logging.info("Completed function call")
+        return actual_result
+    # return our inner function which will intercept the call
+    return timer
+
+@intercept_me
+def some_slow_function():
+    logging.info("Will sleep a bit..")
+    time.sleep(1+ int((random.random()*10)%5))
+    return 'boohoo'
+
+logging.info(some_slow_function())
+logging.info("Done....")
+
+```
+
+```
+[2013-07-09 13:57:43,315](test.py#14)INFO    ==I'm the timer within the decorator=intercept_me
+[2013-07-09 13:57:43,315](test.py#23)INFO    Will sleep a bit..
+[2013-07-09 13:57:46,316](test.py#16)INFO    Completed function call
+[2013-07-09 13:57:46,316](test.py#27)INFO    boohoo
+[2013-07-09 13:57:46,317](test.py#28)INFO    Done....
+```
 
 ```python
 from functools import wraps
