@@ -132,7 +132,11 @@ elements from iterable returning only those for which the predicate is True.
 Return those items of sequence for which function(item) is true.  
 If function is None, return the items that are true.  
 If sequence is a tuple or string, return the same type, else return a list.'''
-# 
+>>> filter(mod2, range(10))
+[1, 3, 5, 7, 9]
+>>> '''The difference is filter result is evaluated whereas ifilter won't be 
+evaluated till iterated.
+'''
 >>> from itertools import ifilter
 >>> mod2 = lambda x: x%2
 >>> even_numbers_gen = ifilter( mod2, range(10) )
