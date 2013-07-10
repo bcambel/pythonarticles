@@ -38,14 +38,14 @@ Lets define our first decorator.
 
 ```python
 
-# **intercepted_function_reference** is a parameter that will be passed
+# **intercepted_function** is a parameter that will be passed
 # by Python before the code works.
-def intercept_me(intercepted_function_reference):
+def intercept_me(intercepted_function):
     # *args and **kwargs are the parameters that are supplied to our original function
     def timer(*args, **kwargs):
         # call our actual function
         # store the return of the function in a parameter
-        actual_result = intercepted_function_reference(*args, **kwargs)
+        actual_result = intercepted_function(*args, **kwargs)
         return actual_result
     # return our inner function which will intercept the call
     return timer
@@ -70,13 +70,13 @@ boohoo
 Let's rewrite our decorator. Focus on the print line. 
 
 ```python
-def intercept_me(intercepted_function_reference):
+def intercept_me(intercepted_function):
     # *args and **kwargs are the parameters that are supplied to our original function
     def timer(*args, **kwargs):
         # call our actual function
         # store the return of the function in a parameter
         print "==I'm the timer within the decorator=intercept_me"
-        actual_result = intercepted_function_reference(*args, **kwargs)
+        actual_result = intercepted_function(*args, **kwargs)
         return actual_result
     # return our inner function which will intercept the call
     return timer
@@ -101,13 +101,13 @@ logging.basicConfig(format='[%(asctime)s](%(filename)s#%(lineno)d)%(levelname)-7
                     level=logging.NOTSET)
 
 
-def intercept_me(intercepted_function_reference):
+def intercept_me(intercepted_function):
     # *args and **kwargs are the parameters that are supplied to our original function
     def timer(*args, **kwargs):
         # call our actual function
         # store the return of the function in a parameter
         logging.debug("==I'm the timer within the decorator=intercept_me")
-        actual_result = intercepted_function_reference(*args, **kwargs)
+        actual_result = intercepted_function(*args, **kwargs)
         logging.debug("Completed function call. Result => %s" % actual_result)
         return actual_result
     # return our inner function which will intercept the call
@@ -160,17 +160,17 @@ logging.basicConfig(format='[%(asctime)s](%(filename)s#%(lineno)d)%(levelname)-7
                     level=logging.NOTSET)
 
 
-def intercept_me(intercepted_function_reference):
-    @wraps(intercepted_function_reference)
+def intercept_me(intercepted_function):
+    @wraps(intercepted_function)
     def timer(*args, **kwargs):
         '''*args and **kwargs are the parameters that are supplied to our original function'''
         # get our actual function name
-        function_name = intercepted_function_reference.func_name
+        function_name = intercepted_function.func_name
         # call our actual function
         # store the return of the function in a parameter
         logging.debug("Starting capturing the time of the executing '%s'" % function_name)
         start = dt.now()
-        actual_result = intercepted_function_reference(*args, **kwargs)
+        actual_result = intercepted_function(*args, **kwargs)
         stop = dt.now()
         execution_time = stop - start
         logging.debug('Function: [{fnc}] => Took [{timed}]'.format(fnc=function_name, timed=execution_time))
