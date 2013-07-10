@@ -50,7 +50,7 @@ Done iterating..
 Combinations
 ---------------------
 
-Excepts a iterable(1,2,3) and the length of the combinations(2) in our case.
+Expects a iterable(1,2,3) and the length of the combinations(2) in our case.
 
 ```python
 from itertools import combinations
@@ -76,10 +76,49 @@ for i in combinations((1,2,3,4,),3):
 
 Compress
 -------------
+Assume that **[1,0,1,0,1,1]** list is our truth table. Given a list of elements, select the only onces that the value at the 
+truth table is **True**
 
+```python
+>>> from itertools import compress
+>>> compressed = compress('ABCDEF', [1,0,1,0,1,1])
+>>> [i for i in compressed]
+['A', 'C', 'E', 'F']
+```
 
 GroupBy
 ------------
+We want to print out all the objects which are same type. We suppy a list of objects (**things**) and give a function 
+that will be called for each element in the list, and a value will be evaluated. 
+
+In this scenario ```lambda x: x[0]``` gets the first element of the tuple ```("animal", "bear")```, which will return **animal**
+
+```python
+things = [("animal", "bear"), ("animal", "duck"), ("plant", "cactus"), 
+					("vehicle", "speed boat"), ("vehicle", "school bus")]
+
+for key, group in groupby(things, lambda x: x[0]):
+    print 20 * "="
+    for thing in group:
+        print "A %s is a %s." % (thing[1], key)
+```
+```
+====================
+A bear is a animal.
+A duck is a animal.
+====================
+A cactus is a plant.
+====================
+A speed boat is a vehicle.
+A school bus is a vehicle.
+```
+If you list comprehense the groupby result elements, you will see the elements are reduced to **itertools._grouper object**
+which enables us to iterate over the objects. <code>**for thing in group:**</code>
+```python
+>>> [i for i in groupby(things, lambda x: x[0])]
+[('animal', <itertools._grouper object at 0x1024a0210>), ('plant', <itertools._grouper object at 0x1024a0250>), 
+('vehicle', <itertools._grouper object at 0x1024a0410>)]
+```
 
 IFilter
 -----------
