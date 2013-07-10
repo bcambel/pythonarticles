@@ -167,24 +167,125 @@ instead of filling in None for shorter iterables.'''
 ISlice
 -----------
 
+```python
+>>> from itertools import *
+>>> islice('ABCDEFG', 2)
+<itertools.islice object at 0x1099b5cb0>
+>>> [i for i in islice('ABCDEFG', 2)]
+['A', 'B']
+>>> [i for i in islice('ABCDEFG', 2, 2)]
+[]
+>>> [i for i in islice('ABCDEFG', 2, None)]
+['C', 'D', 'E', 'F', 'G']
+>>> [i for i in islice('ABCDEFG', 2, None, 2)]
+['C', 'E', 'G']
+>>> [i for i in islice('ABCDEFG', 0, None, 2)]
+['A', 'C', 'E', 'G']
+```
+
 IZip
 ----------
+
+```python
+>>> from itertools import izip
+>>> [i for i in izip('ABCD', 'xy')]
+[('A', 'x'), ('B', 'y')]
+>>> [i for i in izip('ABCD', 'xyz')]
+[('A', 'x'), ('B', 'y'), ('C', 'z')]
+>>> [i for i in izip('ABCD', 'xyz0')]
+[('A', 'x'), ('B', 'y'), ('C', 'z'), ('D', '0')]
+>>> [i for i in izip('ABCD', 'xyz01')]
+[('A', 'x'), ('B', 'y'), ('C', 'z'), ('D', '0')]
+
+```
 
 Permutations
 -------------
 
+```python
+>>> from itertools import permutations
+>>> permutations('ABCD', 2)
+<itertools.permutations object at 0x1099b3cb0>
+>>> [i for i in permutations('ABCD', 2)]
+[('A', 'B'), ('A', 'C'), ('A', 'D'), ('B', 'A'), ('B', 'C'), ('B', 'D'), ('C', 'A'), ('C', 'B'), ('C', 'D'), ('D', 'A'), ('D', 'B'), ('D', 'C')]
+>>> [i for i in permutations('ABCD', 3)]
+[('A', 'B', 'C'), ('A', 'B', 'D'), ('A', 'C', 'B'), ('A', 'C', 'D'), ('A', 'D', 'B'), ('A', 'D', 'C'), ('B', 'A', 'C'), ('B', 'A', 'D'), ('B', 'C', 'A'), ('B', 'C', 'D'), ('B', 'D', 'A'), ('B', 'D', 'C'), ('C', 'A', 'B'), ('C', 'A', 'D'), ('C', 'B', 'A'), ('C', 'B', 'D'), ('C', 'D', 'A'), ('C', 'D', 'B'), ('D', 'A', 'B'), ('D', 'A', 'C'), ('D', 'B', 'A'), ('D', 'B', 'C'), ('D', 'C', 'A'), ('D', 'C', 'B')]
+>>> [i for i in permutations(range(3))]
+[(0, 1, 2), (0, 2, 1), (1, 0, 2), (1, 2, 0), (2, 0, 1), (2, 1, 0)]
+>>> [i for i in permutations(range(3),2)]
+[(0, 1), (0, 2), (1, 0), (1, 2), (2, 0), (2, 1)]
+```
+
 Product
 -------------
+
+```python
+>>> from itertools import product
+>>> product('ABCD', 'xy')
+<itertools.product object at 0x109a3f730>
+>>> [i for i in product('ABCD', 'xy')]
+[('A', 'x'), ('A', 'y'), ('B', 'x'), ('B', 'y'), ('C', 'x'), ('C', 'y'), ('D', 'x'), ('D', 'y')]
+>>> [i for i in product('ABCD', 'xyz')]
+[('A', 'x'), ('A', 'y'), ('A', 'z'), ('B', 'x'), ('B', 'y'), ('B', 'z'), ('C', 'x'), ('C', 'y'), ('C', 'z'), ('D', 'x'), ('D', 'y'), ('D', 'z')]
+>>> [i for i in product('ABCD', '1')]
+[('A', '1'), ('B', '1'), ('C', '1'), ('D', '1')]
+```
 
 Repeat
 -------------
 
+```python
+>>> [i for i in repeat(10, 3)]
+[10, 10, 10]
+>>> [i for i in repeat("*", 13)]
+['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*']
+>>> "".join([i for i in repeat("*", 13)])
+'*************'
+>>> "*" * 13
+'*************'
+>>> "".join(repeat("*",13))
+'*************'
+```
+
 Starmap
 ------------
 
+```python
+>>> from itertools import starmap
+>>> starmap(pow, [(2,5), (3,2), (10,3)])
+<itertools.starmap object at 0x109a3d1d0>
+>>> [i for i in starmap(pow, [(2,5), (3,2), (10,3)])]
+[32, 9, 1000]
+
+```
 TakeWhile
 -----------
 
+```python
+>>> >>> takewhile.__doc__
+'''takewhile(predicate, iterable) --> takewhile object
+Return successive entries from an iterable as long as the 
+predicate evaluates to true for each entry.'''
+>>> [i for i in takewhile(lambda x: x<5, [1,4,6,4,1])]
+[1, 4]
+>>> condition = lambda x: x<5
+>>> working_list = [1, 4, 6, 4, 1]
+>>> [i for i in takewhile(condition,working_list)]
+[1, 4]
+>>> condition2 = lambda x: True
+>>> [i for i in takewhile(condition2,working_list)]
+[1, 4, 6, 4, 1]
+>>> condition = False
+>>> ''' The first parameter is a function which returns True or False, not True/False directly'''
+>>> [i for i in takewhile(condition,working_list)]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'bool' object is not callable
+>>> condition = lambda x: False
+>>> [i for i in takewhile(condition,working_list)]
+[]
+
+```
 
 
 
