@@ -123,6 +123,8 @@ which enables us to iterate over the objects. <code>**for thing in group:**</cod
 IFilter
 -----------
 
+elements from iterable returning only those for which the predicate is True.
+
 IMap
 -----------
 
