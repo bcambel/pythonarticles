@@ -151,6 +151,18 @@ IMap
 -----------
 
 
+```python
+>>> imap.__doc__
+'imap(func, *iterables) --> 
+Make an iterator that computes the function using arguments from
+each of the iterables.  Like map() except that it returns an iterator instead of a list and 
+that it stops when the shortest iterable is exhausted 
+instead of filling in None for shorter iterables.'
+>>> [i for i in imap(pow, (2,3,10), (5,2,3))]
+[32, 9, 1000]
+>>> [i for i in imap(add, (imap(pow, (2,3,10), (5,2,3)) ), (2,2,2))]
+[34, 11, 1002]
+```
 
 ISlice
 -----------
