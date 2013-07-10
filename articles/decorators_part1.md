@@ -140,7 +140,7 @@ Final version
 
 Here is the [latest version of the code](https://github.com/bcambel/pythonarticles/blob/master/examples/decorators/part1/ver2.py)
 
-When you look carefully to the latest version of the sample, you will see the **@wrap(intercepted_function_reference)**
+When you look carefully to the latest version of the sample, you will see the **@wrap(intercepted_function)**
 decorator added to our inner function(**timer**). The reason for that is ;
 ```
 Without the use of this decorator factory, the name of the example 
