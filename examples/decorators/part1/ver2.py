@@ -8,18 +8,18 @@ logging.basicConfig(format='[%(asctime)s](%(filename)s#%(lineno)d)%(levelname)-7
                     level=logging.NOTSET)
 
 
-def intercept_me(intercepted_function_reference):
+def intercept_me(intercepted_function):
     
-    @wraps(intercepted_function_reference)
+    @wraps(intercepted_function)
     def timer(*args, **kwargs):
         '''*args and **kwargs are the parameters that are supplied to our original function'''
         # get our actual function name
-        function_name = intercepted_function_reference.func_name
+        function_name = intercepted_function.func_name
         # call our actual function
         # store the return of the function in a parameter
         logging.debug("Starting capturing the time of the executing '%s'" % function_name)
         start = dt.now()
-        actual_result = intercepted_function_reference(*args, **kwargs)
+        actual_result = intercepted_function(*args, **kwargs)
         stop = dt.now()
         execution_time = stop - start
         logging.debug('Function: [{fnc}] => Took [{timed}]'.format(fnc=function_name, timed=execution_time))
