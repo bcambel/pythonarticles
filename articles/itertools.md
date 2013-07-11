@@ -235,6 +235,7 @@ Repeat
 -------------
 
 ```python
+>>> from itertools import repeat
 >>> [i for i in repeat(10, 3)]
 [10, 10, 10]
 >>> [i for i in repeat("*", 13)]
