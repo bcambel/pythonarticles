@@ -152,6 +152,7 @@ IMap
 
 
 ```python
+>>> from itertools import imap
 >>> imap.__doc__
 '''imap(func, *iterables) --> 
 Make an iterator that computes the function using arguments from
