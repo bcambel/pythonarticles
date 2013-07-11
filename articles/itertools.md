@@ -123,7 +123,7 @@ which enables us to iterate over the objects. <code>**for thing in group:**</cod
 IFilter
 -----------
 
-As you might already know, Python has a builtin function called **filter**. Filter function excepts a sequence of elements,
+As you might already know, Python has a builtin function called **filter**. Filter function accepts a sequence of elements,
 elements from iterable returning only those for which the predicate is True.
 
 ```python
