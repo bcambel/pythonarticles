@@ -127,6 +127,7 @@ As you might already know, Python has a builtin function called **filter**. Filt
 elements from iterable returning only those for which the predicate is True.
 
 ```python
+>>> mod2 = lambda x: x%2
 >>> filter.__doc__
 '''filter(function or None, sequence) -> list, tuple, or string
 Return those items of sequence for which function(item) is true.  
@@ -138,7 +139,6 @@ If sequence is a tuple or string, return the same type, else return a list.'''
 evaluated till iterated.
 '''
 >>> from itertools import ifilter
->>> mod2 = lambda x: x%2
 >>> even_numbers_gen = ifilter( mod2, range(10) )
 >>> print even_numbers_gen, type(even_numbers_gen), dir(even_numbers_gen)
 <itertools.ifilter object at 0x1067d4390> <type 'itertools.ifilter'> ['__class__', '__delattr__', '__doc__', '__format__', '__getattribute__', '__hash__', '__init__', '__iter__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', 'next']
