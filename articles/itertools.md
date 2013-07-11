@@ -263,7 +263,8 @@ TakeWhile
 -----------
 
 ```python
->>> >>> takewhile.__doc__
+>>> from itertools import takewhile
+>>> takewhile.__doc__
 '''takewhile(predicate, iterable) --> takewhile object
 Return successive entries from an iterable as long as the 
 predicate evaluates to true for each entry.'''
