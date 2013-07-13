@@ -103,28 +103,28 @@ vim server.py
     <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </code></pre></div>
 
-<p>```shell
-python server.py</p>
+<p>```bash</p>
 
-<h1>* Running on http://127.0.0.1:5000/</h1>
+<p>python server.py
+* Running on http://127.0.0.1:5000/</p>
 
-<p>```</p>
+<pre><code>
+Navigate to ```http://localhost:5000/``` and you will get the Hello World message.
 
-<p>Navigate to <code>http://localhost:5000/</code> and you will get the Hello World message.</p>
+Flask comes with the [Werkzeug server](http://werkzeug.pocoo.org/) and [Jinja2 templating](http://jinja.pocoo.org/) which both of them done by [Armin Ronacher](http://lucumr.pocoo.org/projects/).
 
-<p>Flask comes with the <a href="http://werkzeug.pocoo.org/">Werkzeug server</a> and <a href="http://jinja.pocoo.org/">Jinja2 templating</a> which both of them done by <a href="http://lucumr.pocoo.org/projects/">Armin Ronacher</a>.</p>
+Templating
+-----------------
 
-<h2>Templating</h2>
-
-<p>Create a folder named <code>templates</code> and lets add a basic HTML page under the templates folder.
-<code>html
+Create a folder named ```templates``` and lets add a basic HTML page under the templates folder.
+```html
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
     &lt;body&gt;
         Hello world from flask
     &lt;/body&gt;
 &lt;/html&gt;
-</code></p>
+</code></pre>
 
 <div class="style"><pre><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span>
 <span class="kn">import</span> <span class="nn">os</span>
