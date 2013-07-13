@@ -114,10 +114,9 @@ to put <code>JavaScript</code>, <code>CSS</code>, <code>Images</code>
 
 
 ```python
+from werkzeug import SharedDataMiddleware
 if __name__ == "__main__":
     if app.debug:
-       from werkzeug import SharedDataMiddleware
-
        app.wsgi_app = SharedDataMiddleware(app.wsgi_app, {
             '/static': static_folder
         })
