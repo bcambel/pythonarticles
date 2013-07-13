@@ -113,15 +113,15 @@ python server.py
 
 <h2>Templating</h2>
 
-<p>Create a folder named <code>templates</code> and lets add a basic HTML page under the templates folder.
-<code>html
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-    &lt;body&gt;
+<p>Create a folder named <code>templates</code> and lets add a basic HTML page under the templates folder.</p>
+
+<div class="syntax"><pre><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
         Hello world from flask
-    &lt;/body&gt;
-&lt;/html&gt;
-</code></p>
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div>
 
 <div class="syntax"><pre><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span>
 <span class="kn">import</span> <span class="nn">os</span>

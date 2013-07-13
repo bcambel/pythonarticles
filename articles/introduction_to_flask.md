@@ -44,6 +44,7 @@ Templating
 -----------------
 
 Create a folder named ```templates``` and lets add a basic HTML page under the templates folder.
+
 ```html
 <!DOCTYPE html>
 <html>
