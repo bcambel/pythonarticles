@@ -1,0 +1,521 @@
+<!-- Auto generated -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>The Journey of Programming Entrepreneurship</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://fonts.googleapis.com/css?family=Muli|Domine|Amaranth:400,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!--link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet"-->
+ 	<link href="//netdna.bootstrapcdn.com/bootswatch/2.3.2/flatly/bootstrap.min.css" rel='stylesheet' >
+   <link href="//netdna.bootstrapcdn.com/font-awesome/2.0/css/font-awesome.css" rel="stylesheet">
+    <link href="/media/css/app.css?v=2" rel="stylesheet">
+</head>
+<body>
+
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="/">&nbsp;The Journey&nbsp;</a>
+            <ul class="nav">
+                <li class=""><a href="/">Home</a></li>
+                <li class="">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Posts<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        
+                        <li>
+                            <a href="/posts/decorators_part1.html">
+                                decorators_part1
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="/posts/decorators_part2.html">
+                                decorators_part2
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="/posts/generators.html">
+                                generators
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="/posts/introduction_to_flask.html">
+                                introduction_to_flask
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="/posts/itertools.html">
+                                itertools
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </li>
+                </li>
+                <li>
+                    <form class="navbar-search pull-left" action="/search" method="post">
+                        <input type="text" class="search-query" placeholder="Search" id="term" name="term">
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+    <div class="container main-content">
+        
+<article id="content_html" class="span10">
+    <h1>Itertools</h1>
+
+<p>Functions creating iterators for efficient looping says <a href="http://docs.python.org/2/library/itertools.html">Python documentation</a></p>
+
+<h2>Chain</h2>
+
+<p>Make an iterator that returns elements from the first iterable until it is exhausted, then proceeds to the next iterable, until all of the iterables are exhausted. 
+Used for treating consecutive sequences as a single sequence. Equivalent to:</p>
+
+<p><code>python
+def chain(*iterables):
+    # chain('ABC', 'DEF') --&gt; A B C D E F
+    for it in iterables:
+        for element in it:
+            yield element
+</code></p>
+
+<p>```python
+from itertools import chain</p>
+
+<p>chained<em>tuples = chain((1,2,3),(4,5,6))
+print chained</em>tuples
+print dir(chained_tuples)</p>
+
+<p>while True:
+    try:
+        print chained_tuples.next()
+    except StopIteration:
+        print "Done iterating.."
+        break
+```</p>
+
+<p>will output</p>
+
+<p><code>
+&lt;itertools.chain object at 0x1004ea750&gt;
+['__class__', '__delattr__', '__doc__', '__format__', '__getattribute__', '__hash__', '__init__', 
+'__iter__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', 
+'__str__', '__subclasshook__', 'from_iterable', 'next']
+1
+2
+3
+4
+5
+6
+Done iterating..
+</code></p>
+
+<h2>Combinations</h2>
+
+<p>Expects a iterable(1,2,3) and the length of the combinations(2) in our case.</p>
+
+<p>```python
+from itertools import combinations</p>
+
+<p>for i in combinations((1,2,3,4,),2):
+    print i</p>
+
+<p>for i in combinations((1,2,3,4,),3):
+    print i</p>
+
+<h1>Console Output</h1>
+
+<h1>(1, 2)</h1>
+
+<h1>(1, 3)</h1>
+
+<h1>(1, 4)</h1>
+
+<h1>(2, 3)</h1>
+
+<h1>(2, 4)</h1>
+
+<h1>(3, 4)</h1>
+
+<h1>(1, 2, 3)</h1>
+
+<h1>(1, 2, 4)</h1>
+
+<h1>(1, 3, 4)</h1>
+
+<h1>(2, 3, 4)</h1>
+
+<p>```</p>
+
+<h2>Compress</h2>
+
+<p>Assume that <strong>[1,0,1,0,1,1]</strong> list is our truth table. Given a list of elements, select the only onces that the value at the 
+truth table is <strong>True</strong></p>
+
+<p>```python</p>
+
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <p>from itertools import compress
+      compressed = compress('ABCDEF', [1,0,1,0,1,1])
+      [i for i in compressed]
+      ['A', 'C', 'E', 'F']
+      ```</p>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<h2>GroupBy</h2>
+
+<p>We want to print out all the objects which are same type. We supply a list of objects <strong>things</strong> and give a function 
+that will be called for each element in the list, and a value will be evaluated. </p>
+
+<p>In this scenario <code>lambda x: x[0]</code> gets the first element of the tuple <code>("animal", "bear")</code>, which will return <strong>animal</strong></p>
+
+<p>```python
+things = [("animal", "bear"), ("animal", "duck"), ("plant", "cactus"), 
+                    ("vehicle", "speed boat"), ("vehicle", "school bus")]</p>
+
+<p>for key, group in groupby(things, lambda x: x[0]):
+    print 20 * "="
+    for thing in group:
+        print "A %s is a %s." % (thing[1], key)
+```</p>
+
+<h1>```</h1>
+
+<p>A bear is a animal.</p>
+
+<h1>A duck is a animal.</h1>
+
+<h1>A cactus is a plant.</h1>
+
+<p>A speed boat is a vehicle.
+A school bus is a vehicle.
+<code>
+If you list comprehense the groupby result elements, you will see the elements are reduced to **itertools._grouper object**
+which enables us to iterate over the objects. &lt;code&gt;**for thing in group:**&lt;/code&gt;
+</code>python</p>
+
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <p>[i for i in groupby(things, lambda x: x[0])]
+      [('animal', <itertools._grouper object at 0x1024a0210>), ('plant', <itertools._grouper object at 0x1024a0250>), 
+      ('vehicle', <itertools._grouper object at 0x1024a0410>)]
+      ```</p>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<h2>IFilter</h2>
+
+<p>As you might already know, Python has a builtin function called <strong>filter</strong>. Filter function accepts a sequence of elements,
+elements from iterable returning only those for which the predicate is True.</p>
+
+<p>```python</p>
+
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <p>mod2 = lambda x: x%2
+      filter.<strong>doc</strong>
+      '''filter(function or None, sequence) -> list, tuple, or string
+      Return those items of sequence for which function(item) is true. <br />
+      If function is None, return the items that are true. <br />
+      If sequence is a tuple or string, return the same type, else return a list.'''
+      filter(mod2, range(10))
+      [1, 3, 5, 7, 9]
+      '''The difference is filter result is evaluated whereas ifilter won't be 
+      evaluated till iterated.
+      '''
+      from itertools import ifilter
+      even<em>numbers</em>gen = ifilter( mod2, range(10) )
+      print even<em>numbers</em>gen, type(even<em>numbers</em>gen), dir(even<em>numbers</em>gen)
+      <itertools.ifilter object at 0x1067d4390> <type 'itertools.ifilter'> ['<strong>class</strong>', '<strong>delattr</strong>', '<strong>doc</strong>', '<strong>format</strong>', '<strong>getattribute</strong>', '<strong>hash</strong>', '<strong>init</strong>', '<strong>iter</strong>', '<strong>new</strong>', '<strong>reduce</strong>', '<strong>reduce<em>ex</strong>', '<strong>repr</strong>', '<strong>setattr</strong>', '<strong>sizeof</strong>', '<strong>str</strong>', '<strong>subclasshook</strong>', 'next']
+      [i for i in even</em>numbers_gen]
+      [1, 3, 5, 7, 9]</p>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<p>```</p>
+
+<h2>IMap</h2>
+
+<p>```python</p>
+
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <p>imap.<strong>doc</strong>
+      '''imap(func, *iterables) --> 
+      Make an iterator that computes the function using arguments from
+      each of the iterables.  Like map() except that it returns an iterator instead of a list and 
+      that it stops when the shortest iterable is exhausted 
+      instead of filling in None for shorter iterables.'''
+      [i for i in imap(pow, (2,3,10), (5,2,3))]
+      [32, 9, 1000]
+      [i for i in imap(add, (imap(pow, (2,3,10), (5,2,3)) ), (2,2,2))]
+      [34, 11, 1002]
+      ```</p>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<h2>ISlice</h2>
+
+<p>```python</p>
+
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <p>from itertools import islice
+      islice('ABCDEFG', 2)
+      <itertools.islice object at 0x1099b5cb0>
+      [i for i in islice('ABCDEFG', 2)]
+      ['A', 'B']
+      [i for i in islice('ABCDEFG', 2, 2)]
+      []
+      [i for i in islice('ABCDEFG', 2, None)]
+      ['C', 'D', 'E', 'F', 'G']
+      [i for i in islice('ABCDEFG', 2, None, 2)]
+      ['C', 'E', 'G']
+      [i for i in islice('ABCDEFG', 0, None, 2)]
+      ['A', 'C', 'E', 'G']
+      ```</p>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<h2>IZip</h2>
+
+<p>```python</p>
+
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <p>from itertools import izip
+      [i for i in izip('ABCD', 'xy')]
+      [('A', 'x'), ('B', 'y')]
+      [i for i in izip('ABCD', 'xyz')]
+      [('A', 'x'), ('B', 'y'), ('C', 'z')]
+      [i for i in izip('ABCD', 'xyz0')]
+      [('A', 'x'), ('B', 'y'), ('C', 'z'), ('D', '0')]
+      [i for i in izip('ABCD', 'xyz01')]
+      [('A', 'x'), ('B', 'y'), ('C', 'z'), ('D', '0')]</p>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<p>```</p>
+
+<h2>Permutations</h2>
+
+<p>```python</p>
+
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <p>from itertools import permutations
+      permutations('ABCD', 2)
+      <itertools.permutations object at 0x1099b3cb0>
+      [i for i in permutations('ABCD', 2)]
+      [('A', 'B'), ('A', 'C'), ('A', 'D'), ('B', 'A'), ('B', 'C'), ('B', 'D'), ('C', 'A'), ('C', 'B'), ('C', 'D'), ('D', 'A'), ('D', 'B'), ('D', 'C')]
+      [i for i in permutations('ABCD', 3)]
+      [('A', 'B', 'C'), ('A', 'B', 'D'), ('A', 'C', 'B'), ('A', 'C', 'D'), ('A', 'D', 'B'), ('A', 'D', 'C'), ('B', 'A', 'C'), ('B', 'A', 'D'), ('B', 'C', 'A'), ('B', 'C', 'D'), ('B', 'D', 'A'), ('B', 'D', 'C'), ('C', 'A', 'B'), ('C', 'A', 'D'), ('C', 'B', 'A'), ('C', 'B', 'D'), ('C', 'D', 'A'), ('C', 'D', 'B'), ('D', 'A', 'B'), ('D', 'A', 'C'), ('D', 'B', 'A'), ('D', 'B', 'C'), ('D', 'C', 'A'), ('D', 'C', 'B')]
+      [i for i in permutations(range(3))]
+      [(0, 1, 2), (0, 2, 1), (1, 0, 2), (1, 2, 0), (2, 0, 1), (2, 1, 0)]
+      [i for i in permutations(range(3),2)]
+      [(0, 1), (0, 2), (1, 0), (1, 2), (2, 0), (2, 1)]
+      ```</p>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<h2>Product</h2>
+
+<p>```python</p>
+
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <p>from itertools import product
+      product('ABCD', 'xy')
+      <itertools.product object at 0x109a3f730>
+      [i for i in product('ABCD', 'xy')]
+      [('A', 'x'), ('A', 'y'), ('B', 'x'), ('B', 'y'), ('C', 'x'), ('C', 'y'), ('D', 'x'), ('D', 'y')]
+      [i for i in product('ABCD', 'xyz')]
+      [('A', 'x'), ('A', 'y'), ('A', 'z'), ('B', 'x'), ('B', 'y'), ('B', 'z'), ('C', 'x'), ('C', 'y'), ('C', 'z'), ('D', 'x'), ('D', 'y'), ('D', 'z')]
+      [i for i in product('ABCD', '1')]
+      [('A', '1'), ('B', '1'), ('C', '1'), ('D', '1')]
+      ```</p>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<h2>Repeat</h2>
+
+<p>```python</p>
+
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <p>from itertools import repeat
+      [i for i in repeat(10, 3)]
+      [10, 10, 10]
+      [i for i in repeat("<em>", 13)]
+      ['</em>', '<em>', '</em>', '<em>', '</em>', '<em>', '</em>', '<em>', '</em>', '<em>', '</em>', '<em>', '</em>']
+      "".join([i for i in repeat("<em>", 13)])
+      '<strong></em><em>*</em><em>*</em><em>*</strong>'
+      "</em>" * 13
+      '<strong><em>*</em><em>*</em><em>*</em></strong>'
+      "".join(repeat("<em>",13))
+      '<strong></em><em>*</em><em>*</em>**</strong>'
+      ```</p>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<h2>Starmap</h2>
+
+<p>```python</p>
+
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <p>from itertools import starmap
+      starmap(pow, [(2,5), (3,2), (10,3)])
+      <itertools.starmap object at 0x109a3d1d0>
+      [i for i in starmap(pow, [(2,5), (3,2), (10,3)])]
+      [32, 9, 1000]</p>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<p>```</p>
+
+<h2>TakeWhile</h2>
+
+<p>```python</p>
+
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <p>from itertools import takewhile
+      takewhile.<strong>doc</strong>
+      '''takewhile(predicate, iterable) --> takewhile object
+      Return successive entries from an iterable as long as the 
+      predicate evaluates to true for each entry.'''
+      [i for i in takewhile(lambda x: x&lt;5, [1,4,6,4,1])]
+      [1, 4]
+      condition = lambda x: x&lt;5
+      working_list = [1, 4, 6, 4, 1]
+      [i for i in takewhile(condition,working_list)]
+      [1, 4]
+      condition2 = lambda x: True
+      [i for i in takewhile(condition2,working_list)]
+      [1, 4, 6, 4, 1]
+      condition = False
+      ''' The first parameter is a function which returns True or False, not True/False directly'''
+      [i for i in takewhile(condition,working_list)]
+      Traceback (most recent call last):
+        File "<stdin>", line 1, in <module>
+      TypeError: 'bool' object is not callable
+      condition = lambda x: False
+      [i for i in takewhile(condition,working_list)]
+      []</p>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<p>```</p>
+
+    <hr />
+    <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-related="bahadircambel: Entreprenership 'n Programming " data-text='itertools'>Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    <a href="http://news.ycombinator.com/submit" class="hn-share-button">Vote on HN</a>
+</article>
+
+
+        <div id="disqus_thread"></div>
+        <hr />
+
+        <div class="footer">
+            <i class="icon-github"></i>&nbsp;<a href="https://github.com/bcambel">GitHub</a> /
+            <i class="icon-twitter"></i>&nbsp;<a href="http://twitter.com/bahadircambel">Twitter</a> /
+            <i class="icon-envelope-alt"></i>&nbsp;<a href="mailto:bcambel@gmail.com">E-Mail</a>
+        <br />
+        &copy; Copyright 2012 by Bahadir Cambel
+        </div>
+    </div>
+    <div class="profile">
+        <div class="">
+            <img src='/media/img/profile.jpg' alt='Bahadir Cambel' class="img-circle"/>
+        </div>
+        <p>
+            Entrepreneur & Programmer
+        </p><div class="keywords">Python, MongoDB, PostgreSQL, Flask, Celery</div>
+        <div class="social">
+            <a href="https://twitter.com/bahadircambel" class="twitter-follow-button" data-show-screen-name="false" data-show-count="true" data-lang="en">Follow @me</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <div>
+            <i class="icon-github"></i>&nbsp;<a href="https://github.com/bcambel">GitHub</a> <br />
+            <i class="icon-twitter"></i>&nbsp;<a href="http://twitter.com/bahadircambel">Twitter</a> <br />
+            <i class="icon-envelope-alt"></i>&nbsp;<a href="mailto:bcambel@gmail.com">E-Mail</a> <br />
+        </div>
+    </div>
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'entreprogrammeurjourney';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.masonry.js"></script>
+<script src="/static/js/markdown.js" type='text/javascript'></script>
+<script src="/static/js/app.js" type='text/javascript'></script>
+<script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37002437-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+</script>
+<script>
+    (function(d, t) {
+        var g = d.createElement(t),
+                s = d.getElementsByTagName(t)[0];
+        g.src = '//hnbutton.appspot.com/static/hn.min.js';
+        s.parentNode.insertBefore(g, s);
+    }(document, 'script'));
+</script>
+</body>
+</html>

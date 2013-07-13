@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block body %}
+        <div class="articles row">
+    {% for article in articles %}
+        <h3 class="">
+        <a href="/posts/{{article.slug}}.html">
+            {{article.title}}
+        </a>
+        </h3>
+     {% endfor %}
+        </div>
+{% endblock %}

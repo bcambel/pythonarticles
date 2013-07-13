@@ -1,0 +1,115 @@
+body{
+	background:rgb(244, 244, 244) url('/media/img/light_toast.png');
+}
+.main-content{
+	margin-top: 60px;;
+}
+
+.profile{
+	position: absolute;
+	top: 70px;
+	right: 20px;
+	background-color: white;
+	width: 180px;
+	border-radius: 10px;
+	padding: 20px;
+}
+
+.profile img{
+	width:150px;
+	margin-bottom: 20px;
+}
+.profile p{
+	font-family: 'Amaranth','Domine',verdana,sans-serif;
+	font-size: 25px;
+	line-height: 30px;
+}
+
+.profile .keywords{
+	font-family: 'Amaranth','Domine',verdana,sans-serif;
+	font-size: 16px;
+	margin-bottom: 10px;
+}
+.profile .social{
+	margin-bottom: 10px;
+}
+article{
+	box-shadow: 0 2px 4px rgba(34, 25, 25, 0.4);
+	-moz-box-shadow: 0 1px 2px rgba(34,25,25,0.4);
+	-webkit-box-shadow: 0 1px 4px rgba(34, 25, 25, 0.4);
+	padding-top: 20px;
+	padding-left: 30px;
+	padding-bottom: 10px;
+	padding-right: 30px;
+	border-radius: 1px;
+	margin:10px;
+	background-color: white;
+}
+
+article h1{
+	font-family: 'Amaranth','Domine',verdana,sans-serif;
+	font-size: 35px;
+	line-height: 40px;
+}
+
+article h2 {
+	font-family: 'Domine',verdana,sans-serif;
+	font-size:21px;
+}
+
+article li {
+	font-family: 'Domine',verdana,sans-serif;
+	font-size:18px;
+}
+
+
+article p,.footer {
+	font-family: 'Muli', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	font-size: 1.2em;
+	line-height: 29px;
+}
+.footer i{
+	margin-top:5px;
+}
+.articles h3{
+	font-family: 'Amaranth','Domine',verdana,sans-serif;
+	font-size: 28px;
+	padding: 10px 10px 10px 20px;
+	background-color: white;
+	box-shadow: 0 2px 4px rgba(34, 25, 25, 0.4);
+	-moz-box-shadow: 0 1px 2px rgba(34,25,25,0.4);
+	-webkit-box-shadow: 0 2px 4px rgba(34, 25, 25, 0.4);
+	line-height: 35px;
+	float:left;
+	width:350px;
+	min-height: 60px;
+}
+
+.articles h3:first-letter {
+	text-transform: uppercase;
+}
+
+.masonry,
+.masonry .masonry-brick {
+	-webkit-transition-duration: 0.7s;
+	-moz-transition-duration: 0.7s;
+	-ms-transition-duration: 0.7s;
+	-o-transition-duration: 0.7s;
+	transition-duration: 0.7s;
+}
+
+.masonry {
+	-webkit-transition-property: height, width;
+	-moz-transition-property: height, width;
+	-ms-transition-property: height, width;
+	-o-transition-property: height, width;
+	transition-property: height, width;
+}
+
+.masonry .masonry-brick {
+	-webkit-transition-property: left, right, top;
+	-moz-transition-property: left, right, top;
+	-ms-transition-property: left, right, top;
+	-o-transition-property: left, right, top;
+	transition-property: left, right, top;
+}

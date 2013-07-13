@@ -1,0 +1,406 @@
+<!-- Auto generated -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>The Journey of Programming Entrepreneurship</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://fonts.googleapis.com/css?family=Muli|Domine|Amaranth:400,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!--link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet"-->
+ 	<link href="//netdna.bootstrapcdn.com/bootswatch/2.3.2/flatly/bootstrap.min.css" rel='stylesheet' >
+   <link href="//netdna.bootstrapcdn.com/font-awesome/2.0/css/font-awesome.css" rel="stylesheet">
+    <link href="/media/css/app.css?v=2" rel="stylesheet">
+</head>
+<body>
+
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="/">&nbsp;The Journey&nbsp;</a>
+            <ul class="nav">
+                <li class=""><a href="/">Home</a></li>
+                <li class="">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Posts<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        
+                        <li>
+                            <a href="/posts/decorators_part1.html">
+                                decorators_part1
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="/posts/decorators_part2.html">
+                                decorators_part2
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="/posts/generators.html">
+                                generators
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="/posts/introduction_to_flask.html">
+                                introduction_to_flask
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="/posts/itertools.html">
+                                itertools
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </li>
+                </li>
+                <li>
+                    <form class="navbar-search pull-left" action="/search" method="post">
+                        <input type="text" class="search-query" placeholder="Search" id="term" name="term">
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+    <div class="container main-content">
+        
+<article id="content_html" class="span10">
+    <p>Decorators are really nice way of doing some work without effecting the actual implementation. Its similar to wire tapping but 
+with additional functionality. This article is part 1 for describing the basic usage and the execution flow of the 
+decorators. In the next part, we will dive into more detail into the decorator magic.</p>
+
+<p>Let's start with a simple example; say you have functions that takes a bit time to complete, and you want to log 
+how much time did it take ?</p>
+
+<p>In this example we will use the following function as the starting point</p>
+
+<p>```python
+import time</p>
+
+<p>def some<em>slow</em>function():
+    time.sleep(1+ int(random.random()))
+    return 'boohoo'
+```
+It will sleep between 1 to 2 seconds and return <strong>boohoo</strong>. </p>
+
+<p>Adding some flavor into the mix with the following code; Let's call our slow function 3 times.</p>
+
+<p><code>python
+for i in range(0,3):
+    print some_slow_function()
+</code></p>
+
+<p>When we run the above code ;</p>
+
+<p><code>
+boohoo
+boohoo
+boohoo
+</code></p>
+
+<p>We couldn't capture how many seconds did it take to complete the operation. You might argue that we could add logging statements 
+into the mix. That's correct, and you probably should do it. </p>
+
+<p>Lets define our first decorator. </p>
+
+<p>```python</p>
+
+<h1><strong>intercepted_function</strong> is a parameter that will be passed</h1>
+
+<h1>by Python before the code works.</h1>
+
+<p>def intercept<em>me(intercepted</em>function):
+    # <em>args and *</em>kwargs are the parameters that are supplied to our original function
+    def timer(<em>args, *</em>kwargs):
+        # call our actual function
+        # store the return of the function in a parameter
+        actual<em>result = intercepted</em>function(<em>args, *</em>kwargs)
+        return actual_result
+    # return our inner function which will intercept the call
+    return timer</p>
+
+<p>@intercept<em>me
+def some</em>slow_function():
+    time.sleep(1+ int(random.random()))
+    return 'boohoo'</p>
+
+<h1>lets make a call to see the output</h1>
+
+<p>print some<em>slow</em>function()    </p>
+
+<p>```</p>
+
+<p>As you see <code>time_me</code> is a function which returns a function which will intercept the call, but not going to do anything. 
+Exactly the same.</p>
+
+<p><code>
+boohoo
+</code></p>
+
+<p>Let's rewrite our decorator. Focus on the print line. </p>
+
+<p>```python
+def intercept<em>me(intercepted</em>function):
+    # <em>args and *</em>kwargs are the parameters that are supplied to our original function
+    def timer(<em>args, *</em>kwargs):
+        # call our actual function
+        # store the return of the function in a parameter
+        print "==I'm the timer within the decorator=intercept<em>me"
+        actual</em>result = intercepted<em>function(*args, **kwargs)
+        return actual</em>result
+    # return our inner function which will intercept the call
+    return timer</p>
+
+<p>```
+and when you run the code you will get</p>
+
+<p><code>
+==I'm the timer within the decorator=intercept_me
+boohoo
+</code></p>
+
+<p>As you see, the print statement within the decorator, was printed before the <strong>boohoo</strong>. 
+Let's add more logging statements to see the code flow more clear.</p>
+
+<p>```python
+import time
+import logging
+import random </p>
+
+<p>logging.basicConfig(format='<a href="%(filename">%(asctime)s</a>s#%(lineno)d)%(levelname)-7s %(message)s',
+                    level=logging.NOTSET)</p>
+
+<p>def intercept<em>me(intercepted</em>function):
+    # <em>args and *</em>kwargs are the parameters that are supplied to our original function
+    def timer(<em>args, *</em>kwargs):
+        # call our actual function
+        # store the return of the function in a parameter
+        logging.debug("==I'm the timer within the decorator=intercept<em>me")
+        actual</em>result = intercepted<em>function(*args, **kwargs)
+        logging.debug("Completed function call. Result =&gt; %s" % actual</em>result)
+        return actual_result
+    # return our inner function which will intercept the call
+    return timer</p>
+
+<p>@intercept<em>me
+def some</em>slow_function():
+    logging.info("Will sleep a bit..")
+    time.sleep(1+ int((random.random()*10)%5))
+    return 'boohoo'</p>
+
+<p>logging.info(some<em>slow</em>function())
+logging.info("Done....")
+```
+The result of the implementation is as follows. All the decorator related logging statements are DEBUG and the rest is INFO
+After <strong>Line#15</strong> the actual call is made which you will get the next (<strong>Line#23</strong>) INFO logging. 
+<strong>Boohoo</strong> is printed after the DEBUG statement <strong>line#16</strong> because the return of the function call is used within the 
+<strong>line#23</strong> <code>logging.info(some<em>slow</em>function())</code></p>
+
+<p><code>
+[2013-07-09 14:20:08,903](test.py#14)DEBUG   ==I'm the timer within the decorator=intercept_me
+[2013-07-09 14:20:08,903](test.py#23)INFO    Will sleep a bit..
+[2013-07-09 14:20:13,903](test.py#16)DEBUG   Completed function call. Result =&gt; boohoo
+[2013-07-09 14:20:13,904](test.py#27)INFO    boohoo
+[2013-07-09 14:20:13,904](test.py#28)INFO    Done....
+</code></p>
+
+<h2>Final version</h2>
+
+<p>Here is the <a href="https://github.com/bcambel/pythonarticles/blob/master/examples/decorators/part1/ver2.py">latest version of the code</a></p>
+
+<p>When you look carefully to the latest version of the sample, you will see the <strong>@wrap(intercepted_function)</strong>
+decorator added to our inner function(<strong>timer</strong>). The reason for that is ;
+<code>
+Without the use of this decorator factory, the name of the example 
+function would have been 'wrapper', 
+and the docstring of the original example() would have been lost.
+Take a look at the [origin documentation](http://docs.python.org/2/library/functools.html#functools.wraps)
+</code></p>
+
+<p>```python
+import time
+import logging
+import random 
+from functools import wraps
+from datetime import datetime as dt</p>
+
+<p>logging.basicConfig(format='<a href="%(filename">%(asctime)s</a>s#%(lineno)d)%(levelname)-7s %(message)s',
+                    level=logging.NOTSET)</p>
+
+<p>def intercept<em>me(intercepted</em>function):
+    @wraps(intercepted<em>function)
+    def timer(*args, **kwargs):
+        '''*args and **kwargs are the parameters that are supplied to our original function'''
+        # get our actual function name
+        function</em>name = intercepted<em>function.func</em>name
+        # call our actual function
+        # store the return of the function in a parameter
+        logging.debug("Starting capturing the time of the executing '%s'" % function<em>name)
+        start = dt.now()
+        actual</em>result = intercepted<em>function(*args, **kwargs)
+        stop = dt.now()
+        execution</em>time = stop - start
+        logging.debug('Function: [{fnc}] =&gt; Took [{timed}]'.format(fnc=function<em>name, timed=execution</em>time))</p>
+
+<pre><code>    return actual_result
+# return our inner function which will intercept the call
+return timer
+</code></pre>
+
+<p>@intercept<em>me
+def some</em>slow_function():
+    logging.info("Will sleep a bit..")
+    time.sleep(1+ int((random.random()*10)%5))
+    return 'boohoo'</p>
+
+<p>for i in range(0,10):
+    logging.info("{0} Starting iter {1}{0}".format(20*"=",i+1))
+    logging.info(some<em>slow</em>function())</p>
+
+<p>```</p>
+
+<p>Here is the results;
+<code>
+[2013-07-09 14:30:56,366](ver2.py#35)INFO    ==================== Starting iter 1====================
+[2013-07-09 14:30:56,366](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
+[2013-07-09 14:30:56,366](ver2.py#30)INFO    Will sleep a bit..
+[2013-07-09 14:31:00,367](ver2.py#22)DEBUG   Function: [some_slow_function] =&gt; Took [0:00:04.001038]
+[2013-07-09 14:31:00,367](ver2.py#36)INFO    boohoo
+[2013-07-09 14:31:00,367](ver2.py#35)INFO    ==================== Starting iter 2====================
+[2013-07-09 14:31:00,367](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
+[2013-07-09 14:31:00,368](ver2.py#30)INFO    Will sleep a bit..
+[2013-07-09 14:31:02,368](ver2.py#22)DEBUG   Function: [some_slow_function] =&gt; Took [0:00:02.000702]
+[2013-07-09 14:31:02,368](ver2.py#36)INFO    boohoo
+[2013-07-09 14:31:02,369](ver2.py#35)INFO    ==================== Starting iter 3====================
+[2013-07-09 14:31:02,369](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
+[2013-07-09 14:31:02,369](ver2.py#30)INFO    Will sleep a bit..
+[2013-07-09 14:31:03,370](ver2.py#22)DEBUG   Function: [some_slow_function] =&gt; Took [0:00:01.000704]
+[2013-07-09 14:31:03,370](ver2.py#36)INFO    boohoo
+[2013-07-09 14:31:03,370](ver2.py#35)INFO    ==================== Starting iter 4====================
+[2013-07-09 14:31:03,370](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
+[2013-07-09 14:31:03,370](ver2.py#30)INFO    Will sleep a bit..
+[2013-07-09 14:31:08,371](ver2.py#22)DEBUG   Function: [some_slow_function] =&gt; Took [0:00:05.000781]
+[2013-07-09 14:31:08,371](ver2.py#36)INFO    boohoo
+[2013-07-09 14:31:08,371](ver2.py#35)INFO    ==================== Starting iter 5====================
+[2013-07-09 14:31:08,371](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
+[2013-07-09 14:31:08,371](ver2.py#30)INFO    Will sleep a bit..
+[2013-07-09 14:31:13,372](ver2.py#22)DEBUG   Function: [some_slow_function] =&gt; Took [0:00:05.000993]
+[2013-07-09 14:31:13,373](ver2.py#36)INFO    boohoo
+[2013-07-09 14:31:13,373](ver2.py#35)INFO    ==================== Starting iter 6====================
+[2013-07-09 14:31:13,373](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
+[2013-07-09 14:31:13,373](ver2.py#30)INFO    Will sleep a bit..
+[2013-07-09 14:31:14,374](ver2.py#22)DEBUG   Function: [some_slow_function] =&gt; Took [0:00:01.001138]
+[2013-07-09 14:31:14,374](ver2.py#36)INFO    boohoo
+[2013-07-09 14:31:14,375](ver2.py#35)INFO    ==================== Starting iter 7====================
+[2013-07-09 14:31:14,375](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
+[2013-07-09 14:31:14,375](ver2.py#30)INFO    Will sleep a bit..
+[2013-07-09 14:31:17,376](ver2.py#22)DEBUG   Function: [some_slow_function] =&gt; Took [0:00:03.001073]
+[2013-07-09 14:31:17,376](ver2.py#36)INFO    boohoo
+[2013-07-09 14:31:17,376](ver2.py#35)INFO    ==================== Starting iter 8====================
+[2013-07-09 14:31:17,376](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
+[2013-07-09 14:31:17,376](ver2.py#30)INFO    Will sleep a bit..
+[2013-07-09 14:31:22,378](ver2.py#22)DEBUG   Function: [some_slow_function] =&gt; Took [0:00:05.001008]
+[2013-07-09 14:31:22,378](ver2.py#36)INFO    boohoo
+[2013-07-09 14:31:22,378](ver2.py#35)INFO    ==================== Starting iter 9====================
+[2013-07-09 14:31:22,378](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
+[2013-07-09 14:31:22,378](ver2.py#30)INFO    Will sleep a bit..
+[2013-07-09 14:31:27,379](ver2.py#22)DEBUG   Function: [some_slow_function] =&gt; Took [0:00:05.000956]
+[2013-07-09 14:31:27,379](ver2.py#36)INFO    boohoo
+[2013-07-09 14:31:27,380](ver2.py#35)INFO    ==================== Starting iter 10====================
+[2013-07-09 14:31:27,380](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
+[2013-07-09 14:31:27,380](ver2.py#30)INFO    Will sleep a bit..
+[2013-07-09 14:31:30,381](ver2.py#22)DEBUG   Function: [some_slow_function] =&gt; Took [0:00:03.000916]
+[2013-07-09 14:31:30,381](ver2.py#36)INFO    boohoo
+</code></p>
+
+<h2>Shameless plug</h2>
+
+<p>Thanks to <a href="https://github.com/thijsdezoete">@thijsdezoete</a> for the initial kick in..</p>
+
+<p>Well I literally stole Thijs's initial code and made minor modifications. We were talking about how to implement a 
+performance tracker. </p>
+
+    <hr />
+    <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-related="bahadircambel: Entreprenership 'n Programming " data-text='decorators_part1'>Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    <a href="http://news.ycombinator.com/submit" class="hn-share-button">Vote on HN</a>
+</article>
+
+
+        <div id="disqus_thread"></div>
+        <hr />
+
+        <div class="footer">
+            <i class="icon-github"></i>&nbsp;<a href="https://github.com/bcambel">GitHub</a> /
+            <i class="icon-twitter"></i>&nbsp;<a href="http://twitter.com/bahadircambel">Twitter</a> /
+            <i class="icon-envelope-alt"></i>&nbsp;<a href="mailto:bcambel@gmail.com">E-Mail</a>
+        <br />
+        &copy; Copyright 2012 by Bahadir Cambel
+        </div>
+    </div>
+    <div class="profile">
+        <div class="">
+            <img src='/media/img/profile.jpg' alt='Bahadir Cambel' class="img-circle"/>
+        </div>
+        <p>
+            Entrepreneur & Programmer
+        </p><div class="keywords">Python, MongoDB, PostgreSQL, Flask, Celery</div>
+        <div class="social">
+            <a href="https://twitter.com/bahadircambel" class="twitter-follow-button" data-show-screen-name="false" data-show-count="true" data-lang="en">Follow @me</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <div>
+            <i class="icon-github"></i>&nbsp;<a href="https://github.com/bcambel">GitHub</a> <br />
+            <i class="icon-twitter"></i>&nbsp;<a href="http://twitter.com/bahadircambel">Twitter</a> <br />
+            <i class="icon-envelope-alt"></i>&nbsp;<a href="mailto:bcambel@gmail.com">E-Mail</a> <br />
+        </div>
+    </div>
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'entreprogrammeurjourney';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.masonry.js"></script>
+<script src="/static/js/markdown.js" type='text/javascript'></script>
+<script src="/static/js/app.js" type='text/javascript'></script>
+<script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37002437-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+</script>
+<script>
+    (function(d, t) {
+        var g = d.createElement(t),
+                s = d.getElementsByTagName(t)[0];
+        g.src = '//hnbutton.appspot.com/static/hn.min.js';
+        s.parentNode.insertBefore(g, s);
+    }(document, 'script'));
+</script>
+</body>
+</html>
