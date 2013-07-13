@@ -88,8 +88,9 @@ Used for treating consecutive sequences as a single sequence. Equivalent to:</p>
             <span class="k">yield</span> <span class="n">element</span>
 </code></pre></div>
 
-<p>```python
-from itertools import chain</p>
+<p>```python</p>
+
+<p>from itertools import chain</p>
 
 <p>chained<em>tuples = chain((1,2,3),(4,5,6))
 print chained</em>tuples
@@ -105,19 +106,18 @@ print dir(chained_tuples)</p>
 
 <p>will output</p>
 
-<p><code>
-<itertools.chain object at 0x1004ea750>
-['<strong>class</strong>', '<strong>delattr</strong>', '<strong>doc</strong>', '<strong>format</strong>', '<strong>getattribute</strong>', '<strong>hash</strong>', '<strong>init</strong>', 
-'<strong>iter</strong>', '<strong>new</strong>', '<strong>reduce</strong>', '<strong>reduce<em>ex</strong>', '<strong>repr</strong>', '<strong>setattr</strong>', '<strong>sizeof</strong>', 
-'<strong>str</strong>', '<strong>subclasshook</strong>', 'from</em>iterable', 'next']
-1
-2
-3
-4
-5
-6
-Done iterating..
-</code></p>
+<div class="syntax"><pre><code><span class="o">&lt;</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x1004ea750</span><span class="o">&gt;</span>
+<span class="p">[</span><span class="s">&#39;__class__&#39;</span><span class="p">,</span> <span class="s">&#39;__delattr__&#39;</span><span class="p">,</span> <span class="s">&#39;__doc__&#39;</span><span class="p">,</span> <span class="s">&#39;__format__&#39;</span><span class="p">,</span> <span class="s">&#39;__getattribute__&#39;</span><span class="p">,</span> <span class="s">&#39;__hash__&#39;</span><span class="p">,</span> <span class="s">&#39;__init__&#39;</span><span class="p">,</span> 
+<span class="s">&#39;__iter__&#39;</span><span class="p">,</span> <span class="s">&#39;__new__&#39;</span><span class="p">,</span> <span class="s">&#39;__reduce__&#39;</span><span class="p">,</span> <span class="s">&#39;__reduce_ex__&#39;</span><span class="p">,</span> <span class="s">&#39;__repr__&#39;</span><span class="p">,</span> <span class="s">&#39;__setattr__&#39;</span><span class="p">,</span> <span class="s">&#39;__sizeof__&#39;</span><span class="p">,</span> 
+<span class="s">&#39;__str__&#39;</span><span class="p">,</span> <span class="s">&#39;__subclasshook__&#39;</span><span class="p">,</span> <span class="s">&#39;from_iterable&#39;</span><span class="p">,</span> <span class="s">&#39;next&#39;</span><span class="p">]</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">4</span>
+<span class="mi">5</span>
+<span class="mi">6</span>
+<span class="n">Done</span> <span class="n">iterating</span><span class="o">..</span>
+</code></pre></div>
 
 <h2>Combinations</h2>
 
