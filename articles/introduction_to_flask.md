@@ -109,12 +109,12 @@ if __name__ == "__main__":
 We would like to serve our static files in our development environment. Let's create a static folder under our project
 to put <code>JavaScript</code>, <code>CSS</code>, <code>Images</code>
 
-```bash
-mkdir static && cd static
-mkdir img && mkdir js && mkdir css
-```
+> mkdir static && cd static
+> mkdir img && mkdir js && mkdir css
+
 
 ```python
+
 if __name__ == "__main__":
     if app.debug:
        from werkzeug import SharedDataMiddleware
@@ -123,7 +123,6 @@ if __name__ == "__main__":
             '/static': static_folder
         })
     app.run(debug=True, use_debugger=True, use_reloader=True)
-
 ```
 
 Set <code>use_reloader=True</code> to restart flask server whenever a Python file changes. Very handy!
