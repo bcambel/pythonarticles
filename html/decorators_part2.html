@@ -76,27 +76,26 @@ and do something. Remember that functions are first class citizens(objects) in P
 
 <p>Fire up your favorite terminal, navigate to code directory and initialize python; start typing </p>
 
-<pre><code>&gt;&gt;&gt; from ver2 import *
-&gt;&gt;&gt; original_int = int
-&gt;&gt;&gt; @intercept_me
-... def int(value):
-...     logging.info("Overwritten integer function is here :)")
-...     res = original_int( value )
-...     return res
-... 
-&gt;&gt;&gt; int(10000)
-[2013-07-09 20:11:09,906](ver2.py#20)DEBUG   Starting capturing the time of the executing 'int'
-[2013-07-09 20:11:09,906](&lt;stdin&gt;#3)INFO    Overwritten integer function is here :)
-[2013-07-09 20:11:09,907](ver2.py#25)DEBUG   Function: [int] =&gt; Took [0:00:00.000226]
-10000
-&gt;&gt;&gt; int("231232")
-[2013-07-09 20:11:15,875](ver2.py#20)DEBUG   Starting capturing the time of the executing 'int'
-[2013-07-09 20:11:15,876](&lt;stdin&gt;#3)INFO    Overwritten integer function is here :)
-[2013-07-09 20:11:15,876](ver2.py#25)DEBUG   Function: [int] =&gt; Took [0:00:00.000315]
-231232
-&gt;&gt;&gt; 
-
-</code></pre>
+<div class="codehilite"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">ver2</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">original_int</span> <span class="o">=</span> <span class="nb">int</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nd">@intercept_me</span>
+<span class="o">...</span> <span class="k">def</span> <span class="nf">int</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+<span class="o">...</span>     <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&quot;Overwritten integer function is here :)&quot;</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">res</span> <span class="o">=</span> <span class="n">original_int</span><span class="p">(</span> <span class="n">value</span> <span class="p">)</span>
+<span class="o">...</span>     <span class="k">return</span> <span class="n">res</span>
+<span class="o">...</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">int</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">2013</span><span class="o">-</span><span class="mo">07</span><span class="o">-</span><span class="mi">09</span> <span class="mi">20</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">09</span><span class="p">,</span><span class="mi">906</span><span class="p">](</span><span class="n">ver2</span><span class="o">.</span><span class="n">py</span><span class="c">#20)DEBUG   Starting capturing the time of the executing &#39;int&#39;</span>
+<span class="p">[</span><span class="mi">2013</span><span class="o">-</span><span class="mo">07</span><span class="o">-</span><span class="mi">09</span> <span class="mi">20</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">09</span><span class="p">,</span><span class="mi">906</span><span class="p">](</span><span class="o">&lt;</span><span class="n">stdin</span><span class="o">&gt;</span><span class="c">#3)INFO    Overwritten integer function is here :)</span>
+<span class="p">[</span><span class="mi">2013</span><span class="o">-</span><span class="mo">07</span><span class="o">-</span><span class="mi">09</span> <span class="mi">20</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">09</span><span class="p">,</span><span class="mi">907</span><span class="p">](</span><span class="n">ver2</span><span class="o">.</span><span class="n">py</span><span class="c">#25)DEBUG   Function: [int] =&gt; Took [0:00:00.000226]</span>
+<span class="mi">10000</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">int</span><span class="p">(</span><span class="s">&quot;231232&quot;</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">2013</span><span class="o">-</span><span class="mo">07</span><span class="o">-</span><span class="mi">09</span> <span class="mi">20</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="mi">875</span><span class="p">](</span><span class="n">ver2</span><span class="o">.</span><span class="n">py</span><span class="c">#20)DEBUG   Starting capturing the time of the executing &#39;int&#39;</span>
+<span class="p">[</span><span class="mi">2013</span><span class="o">-</span><span class="mo">07</span><span class="o">-</span><span class="mi">09</span> <span class="mi">20</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="mi">876</span><span class="p">](</span><span class="o">&lt;</span><span class="n">stdin</span><span class="o">&gt;</span><span class="c">#3)INFO    Overwritten integer function is here :)</span>
+<span class="p">[</span><span class="mi">2013</span><span class="o">-</span><span class="mo">07</span><span class="o">-</span><span class="mi">09</span> <span class="mi">20</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="mi">876</span><span class="p">](</span><span class="n">ver2</span><span class="o">.</span><span class="n">py</span><span class="c">#25)DEBUG   Function: [int] =&gt; Took [0:00:00.000315]</span>
+<span class="mi">231232</span>
+<span class="o">&gt;&gt;&gt;</span> 
+</code></pre></div>
 
 <p>Python builtin function <strong>int</strong> overriden at the above code, and we redefined the int function. Now, whenever you call
 the int function, our decorator will take presedance and calculate the performance of the integer. Be aware that
@@ -104,34 +103,34 @@ this is not a good way to time execution of a program or function, but think of 
 
 <h2>Implement decorator via a class</h2>
 
-<pre><code>import logging
-import random
-from datetime import datetime as dt
-import time
+<div class="codehilite"><pre><code><span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span> <span class="k">as</span> <span class="n">dt</span>
+<span class="kn">import</span> <span class="nn">time</span>
 
-logging.basicConfig(format='[%(asctime)s](%(filename)s#%(lineno)d)%(levelname)-7s %(message)s',
-                    level=logging.NOTSET)
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">format</span><span class="o">=</span><span class="s">&#39;[</span><span class="si">%(asctime)s</span><span class="s">](</span><span class="si">%(filename)s</span><span class="s">#</span><span class="si">%(lineno)d</span><span class="s">)</span><span class="si">%(levelname)-7s</span><span class="s"> </span><span class="si">%(message)s</span><span class="s">&#39;</span><span class="p">,</span>
+                    <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">NOTSET</span><span class="p">)</span>
 
-class intercept_me(object):
-   def __init__ (self, func):
-      self.func = func
-      logging.debug(id(self))
+<span class="k">class</span> <span class="nc">intercept_me</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+   <span class="k">def</span> <span class="nf">__init__</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">func</span>
+      <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
 
-   def __call__ (self, *args, **kwargs):
-      return self.func (*args, **kwargs)
+   <span class="k">def</span> <span class="nf">__call__</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-@intercept_me
-def some_slow_function():
-    logging.info("Will sleep a bit..")
-    time.sleep(1+ int((random.random()*10)%5))
-    return 'boohoo'
+<span class="nd">@intercept_me</span>
+<span class="k">def</span> <span class="nf">some_slow_function</span><span class="p">():</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&quot;Will sleep a bit..&quot;</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span> <span class="nb">int</span><span class="p">((</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span><span class="o">%</span><span class="mi">5</span><span class="p">))</span>
+    <span class="k">return</span> <span class="s">&#39;boohoo&#39;</span>
 
-for i in range(0,2):
-    logging.info("{0} Starting iter {1}{0}".format(20*"=",i+1))
-    logging.info(some_slow_function())
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&quot;{0} Starting iter {1}{0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">20</span><span class="o">*</span><span class="s">&quot;=&quot;</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">some_slow_function</span><span class="p">())</span>
 
-logging.info("done")
-</code></pre>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&quot;done&quot;</span><span class="p">)</span>
+</code></pre></div>
 
 <p>will result in the following output in your console. As you see, the constructor of our class is only called one time,
 which means that the class is initialized only one time.</p>

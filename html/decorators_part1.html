@@ -80,20 +80,20 @@ how much time did it take ?</p>
 
 <p>In this example we will use the following function as the starting point</p>
 
-<pre><code>import time
+<div class="codehilite"><pre><code><span class="kn">import</span> <span class="nn">time</span>
 
-def some_slow_function():
-    time.sleep(1+ int(random.random()))
-    return 'boohoo'
-</code></pre>
+<span class="k">def</span> <span class="nf">some_slow_function</span><span class="p">():</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()))</span>
+    <span class="k">return</span> <span class="s">&#39;boohoo&#39;</span>
+</code></pre></div>
 
 <p>It will sleep between 1 to 2 seconds and return <strong>boohoo</strong>. </p>
 
 <p>Adding some flavor into the mix with the following code; Let's call our slow function 3 times.</p>
 
-<pre><code>for i in range(0,3):
-    print some_slow_function()
-</code></pre>
+<div class="codehilite"><pre><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">some_slow_function</span><span class="p">()</span>
+</code></pre></div>
 
 <p>When we run the above code ;</p>
 
@@ -107,28 +107,26 @@ into the mix. That's correct, and you probably should do it. </p>
 
 <p>Lets define our first decorator. </p>
 
-<pre><code>
-# **intercepted_function** is a parameter that will be passed
-# by Python before the code works.
-def intercept_me(intercepted_function):
-    # *args and **kwargs are the parameters that are supplied to our original function
-    def timer(*args, **kwargs):
-        # call our actual function
-        # store the return of the function in a parameter
-        actual_result = intercepted_function(*args, **kwargs)
-        return actual_result
-    # return our inner function which will intercept the call
-    return timer
+<div class="codehilite"><pre><code><span class="c"># **intercepted_function** is a parameter that will be passed</span>
+<span class="c"># by Python before the code works.</span>
+<span class="k">def</span> <span class="nf">intercept_me</span><span class="p">(</span><span class="n">intercepted_function</span><span class="p">):</span>
+    <span class="c"># *args and **kwargs are the parameters that are supplied to our original function</span>
+    <span class="k">def</span> <span class="nf">timer</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c"># call our actual function</span>
+        <span class="c"># store the return of the function in a parameter</span>
+        <span class="n">actual_result</span> <span class="o">=</span> <span class="n">intercepted_function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">actual_result</span>
+    <span class="c"># return our inner function which will intercept the call</span>
+    <span class="k">return</span> <span class="n">timer</span>
 
-@intercept_me
-def some_slow_function():
-    time.sleep(1+ int(random.random()))
-    return 'boohoo'
+<span class="nd">@intercept_me</span>
+<span class="k">def</span> <span class="nf">some_slow_function</span><span class="p">():</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()))</span>
+    <span class="k">return</span> <span class="s">&#39;boohoo&#39;</span>
 
-# lets make a call to see the output
-print some_slow_function()    
-
-</code></pre>
+<span class="c"># lets make a call to see the output</span>
+<span class="k">print</span> <span class="n">some_slow_function</span><span class="p">()</span>    
+</code></pre></div>
 
 <p>As you see <code>time_me</code> is a function which returns a function which will intercept the call, but not going to do anything. 
 Exactly the same.</p>
@@ -138,18 +136,17 @@ Exactly the same.</p>
 
 <p>Let's rewrite our decorator. Focus on the print line. </p>
 
-<pre><code>def intercept_me(intercepted_function):
-    # *args and **kwargs are the parameters that are supplied to our original function
-    def timer(*args, **kwargs):
-        # call our actual function
-        # store the return of the function in a parameter
-        print "==I'm the timer within the decorator=intercept_me"
-        actual_result = intercepted_function(*args, **kwargs)
-        return actual_result
-    # return our inner function which will intercept the call
-    return timer
-
-</code></pre>
+<div class="codehilite"><pre><code><span class="k">def</span> <span class="nf">intercept_me</span><span class="p">(</span><span class="n">intercepted_function</span><span class="p">):</span>
+    <span class="c"># *args and **kwargs are the parameters that are supplied to our original function</span>
+    <span class="k">def</span> <span class="nf">timer</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c"># call our actual function</span>
+        <span class="c"># store the return of the function in a parameter</span>
+        <span class="k">print</span> <span class="s">&quot;==I&#39;m the timer within the decorator=intercept_me&quot;</span>
+        <span class="n">actual_result</span> <span class="o">=</span> <span class="n">intercepted_function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">actual_result</span>
+    <span class="c"># return our inner function which will intercept the call</span>
+    <span class="k">return</span> <span class="n">timer</span>
+</code></pre></div>
 
 <p>and when you run the code you will get</p>
 
@@ -160,35 +157,35 @@ boohoo
 <p>As you see, the print statement within the decorator, was printed before the <strong>boohoo</strong>. 
 Let's add more logging statements to see the code flow more clear.</p>
 
-<pre><code>import time
-import logging
-import random 
+<div class="codehilite"><pre><code><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">random</span> 
 
-logging.basicConfig(format='[%(asctime)s](%(filename)s#%(lineno)d)%(levelname)-7s %(message)s',
-                    level=logging.NOTSET)
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">format</span><span class="o">=</span><span class="s">&#39;[</span><span class="si">%(asctime)s</span><span class="s">](</span><span class="si">%(filename)s</span><span class="s">#</span><span class="si">%(lineno)d</span><span class="s">)</span><span class="si">%(levelname)-7s</span><span class="s"> </span><span class="si">%(message)s</span><span class="s">&#39;</span><span class="p">,</span>
+                    <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">NOTSET</span><span class="p">)</span>
 
 
-def intercept_me(intercepted_function):
-    # *args and **kwargs are the parameters that are supplied to our original function
-    def timer(*args, **kwargs):
-        # call our actual function
-        # store the return of the function in a parameter
-        logging.debug("==I'm the timer within the decorator=intercept_me")
-        actual_result = intercepted_function(*args, **kwargs)
-        logging.debug("Completed function call. Result =&gt; %s" % actual_result)
-        return actual_result
-    # return our inner function which will intercept the call
-    return timer
+<span class="k">def</span> <span class="nf">intercept_me</span><span class="p">(</span><span class="n">intercepted_function</span><span class="p">):</span>
+    <span class="c"># *args and **kwargs are the parameters that are supplied to our original function</span>
+    <span class="k">def</span> <span class="nf">timer</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c"># call our actual function</span>
+        <span class="c"># store the return of the function in a parameter</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;==I&#39;m the timer within the decorator=intercept_me&quot;</span><span class="p">)</span>
+        <span class="n">actual_result</span> <span class="o">=</span> <span class="n">intercepted_function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Completed function call. Result =&gt; </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">actual_result</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">actual_result</span>
+    <span class="c"># return our inner function which will intercept the call</span>
+    <span class="k">return</span> <span class="n">timer</span>
 
-@intercept_me
-def some_slow_function():
-    logging.info("Will sleep a bit..")
-    time.sleep(1+ int((random.random()*10)%5))
-    return 'boohoo'
+<span class="nd">@intercept_me</span>
+<span class="k">def</span> <span class="nf">some_slow_function</span><span class="p">():</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&quot;Will sleep a bit..&quot;</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span> <span class="nb">int</span><span class="p">((</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span><span class="o">%</span><span class="mi">5</span><span class="p">))</span>
+    <span class="k">return</span> <span class="s">&#39;boohoo&#39;</span>
 
-logging.info(some_slow_function())
-logging.info("Done....")
-</code></pre>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">some_slow_function</span><span class="p">())</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&quot;Done....&quot;</span><span class="p">)</span>
+</code></pre></div>
 
 <p>The result of the implementation is as follows. All the decorator related logging statements are DEBUG and the rest is INFO
 After <strong>Line#15</strong> the actual call is made which you will get the next (<strong>Line#23</strong>) INFO logging. 
@@ -215,46 +212,46 @@ and the docstring of the original example() would have been lost.
 Take a look at the [origin documentation](http://docs.python.org/2/library/functools.html#functools.wraps)
 </code></p>
 
-<pre><code>import time
-import logging
-import random 
-from functools import wraps
-from datetime import datetime as dt
+<div class="codehilite"><pre><code><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">random</span> 
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span> <span class="k">as</span> <span class="n">dt</span>
 
-logging.basicConfig(format='[%(asctime)s](%(filename)s#%(lineno)d)%(levelname)-7s %(message)s',
-                    level=logging.NOTSET)
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">format</span><span class="o">=</span><span class="s">&#39;[</span><span class="si">%(asctime)s</span><span class="s">](</span><span class="si">%(filename)s</span><span class="s">#</span><span class="si">%(lineno)d</span><span class="s">)</span><span class="si">%(levelname)-7s</span><span class="s"> </span><span class="si">%(message)s</span><span class="s">&#39;</span><span class="p">,</span>
+                    <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">NOTSET</span><span class="p">)</span>
 
 
-def intercept_me(intercepted_function):
-    @wraps(intercepted_function)
-    def timer(*args, **kwargs):
-        '''*args and **kwargs are the parameters that are supplied to our original function'''
-        # get our actual function name
-        function_name = intercepted_function.func_name
-        # call our actual function
-        # store the return of the function in a parameter
-        logging.debug("Starting capturing the time of the executing '%s'" % function_name)
-        start = dt.now()
-        actual_result = intercepted_function(*args, **kwargs)
-        stop = dt.now()
-        execution_time = stop - start
-        logging.debug('Function: [{fnc}] =&gt; Took [{timed}]'.format(fnc=function_name, timed=execution_time))
+<span class="k">def</span> <span class="nf">intercept_me</span><span class="p">(</span><span class="n">intercepted_function</span><span class="p">):</span>
+    <span class="nd">@wraps</span><span class="p">(</span><span class="n">intercepted_function</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">timer</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;*args and **kwargs are the parameters that are supplied to our original function&#39;&#39;&#39;</span>
+        <span class="c"># get our actual function name</span>
+        <span class="n">function_name</span> <span class="o">=</span> <span class="n">intercepted_function</span><span class="o">.</span><span class="n">func_name</span>
+        <span class="c"># call our actual function</span>
+        <span class="c"># store the return of the function in a parameter</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Starting capturing the time of the executing &#39;</span><span class="si">%s</span><span class="s">&#39;&quot;</span> <span class="o">%</span> <span class="n">function_name</span><span class="p">)</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+        <span class="n">actual_result</span> <span class="o">=</span> <span class="n">intercepted_function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">stop</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+        <span class="n">execution_time</span> <span class="o">=</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">start</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&#39;Function: [{fnc}] =&gt; Took [{timed}]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fnc</span><span class="o">=</span><span class="n">function_name</span><span class="p">,</span> <span class="n">timed</span><span class="o">=</span><span class="n">execution_time</span><span class="p">))</span>
 
-        return actual_result
-    # return our inner function which will intercept the call
-    return timer
-
-@intercept_me
-def some_slow_function():
-    logging.info("Will sleep a bit..")
-    time.sleep(1+ int((random.random()*10)%5))
-    return 'boohoo'
-
-for i in range(0,10):
-    logging.info("{0} Starting iter {1}{0}".format(20*"=",i+1))
-    logging.info(some_slow_function())
-
+<pre><code>    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;actual_result&lt;/span&gt;
+&lt;span class="c"&gt;# return our inner function which will intercept the call&lt;/span&gt;
+&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;timer&lt;/span&gt;
 </code></pre>
+
+<span class="nd">@intercept_me</span>
+<span class="k">def</span> <span class="nf">some_slow_function</span><span class="p">():</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&quot;Will sleep a bit..&quot;</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span> <span class="nb">int</span><span class="p">((</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span><span class="o">%</span><span class="mi">5</span><span class="p">))</span>
+    <span class="k">return</span> <span class="s">&#39;boohoo&#39;</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&quot;{0} Starting iter {1}{0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">20</span><span class="o">*</span><span class="s">&quot;=&quot;</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">some_slow_function</span><span class="p">())</span>
+</code></pre></div>
 
 <p>Here is the results;
 <code>

@@ -74,33 +74,33 @@
     <p><a href="http://flask.pocoo.org/">Flask</a> is the minimalistic simple Web Framework for Python. 
 Want to start serving page immediately ? </p>
 
-<pre><code>mkdir flask101
-cd flask101
+<div class="codehilite"><pre><code>mkdir flask101
+<span class="nb">cd </span>flask101
 virtualenv venv
-# Not installed virtualenv ? 
+<span class="c"># Not installed virtualenv ? </span>
 curl -O https://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.9.1.tar.gz
 tar xvfz virtualenv-1.9.1.tar.gz
-cd virtualenv-1.9.1
+<span class="nb">cd </span>virtualenv-1.9.1
 sudo python setup.py install
-# now activate the virtualenv
-source venv/bin/activate
+<span class="c"># now activate the virtualenv</span>
+<span class="nb">source </span>venv/bin/activate
 pip install Flask
 touch server.py
 vim server.py
-</code></pre>
+</code></pre></div>
 
 <p>Save the following </p>
 
-<pre><code>from flask import Flask
-app = Flask(__name__)
+<div class="codehilite"><pre><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
 
-@app.route("/")
-def hello():
-    return "Hello World!"
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s">&quot;Hello World!&quot;</span>
 
-if __name__ == "__main__":
-    app.run()
-</code></pre>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div>
 
 <p>```shell
 python server.py</p>
@@ -125,58 +125,58 @@ python server.py</p>
 &lt;/html&gt;
 </code></p>
 
-<pre><code>from flask import Flask, render_template
-import os
+<div class="codehilite"><pre><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span>
+<span class="kn">import</span> <span class="nn">os</span>
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
-template_folder = os.path.join(current_dir, 'templates')
-app = Flask(__name__, template_folder=template_folder)
+<span class="n">current_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span>
+<span class="n">template_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_dir</span><span class="p">,</span> <span class="s">&#39;templates&#39;</span><span class="p">)</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">,</span> <span class="n">template_folder</span><span class="o">=</span><span class="n">template_folder</span><span class="p">)</span>
 
-@app.route("/")
-def hello():
-    #return "Hello World!"
-    return render_template("hello.html")
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+    <span class="c">#return &quot;Hello World!&quot;</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&quot;hello.html&quot;</span><span class="p">)</span>
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
-</code></pre>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div>
 
 <h2>How to send a parameter to Flask template ?</h2>
 
 <p>Adding our parameter to the <code>hello.html</code></p>
 
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-    &lt;body&gt;
+<div class="codehilite"><pre><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
         Hello world from flask! My name is {{name}}
-    &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div>
 
 <p>As you see, <code>{{name}}</code> added to our HTML file. All we need to do, add <code>name</code> as a named parameter to our
 <code>render_template</code></p>
 
-<pre><code>@app.route("/")
-def hello():
-    #return "Hello World!"
-    return render_template("hello.html", name='Bahadir')
-</code></pre>
+<div class="codehilite"><pre><code><span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+    <span class="c">#return &quot;Hello World!&quot;</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&quot;hello.html&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;Bahadir&#39;</span><span class="p">)</span>
+</code></pre></div>
 
 <h2>How to serve static files from Flask ? </h2>
 
 <p>Our previous code was </p>
 
-<pre><code>if __name__ == "__main__":
-    app.run(debug=True)
-</code></pre>
+<div class="codehilite"><pre><code><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div>
 
 <p>We would like to serve our static files in our development environment. Let's create a static folder under our project
 to put <code>JavaScript</code>, <code>CSS</code>, <code>Images</code></p>
 
-<pre><code>mkdir static &amp;&amp; cd static
-mkdir img &amp;&amp; mkdir js &amp;&amp; mkdir css
-</code></pre>
+<div class="codehilite"><pre><code>mkdir static <span class="o">&amp;&amp;</span> <span class="nb">cd </span>static
+mkdir img <span class="o">&amp;&amp;</span> mkdir js <span class="o">&amp;&amp;</span> mkdir css
+</code></pre></div>
 
 <p>```python
 if <strong>name</strong> == "<strong>main</strong>":

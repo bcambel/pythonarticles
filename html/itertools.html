@@ -80,12 +80,12 @@
 <p>Make an iterator that returns elements from the first iterable until it is exhausted, then proceeds to the next iterable, until all of the iterables are exhausted. 
 Used for treating consecutive sequences as a single sequence. Equivalent to:</p>
 
-<pre><code>def chain(*iterables):
-    # chain('ABC', 'DEF') --&gt; A B C D E F
-    for it in iterables:
-        for element in it:
-            yield element
-</code></pre>
+<div class="codehilite"><pre><code><span class="k">def</span> <span class="nf">chain</span><span class="p">(</span><span class="o">*</span><span class="n">iterables</span><span class="p">):</span>
+    <span class="c"># chain(&#39;ABC&#39;, &#39;DEF&#39;) --&gt; A B C D E F</span>
+    <span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="n">iterables</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">it</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">element</span>
+</code></pre></div>
 
 <p>```python
 from itertools import chain</p>
@@ -121,37 +121,37 @@ Done iterating..
 
 <p>Expects a iterable(1,2,3) and the length of the combinations(2) in our case.</p>
 
-<pre><code>from itertools import combinations
+<div class="codehilite"><pre><code><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
 
-for i in combinations((1,2,3,4,),2):
-    print i
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,),</span><span class="mi">2</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">i</span>
 
-for i in combinations((1,2,3,4,),3):
-    print i
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,),</span><span class="mi">3</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">i</span>
 
-# Console Output
-# (1, 2)
-# (1, 3)
-# (1, 4)
-# (2, 3)
-# (2, 4)
-# (3, 4)
-# (1, 2, 3)
-# (1, 2, 4)
-# (1, 3, 4)
-# (2, 3, 4)
-</code></pre>
+<span class="c"># Console Output</span>
+<span class="c"># (1, 2)</span>
+<span class="c"># (1, 3)</span>
+<span class="c"># (1, 4)</span>
+<span class="c"># (2, 3)</span>
+<span class="c"># (2, 4)</span>
+<span class="c"># (3, 4)</span>
+<span class="c"># (1, 2, 3)</span>
+<span class="c"># (1, 2, 4)</span>
+<span class="c"># (1, 3, 4)</span>
+<span class="c"># (2, 3, 4)</span>
+</code></pre></div>
 
 <h2>Compress</h2>
 
 <p>Assume that <strong>[1,0,1,0,1,1]</strong> list is our truth table. Given a list of elements, select the only onces that the value at the 
 truth table is <strong>True</strong></p>
 
-<pre><code>&gt;&gt;&gt; from itertools import compress
-&gt;&gt;&gt; compressed = compress('ABCDEF', [1,0,1,0,1,1])
-&gt;&gt;&gt; [i for i in compressed]
-['A', 'C', 'E', 'F']
-</code></pre>
+<div class="codehilite"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">compress</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">compressed</span> <span class="o">=</span> <span class="n">compress</span><span class="p">(</span><span class="s">&#39;ABCDEF&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">compressed</span><span class="p">]</span>
+<span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;F&#39;</span><span class="p">]</span>
+</code></pre></div>
 
 <h2>GroupBy</h2>
 
@@ -160,14 +160,14 @@ that will be called for each element in the list, and a value will be evaluated.
 
 <p>In this scenario <code>lambda x: x[0]</code> gets the first element of the tuple <code>("animal", "bear")</code>, which will return <strong>animal</strong></p>
 
-<pre><code>things = [("animal", "bear"), ("animal", "duck"), ("plant", "cactus"), 
-                    ("vehicle", "speed boat"), ("vehicle", "school bus")]
+<div class="codehilite"><pre><code><span class="n">things</span> <span class="o">=</span> <span class="p">[(</span><span class="s">&quot;animal&quot;</span><span class="p">,</span> <span class="s">&quot;bear&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s">&quot;animal&quot;</span><span class="p">,</span> <span class="s">&quot;duck&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s">&quot;plant&quot;</span><span class="p">,</span> <span class="s">&quot;cactus&quot;</span><span class="p">),</span> 
+                    <span class="p">(</span><span class="s">&quot;vehicle&quot;</span><span class="p">,</span> <span class="s">&quot;speed boat&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s">&quot;vehicle&quot;</span><span class="p">,</span> <span class="s">&quot;school bus&quot;</span><span class="p">)]</span>
 
-for key, group in groupby(things, lambda x: x[0]):
-    print 20 * "="
-    for thing in group:
-        print "A %s is a %s." % (thing[1], key)
-</code></pre>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">groupby</span><span class="p">(</span><span class="n">things</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="k">print</span> <span class="mi">20</span> <span class="o">*</span> <span class="s">&quot;=&quot;</span>
+    <span class="k">for</span> <span class="n">thing</span> <span class="ow">in</span> <span class="n">group</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;A </span><span class="si">%s</span><span class="s"> is a </span><span class="si">%s</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">thing</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">key</span><span class="p">)</span>
+</code></pre></div>
 
 <h1>```</h1>
 
@@ -200,151 +200,147 @@ which enables us to iterate over the objects. &lt;code&gt;**for thing in group:*
 <p>As you might already know, Python has a builtin function called <strong>filter</strong>. Filter function accepts a sequence of elements,
 elements from iterable returning only those for which the predicate is True.</p>
 
-<pre><code>&gt;&gt;&gt; mod2 = lambda x: x%2
-&gt;&gt;&gt; filter.__doc__
-'''filter(function or None, sequence) -&gt; list, tuple, or string
-Return those items of sequence for which function(item) is true.  
-If function is None, return the items that are true.  
-If sequence is a tuple or string, return the same type, else return a list.'''
-&gt;&gt;&gt; filter(mod2, range(10))
-[1, 3, 5, 7, 9]
-&gt;&gt;&gt; '''The difference is filter result is evaluated whereas ifilter won't be 
-evaluated till iterated.
-'''
-&gt;&gt;&gt; from itertools import ifilter
-&gt;&gt;&gt; even_numbers_gen = ifilter( mod2, range(10) )
-&gt;&gt;&gt; print even_numbers_gen, type(even_numbers_gen), dir(even_numbers_gen)
-&lt;itertools.ifilter object at 0x1067d4390&gt; &lt;type 'itertools.ifilter'&gt; ['__class__', '__delattr__', '__doc__', '__format__', '__getattribute__', '__hash__', '__init__', '__iter__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', 'next']
-&gt;&gt;&gt; [i for i in even_numbers_gen]
-[1, 3, 5, 7, 9]
-
-</code></pre>
+<div class="codehilite"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="n">mod2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">%</span><span class="mi">2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">filter</span><span class="o">.</span><span class="n">__doc__</span>
+<span class="sd">&#39;&#39;&#39;filter(function or None, sequence) -&gt; list, tuple, or string</span>
+<span class="sd">Return those items of sequence for which function(item) is true.  </span>
+<span class="sd">If function is None, return the items that are true.  </span>
+<span class="sd">If sequence is a tuple or string, return the same type, else return a list.&#39;&#39;&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">filter</span><span class="p">(</span><span class="n">mod2</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s">&#39;&#39;&#39;The difference is filter result is evaluated whereas ifilter won&#39;t be </span>
+<span class="s">evaluated till iterated.</span>
+<span class="s">&#39;&#39;&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">ifilter</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">even_numbers_gen</span> <span class="o">=</span> <span class="n">ifilter</span><span class="p">(</span> <span class="n">mod2</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">even_numbers_gen</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">even_numbers_gen</span><span class="p">),</span> <span class="nb">dir</span><span class="p">(</span><span class="n">even_numbers_gen</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">itertools</span><span class="o">.</span><span class="n">ifilter</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x1067d4390</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s">&#39;itertools.ifilter&#39;</span><span class="o">&gt;</span> <span class="p">[</span><span class="s">&#39;__class__&#39;</span><span class="p">,</span> <span class="s">&#39;__delattr__&#39;</span><span class="p">,</span> <span class="s">&#39;__doc__&#39;</span><span class="p">,</span> <span class="s">&#39;__format__&#39;</span><span class="p">,</span> <span class="s">&#39;__getattribute__&#39;</span><span class="p">,</span> <span class="s">&#39;__hash__&#39;</span><span class="p">,</span> <span class="s">&#39;__init__&#39;</span><span class="p">,</span> <span class="s">&#39;__iter__&#39;</span><span class="p">,</span> <span class="s">&#39;__new__&#39;</span><span class="p">,</span> <span class="s">&#39;__reduce__&#39;</span><span class="p">,</span> <span class="s">&#39;__reduce_ex__&#39;</span><span class="p">,</span> <span class="s">&#39;__repr__&#39;</span><span class="p">,</span> <span class="s">&#39;__setattr__&#39;</span><span class="p">,</span> <span class="s">&#39;__sizeof__&#39;</span><span class="p">,</span> <span class="s">&#39;__str__&#39;</span><span class="p">,</span> <span class="s">&#39;__subclasshook__&#39;</span><span class="p">,</span> <span class="s">&#39;next&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">even_numbers_gen</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+</code></pre></div>
 
 <h2>IMap</h2>
 
-<pre><code>&gt;&gt;&gt; imap.__doc__
-'''imap(func, *iterables) --&gt; 
-Make an iterator that computes the function using arguments from
-each of the iterables.  Like map() except that it returns an iterator instead of a list and 
-that it stops when the shortest iterable is exhausted 
-instead of filling in None for shorter iterables.'''
-&gt;&gt;&gt; [i for i in imap(pow, (2,3,10), (5,2,3))]
-[32, 9, 1000]
-&gt;&gt;&gt; [i for i in imap(add, (imap(pow, (2,3,10), (5,2,3)) ), (2,2,2))]
-[34, 11, 1002]
-</code></pre>
+<div class="codehilite"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="n">imap</span><span class="o">.</span><span class="n">__doc__</span>
+<span class="sd">&#39;&#39;&#39;imap(func, *iterables) --&gt; </span>
+<span class="sd">Make an iterator that computes the function using arguments from</span>
+<span class="sd">each of the iterables.  Like map() except that it returns an iterator instead of a list and </span>
+<span class="sd">that it stops when the shortest iterable is exhausted </span>
+<span class="sd">instead of filling in None for shorter iterables.&#39;&#39;&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">imap</span><span class="p">(</span><span class="nb">pow</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))]</span>
+<span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">imap</span><span class="p">(</span><span class="n">add</span><span class="p">,</span> <span class="p">(</span><span class="n">imap</span><span class="p">(</span><span class="nb">pow</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span> <span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))]</span>
+<span class="p">[</span><span class="mi">34</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">1002</span><span class="p">]</span>
+</code></pre></div>
 
 <h2>ISlice</h2>
 
-<pre><code>&gt;&gt;&gt; from itertools import islice
-&gt;&gt;&gt; islice('ABCDEFG', 2)
-&lt;itertools.islice object at 0x1099b5cb0&gt;
-&gt;&gt;&gt; [i for i in islice('ABCDEFG', 2)]
-['A', 'B']
-&gt;&gt;&gt; [i for i in islice('ABCDEFG', 2, 2)]
-[]
-&gt;&gt;&gt; [i for i in islice('ABCDEFG', 2, None)]
-['C', 'D', 'E', 'F', 'G']
-&gt;&gt;&gt; [i for i in islice('ABCDEFG', 2, None, 2)]
-['C', 'E', 'G']
-&gt;&gt;&gt; [i for i in islice('ABCDEFG', 0, None, 2)]
-['A', 'C', 'E', 'G']
-</code></pre>
+<div class="codehilite"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">islice</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">islice</span><span class="p">(</span><span class="s">&#39;ABCDEFG&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">itertools</span><span class="o">.</span><span class="n">islice</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x1099b5cb0</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">islice</span><span class="p">(</span><span class="s">&#39;ABCDEFG&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>
+<span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">islice</span><span class="p">(</span><span class="s">&#39;ABCDEFG&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>
+<span class="p">[]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">islice</span><span class="p">(</span><span class="s">&#39;ABCDEFG&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">None</span><span class="p">)]</span>
+<span class="p">[</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;F&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">islice</span><span class="p">(</span><span class="s">&#39;ABCDEFG&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>
+<span class="p">[</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">islice</span><span class="p">(</span><span class="s">&#39;ABCDEFG&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>
+<span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">]</span>
+</code></pre></div>
 
 <h2>IZip</h2>
 
-<pre><code>&gt;&gt;&gt; from itertools import izip
-&gt;&gt;&gt; [i for i in izip('ABCD', 'xy')]
-[('A', 'x'), ('B', 'y')]
-&gt;&gt;&gt; [i for i in izip('ABCD', 'xyz')]
-[('A', 'x'), ('B', 'y'), ('C', 'z')]
-&gt;&gt;&gt; [i for i in izip('ABCD', 'xyz0')]
-[('A', 'x'), ('B', 'y'), ('C', 'z'), ('D', '0')]
-&gt;&gt;&gt; [i for i in izip('ABCD', 'xyz01')]
-[('A', 'x'), ('B', 'y'), ('C', 'z'), ('D', '0')]
-
-</code></pre>
+<div class="codehilite"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">izip</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">izip</span><span class="p">(</span><span class="s">&#39;ABCD&#39;</span><span class="p">,</span> <span class="s">&#39;xy&#39;</span><span class="p">)]</span>
+<span class="p">[(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;x&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;y&#39;</span><span class="p">)]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">izip</span><span class="p">(</span><span class="s">&#39;ABCD&#39;</span><span class="p">,</span> <span class="s">&#39;xyz&#39;</span><span class="p">)]</span>
+<span class="p">[(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;x&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;y&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;z&#39;</span><span class="p">)]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">izip</span><span class="p">(</span><span class="s">&#39;ABCD&#39;</span><span class="p">,</span> <span class="s">&#39;xyz0&#39;</span><span class="p">)]</span>
+<span class="p">[(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;x&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;y&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;z&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;0&#39;</span><span class="p">)]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">izip</span><span class="p">(</span><span class="s">&#39;ABCD&#39;</span><span class="p">,</span> <span class="s">&#39;xyz01&#39;</span><span class="p">)]</span>
+<span class="p">[(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;x&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;y&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;z&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;0&#39;</span><span class="p">)]</span>
+</code></pre></div>
 
 <h2>Permutations</h2>
 
-<pre><code>&gt;&gt;&gt; from itertools import permutations
-&gt;&gt;&gt; permutations('ABCD', 2)
-&lt;itertools.permutations object at 0x1099b3cb0&gt;
-&gt;&gt;&gt; [i for i in permutations('ABCD', 2)]
-[('A', 'B'), ('A', 'C'), ('A', 'D'), ('B', 'A'), ('B', 'C'), ('B', 'D'), ('C', 'A'), ('C', 'B'), ('C', 'D'), ('D', 'A'), ('D', 'B'), ('D', 'C')]
-&gt;&gt;&gt; [i for i in permutations('ABCD', 3)]
-[('A', 'B', 'C'), ('A', 'B', 'D'), ('A', 'C', 'B'), ('A', 'C', 'D'), ('A', 'D', 'B'), ('A', 'D', 'C'), ('B', 'A', 'C'), ('B', 'A', 'D'), ('B', 'C', 'A'), ('B', 'C', 'D'), ('B', 'D', 'A'), ('B', 'D', 'C'), ('C', 'A', 'B'), ('C', 'A', 'D'), ('C', 'B', 'A'), ('C', 'B', 'D'), ('C', 'D', 'A'), ('C', 'D', 'B'), ('D', 'A', 'B'), ('D', 'A', 'C'), ('D', 'B', 'A'), ('D', 'B', 'C'), ('D', 'C', 'A'), ('D', 'C', 'B')]
-&gt;&gt;&gt; [i for i in permutations(range(3))]
-[(0, 1, 2), (0, 2, 1), (1, 0, 2), (1, 2, 0), (2, 0, 1), (2, 1, 0)]
-&gt;&gt;&gt; [i for i in permutations(range(3),2)]
-[(0, 1), (0, 2), (1, 0), (1, 2), (2, 0), (2, 1)]
-</code></pre>
+<div class="codehilite"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">permutations</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">permutations</span><span class="p">(</span><span class="s">&#39;ABCD&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x1099b3cb0</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">permutations</span><span class="p">(</span><span class="s">&#39;ABCD&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>
+<span class="p">[(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">permutations</span><span class="p">(</span><span class="s">&#39;ABCD&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
+<span class="p">[(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">)]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">permutations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))]</span>
+<span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">permutations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="mi">2</span><span class="p">)]</span>
+<span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
+</code></pre></div>
 
 <h2>Product</h2>
 
-<pre><code>&gt;&gt;&gt; from itertools import product
-&gt;&gt;&gt; product('ABCD', 'xy')
-&lt;itertools.product object at 0x109a3f730&gt;
-&gt;&gt;&gt; [i for i in product('ABCD', 'xy')]
-[('A', 'x'), ('A', 'y'), ('B', 'x'), ('B', 'y'), ('C', 'x'), ('C', 'y'), ('D', 'x'), ('D', 'y')]
-&gt;&gt;&gt; [i for i in product('ABCD', 'xyz')]
-[('A', 'x'), ('A', 'y'), ('A', 'z'), ('B', 'x'), ('B', 'y'), ('B', 'z'), ('C', 'x'), ('C', 'y'), ('C', 'z'), ('D', 'x'), ('D', 'y'), ('D', 'z')]
-&gt;&gt;&gt; [i for i in product('ABCD', '1')]
-[('A', '1'), ('B', '1'), ('C', '1'), ('D', '1')]
-</code></pre>
+<div class="codehilite"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">product</span><span class="p">(</span><span class="s">&#39;ABCD&#39;</span><span class="p">,</span> <span class="s">&#39;xy&#39;</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x109a3f730</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="s">&#39;ABCD&#39;</span><span class="p">,</span> <span class="s">&#39;xy&#39;</span><span class="p">)]</span>
+<span class="p">[(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;x&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;y&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;x&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;y&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;x&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;y&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;x&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;y&#39;</span><span class="p">)]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="s">&#39;ABCD&#39;</span><span class="p">,</span> <span class="s">&#39;xyz&#39;</span><span class="p">)]</span>
+<span class="p">[(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;x&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;y&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;z&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;x&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;y&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;z&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;x&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;y&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;z&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;x&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;y&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;z&#39;</span><span class="p">)]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="s">&#39;ABCD&#39;</span><span class="p">,</span> <span class="s">&#39;1&#39;</span><span class="p">)]</span>
+<span class="p">[(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;1&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;1&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;1&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;1&#39;</span><span class="p">)]</span>
+</code></pre></div>
 
 <h2>Repeat</h2>
 
-<pre><code>&gt;&gt;&gt; from itertools import repeat
-&gt;&gt;&gt; [i for i in repeat(10, 3)]
-[10, 10, 10]
-&gt;&gt;&gt; [i for i in repeat("*", 13)]
-['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*']
-&gt;&gt;&gt; "".join([i for i in repeat("*", 13)])
-'*************'
-&gt;&gt;&gt; "*" * 13
-'*************'
-&gt;&gt;&gt; "".join(repeat("*",13))
-'*************'
-</code></pre>
+<div class="codehilite"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">repeat</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">repeat</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
+<span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">repeat</span><span class="p">(</span><span class="s">&quot;*&quot;</span><span class="p">,</span> <span class="mi">13</span><span class="p">)]</span>
+<span class="p">[</span><span class="s">&#39;*&#39;</span><span class="p">,</span> <span class="s">&#39;*&#39;</span><span class="p">,</span> <span class="s">&#39;*&#39;</span><span class="p">,</span> <span class="s">&#39;*&#39;</span><span class="p">,</span> <span class="s">&#39;*&#39;</span><span class="p">,</span> <span class="s">&#39;*&#39;</span><span class="p">,</span> <span class="s">&#39;*&#39;</span><span class="p">,</span> <span class="s">&#39;*&#39;</span><span class="p">,</span> <span class="s">&#39;*&#39;</span><span class="p">,</span> <span class="s">&#39;*&#39;</span><span class="p">,</span> <span class="s">&#39;*&#39;</span><span class="p">,</span> <span class="s">&#39;*&#39;</span><span class="p">,</span> <span class="s">&#39;*&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">repeat</span><span class="p">(</span><span class="s">&quot;*&quot;</span><span class="p">,</span> <span class="mi">13</span><span class="p">)])</span>
+<span class="s">&#39;*************&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s">&quot;*&quot;</span> <span class="o">*</span> <span class="mi">13</span>
+<span class="s">&#39;*************&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">repeat</span><span class="p">(</span><span class="s">&quot;*&quot;</span><span class="p">,</span><span class="mi">13</span><span class="p">))</span>
+<span class="s">&#39;*************&#39;</span>
+</code></pre></div>
 
 <h2>Starmap</h2>
 
-<pre><code>&gt;&gt;&gt; from itertools import starmap
-&gt;&gt;&gt; starmap(pow, [(2,5), (3,2), (10,3)])
-&lt;itertools.starmap object at 0x109a3d1d0&gt;
-&gt;&gt;&gt; [i for i in starmap(pow, [(2,5), (3,2), (10,3)])]
-[32, 9, 1000]
-
-</code></pre>
+<div class="codehilite"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">starmap</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">starmap</span><span class="p">(</span><span class="nb">pow</span><span class="p">,</span> <span class="p">[(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">)])</span>
+<span class="o">&lt;</span><span class="n">itertools</span><span class="o">.</span><span class="n">starmap</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x109a3d1d0</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">starmap</span><span class="p">(</span><span class="nb">pow</span><span class="p">,</span> <span class="p">[(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">)])]</span>
+<span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]</span>
+</code></pre></div>
 
 <h2>TakeWhile</h2>
 
-<pre><code>&gt;&gt;&gt; from itertools import takewhile
-&gt;&gt;&gt; takewhile.__doc__
-'''takewhile(predicate, iterable) --&gt; takewhile object
-Return successive entries from an iterable as long as the 
-predicate evaluates to true for each entry.'''
-&gt;&gt;&gt; [i for i in takewhile(lambda x: x&lt;5, [1,4,6,4,1])]
-[1, 4]
-&gt;&gt;&gt; condition = lambda x: x&lt;5
-&gt;&gt;&gt; working_list = [1, 4, 6, 4, 1]
-&gt;&gt;&gt; [i for i in takewhile(condition,working_list)]
-[1, 4]
-&gt;&gt;&gt; condition2 = lambda x: True
-&gt;&gt;&gt; [i for i in takewhile(condition2,working_list)]
-[1, 4, 6, 4, 1]
-&gt;&gt;&gt; condition = False
-&gt;&gt;&gt; ''' The first parameter is a function which returns True or False, not True/False directly'''
-&gt;&gt;&gt; [i for i in takewhile(condition,working_list)]
-Traceback (most recent call last):
-  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
-TypeError: 'bool' object is not callable
-&gt;&gt;&gt; condition = lambda x: False
-&gt;&gt;&gt; [i for i in takewhile(condition,working_list)]
-[]
-
-</code></pre>
+<div class="codehilite"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">takewhile</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">takewhile</span><span class="o">.</span><span class="n">__doc__</span>
+<span class="sd">&#39;&#39;&#39;takewhile(predicate, iterable) --&gt; takewhile object</span>
+<span class="sd">Return successive entries from an iterable as long as the </span>
+<span class="sd">predicate evaluates to true for each entry.&#39;&#39;&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">takewhile</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">])]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">condition</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">&lt;</span><span class="mi">5</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">working_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">takewhile</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span><span class="n">working_list</span><span class="p">)]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">condition2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="bp">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">takewhile</span><span class="p">(</span><span class="n">condition2</span><span class="p">,</span><span class="n">working_list</span><span class="p">)]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">condition</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s">&#39;&#39;&#39; The first parameter is a function which returns True or False, not True/False directly&#39;&#39;&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">takewhile</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span><span class="n">working_list</span><span class="p">)]</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">TypeError</span><span class="p">:</span> <span class="s">&#39;bool&#39;</span> <span class="nb">object</span> <span class="ow">is</span> <span class="ow">not</span> <span class="nb">callable</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">condition</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="bp">False</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">takewhile</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span><span class="n">working_list</span><span class="p">)]</span>
+<span class="p">[]</span>
+</code></pre></div>
 
     <hr />
     <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-related="bahadircambel: Entreprenership 'n Programming " data-text='itertools'>Tweet</a>
