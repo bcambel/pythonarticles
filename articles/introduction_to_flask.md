@@ -114,7 +114,6 @@ to put <code>JavaScript</code>, <code>CSS</code>, <code>Images</code>
 
 
 ```python
-
 if __name__ == "__main__":
     if app.debug:
        from werkzeug import SharedDataMiddleware
