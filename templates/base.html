@@ -27,7 +27,7 @@
                     <ul class="dropdown-menu">
                         {% for article in articles %}
                         <li>
-                            <a href="/articles/{{article.slug}}.html">
+                            <a href="/{{article.slug}}.html">
                                 {{article.title}}
                             </a>
                         </li>
@@ -61,7 +61,7 @@
     </div>
     <div class="profile">
         <div class="">
-            <img src='/media/img/profile.jpg' alt='Bahadir Cambel' class="img-circle"/>
+            <img src='/static/img/profile.jpg' alt='Bahadir Cambel' class="img-circle"/>
         </div>
         <p>
             Entrepreneur & Programmer
