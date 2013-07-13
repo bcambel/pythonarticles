@@ -79,7 +79,9 @@
 <h2>Chain</h2>
 
 <p>Make an iterator that returns elements from the first iterable until it is exhausted, then proceeds to the next iterable, until all of the iterables are exhausted. 
-Used for treating consecutive sequences as a single sequence. Equivalent to:</p>
+Used for treating consecutive sequences as a single sequence.</p>
+
+<p>Chain is quivalent to:</p>
 
 <div class="syntax"><pre><code><span class="k">def</span> <span class="nf">chain</span><span class="p">(</span><span class="o">*</span><span class="n">iterables</span><span class="p">):</span>
     <span class="c"># chain(&#39;ABC&#39;, &#39;DEF&#39;) --&gt; A B C D E F</span>
@@ -88,21 +90,21 @@ Used for treating consecutive sequences as a single sequence. Equivalent to:</p>
             <span class="k">yield</span> <span class="n">element</span>
 </code></pre></div>
 
-<p>```python</p>
+<p>An example;</p>
 
-<p>from itertools import chain</p>
+<div class="syntax"><pre><code><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
 
-<p>chained<em>tuples = chain((1,2,3),(4,5,6))
-print chained</em>tuples
-print dir(chained_tuples)</p>
+<span class="n">chained_tuples</span> <span class="o">=</span> <span class="n">chain</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="k">print</span> <span class="n">chained_tuples</span>
+<span class="k">print</span> <span class="nb">dir</span><span class="p">(</span><span class="n">chained_tuples</span><span class="p">)</span>
 
-<p>while True:
-    try:
-        print chained_tuples.next()
-    except StopIteration:
-        print "Done iterating.."
-        break
-```</p>
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">print</span> <span class="n">chained_tuples</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;Done iterating..&quot;</span>
+        <span class="k">break</span>
+</code></pre></div>
 
 <p>will output</p>
 
