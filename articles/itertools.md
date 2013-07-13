@@ -33,7 +33,7 @@ while True:
 
 will output
 
-```
+<code>
 <itertools.chain object at 0x1004ea750>
 ['__class__', '__delattr__', '__doc__', '__format__', '__getattribute__', '__hash__', '__init__', 
 '__iter__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', 
@@ -45,7 +45,7 @@ will output
 5
 6
 Done iterating..
-```
+</code>
 
 Combinations
 ---------------------
@@ -101,19 +101,19 @@ for key, group in groupby(things, lambda x: x[0]):
     print 20 * "="
     for thing in group:
         print "A %s is a %s." % (thing[1], key)
+# ====================
+# A bear is a animal.
+# A duck is a animal.
+# ====================
+# A cactus is a plant.
+# ====================
+# A speed boat is a vehicle.
+# A school bus is a vehicle.
 ```
-```
-====================
-A bear is a animal.
-A duck is a animal.
-====================
-A cactus is a plant.
-====================
-A speed boat is a vehicle.
-A school bus is a vehicle.
-```
+
 If you list comprehense the groupby result elements, you will see the elements are reduced to **itertools._grouper object**
 which enables us to iterate over the objects. <code>**for thing in group:**</code>
+
 ```python
 >>> [i for i in groupby(things, lambda x: x[0])]
 [('animal', <itertools._grouper object at 0x1024a0210>), ('plant', <itertools._grouper object at 0x1024a0250>), 

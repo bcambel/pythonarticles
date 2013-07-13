@@ -105,10 +105,11 @@ print dir(chained_tuples)</p>
 
 <p>will output</p>
 
-<pre><code>&lt;itertools.chain object at 0x1004ea750&gt;
-['__class__', '__delattr__', '__doc__', '__format__', '__getattribute__', '__hash__', '__init__', 
-'__iter__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', 
-'__str__', '__subclasshook__', 'from_iterable', 'next']
+<p><code>
+<itertools.chain object at 0x1004ea750>
+['<strong>class</strong>', '<strong>delattr</strong>', '<strong>doc</strong>', '<strong>format</strong>', '<strong>getattribute</strong>', '<strong>hash</strong>', '<strong>init</strong>', 
+'<strong>iter</strong>', '<strong>new</strong>', '<strong>reduce</strong>', '<strong>reduce<em>ex</strong>', '<strong>repr</strong>', '<strong>setattr</strong>', '<strong>sizeof</strong>', 
+'<strong>str</strong>', '<strong>subclasshook</strong>', 'from</em>iterable', 'next']
 1
 2
 3
@@ -116,7 +117,7 @@ print dir(chained_tuples)</p>
 5
 6
 Done iterating..
-</code></pre>
+</code></p>
 
 <h2>Combinations</h2>
 
@@ -168,33 +169,23 @@ that will be called for each element in the list, and a value will be evaluated.
     <span class="k">print</span> <span class="mi">20</span> <span class="o">*</span> <span class="s">&quot;=&quot;</span>
     <span class="k">for</span> <span class="n">thing</span> <span class="ow">in</span> <span class="n">group</span><span class="p">:</span>
         <span class="k">print</span> <span class="s">&quot;A </span><span class="si">%s</span><span class="s"> is a </span><span class="si">%s</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">thing</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">key</span><span class="p">)</span>
+<span class="c"># ====================</span>
+<span class="c"># A bear is a animal.</span>
+<span class="c"># A duck is a animal.</span>
+<span class="c"># ====================</span>
+<span class="c"># A cactus is a plant.</span>
+<span class="c"># ====================</span>
+<span class="c"># A speed boat is a vehicle.</span>
+<span class="c"># A school bus is a vehicle.</span>
 </code></pre></div>
 
-<h1>```</h1>
+<p>If you list comprehense the groupby result elements, you will see the elements are reduced to <strong>itertools._grouper object</strong>
+which enables us to iterate over the objects. <code><strong>for thing in group:</strong></code></p>
 
-<p>A bear is a animal.</p>
-
-<h1>A duck is a animal.</h1>
-
-<h1>A cactus is a plant.</h1>
-
-<p>A speed boat is a vehicle.
-A school bus is a vehicle.
-<code>
-If you list comprehense the groupby result elements, you will see the elements are reduced to **itertools._grouper object**
-which enables us to iterate over the objects. &lt;code&gt;**for thing in group:**&lt;/code&gt;
-</code>python</p>
-
-<blockquote>
-  <blockquote>
-    <blockquote>
-      <p>[i for i in groupby(things, lambda x: x[0])]
-      [('animal', <itertools._grouper object at 0x1024a0210>), ('plant', <itertools._grouper object at 0x1024a0250>), 
-      ('vehicle', <itertools._grouper object at 0x1024a0410>)]
-      ```</p>
-    </blockquote>
-  </blockquote>
-</blockquote>
+<div class="syntax"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">groupby</span><span class="p">(</span><span class="n">things</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+<span class="p">[(</span><span class="s">&#39;animal&#39;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">itertools</span><span class="o">.</span><span class="n">_grouper</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x1024a0210</span><span class="o">&gt;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;plant&#39;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">itertools</span><span class="o">.</span><span class="n">_grouper</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x1024a0250</span><span class="o">&gt;</span><span class="p">),</span> 
+<span class="p">(</span><span class="s">&#39;vehicle&#39;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">itertools</span><span class="o">.</span><span class="n">_grouper</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x1024a0410</span><span class="o">&gt;</span><span class="p">)]</span>
+</code></pre></div>
 
 <h2>IFilter</h2>
 
