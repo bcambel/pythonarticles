@@ -26,17 +26,14 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return "Hello World!"
+        return "Hello World!"
 
 if __name__ == "__main__":
-    app.run()
+        app.run()
 ```
 
 ```bash
-
 python server.py
-* Running on http://127.0.0.1:5000/
-
 ```
 
 Navigate to ```http://localhost:5000/``` and you will get the Hello World message.
