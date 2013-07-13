@@ -11,6 +11,7 @@
  	<link href="//netdna.bootstrapcdn.com/bootswatch/2.3.2/flatly/bootstrap.min.css" rel='stylesheet' >
    <link href="//netdna.bootstrapcdn.com/font-awesome/2.0/css/font-awesome.css" rel="stylesheet">
     <link href="/static/css/app.css?v=2" rel="stylesheet">
+    <link href="/static/css/pysegments.css?v=2" rel="stylesheet">
 </head>
 <body>
 
@@ -80,7 +81,7 @@
 <p>Make an iterator that returns elements from the first iterable until it is exhausted, then proceeds to the next iterable, until all of the iterables are exhausted. 
 Used for treating consecutive sequences as a single sequence. Equivalent to:</p>
 
-<div class="codehilite"><pre><code><span class="k">def</span> <span class="nf">chain</span><span class="p">(</span><span class="o">*</span><span class="n">iterables</span><span class="p">):</span>
+<div class="style"><pre><code><span class="k">def</span> <span class="nf">chain</span><span class="p">(</span><span class="o">*</span><span class="n">iterables</span><span class="p">):</span>
     <span class="c"># chain(&#39;ABC&#39;, &#39;DEF&#39;) --&gt; A B C D E F</span>
     <span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="n">iterables</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">it</span><span class="p">:</span>
@@ -121,7 +122,7 @@ Done iterating..
 
 <p>Expects a iterable(1,2,3) and the length of the combinations(2) in our case.</p>
 
-<div class="codehilite"><pre><code><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
+<div class="style"><pre><code><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,),</span><span class="mi">2</span><span class="p">):</span>
     <span class="k">print</span> <span class="n">i</span>
@@ -147,7 +148,7 @@ Done iterating..
 <p>Assume that <strong>[1,0,1,0,1,1]</strong> list is our truth table. Given a list of elements, select the only onces that the value at the 
 truth table is <strong>True</strong></p>
 
-<div class="codehilite"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">compress</span>
+<div class="style"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">compress</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">compressed</span> <span class="o">=</span> <span class="n">compress</span><span class="p">(</span><span class="s">&#39;ABCDEF&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">compressed</span><span class="p">]</span>
 <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;F&#39;</span><span class="p">]</span>
@@ -160,7 +161,7 @@ that will be called for each element in the list, and a value will be evaluated.
 
 <p>In this scenario <code>lambda x: x[0]</code> gets the first element of the tuple <code>("animal", "bear")</code>, which will return <strong>animal</strong></p>
 
-<div class="codehilite"><pre><code><span class="n">things</span> <span class="o">=</span> <span class="p">[(</span><span class="s">&quot;animal&quot;</span><span class="p">,</span> <span class="s">&quot;bear&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s">&quot;animal&quot;</span><span class="p">,</span> <span class="s">&quot;duck&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s">&quot;plant&quot;</span><span class="p">,</span> <span class="s">&quot;cactus&quot;</span><span class="p">),</span> 
+<div class="style"><pre><code><span class="n">things</span> <span class="o">=</span> <span class="p">[(</span><span class="s">&quot;animal&quot;</span><span class="p">,</span> <span class="s">&quot;bear&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s">&quot;animal&quot;</span><span class="p">,</span> <span class="s">&quot;duck&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s">&quot;plant&quot;</span><span class="p">,</span> <span class="s">&quot;cactus&quot;</span><span class="p">),</span> 
                     <span class="p">(</span><span class="s">&quot;vehicle&quot;</span><span class="p">,</span> <span class="s">&quot;speed boat&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s">&quot;vehicle&quot;</span><span class="p">,</span> <span class="s">&quot;school bus&quot;</span><span class="p">)]</span>
 
 <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">groupby</span><span class="p">(</span><span class="n">things</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
@@ -200,7 +201,7 @@ which enables us to iterate over the objects. &lt;code&gt;**for thing in group:*
 <p>As you might already know, Python has a builtin function called <strong>filter</strong>. Filter function accepts a sequence of elements,
 elements from iterable returning only those for which the predicate is True.</p>
 
-<div class="codehilite"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="n">mod2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">%</span><span class="mi">2</span>
+<div class="style"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="n">mod2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">%</span><span class="mi">2</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="nb">filter</span><span class="o">.</span><span class="n">__doc__</span>
 <span class="sd">&#39;&#39;&#39;filter(function or None, sequence) -&gt; list, tuple, or string</span>
 <span class="sd">Return those items of sequence for which function(item) is true.  </span>
@@ -221,7 +222,7 @@ elements from iterable returning only those for which the predicate is True.</p>
 
 <h2>IMap</h2>
 
-<div class="codehilite"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="n">imap</span><span class="o">.</span><span class="n">__doc__</span>
+<div class="style"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="n">imap</span><span class="o">.</span><span class="n">__doc__</span>
 <span class="sd">&#39;&#39;&#39;imap(func, *iterables) --&gt; </span>
 <span class="sd">Make an iterator that computes the function using arguments from</span>
 <span class="sd">each of the iterables.  Like map() except that it returns an iterator instead of a list and </span>
@@ -235,7 +236,7 @@ elements from iterable returning only those for which the predicate is True.</p>
 
 <h2>ISlice</h2>
 
-<div class="codehilite"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">islice</span>
+<div class="style"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">islice</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">islice</span><span class="p">(</span><span class="s">&#39;ABCDEFG&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="o">&lt;</span><span class="n">itertools</span><span class="o">.</span><span class="n">islice</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x1099b5cb0</span><span class="o">&gt;</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">islice</span><span class="p">(</span><span class="s">&#39;ABCDEFG&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>
@@ -252,7 +253,7 @@ elements from iterable returning only those for which the predicate is True.</p>
 
 <h2>IZip</h2>
 
-<div class="codehilite"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">izip</span>
+<div class="style"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">izip</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">izip</span><span class="p">(</span><span class="s">&#39;ABCD&#39;</span><span class="p">,</span> <span class="s">&#39;xy&#39;</span><span class="p">)]</span>
 <span class="p">[(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;x&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;y&#39;</span><span class="p">)]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">izip</span><span class="p">(</span><span class="s">&#39;ABCD&#39;</span><span class="p">,</span> <span class="s">&#39;xyz&#39;</span><span class="p">)]</span>
@@ -265,7 +266,7 @@ elements from iterable returning only those for which the predicate is True.</p>
 
 <h2>Permutations</h2>
 
-<div class="codehilite"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">permutations</span>
+<div class="style"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">permutations</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">permutations</span><span class="p">(</span><span class="s">&#39;ABCD&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="o">&lt;</span><span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x1099b3cb0</span><span class="o">&gt;</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">permutations</span><span class="p">(</span><span class="s">&#39;ABCD&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>
@@ -280,7 +281,7 @@ elements from iterable returning only those for which the predicate is True.</p>
 
 <h2>Product</h2>
 
-<div class="codehilite"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+<div class="style"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">product</span><span class="p">(</span><span class="s">&#39;ABCD&#39;</span><span class="p">,</span> <span class="s">&#39;xy&#39;</span><span class="p">)</span>
 <span class="o">&lt;</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x109a3f730</span><span class="o">&gt;</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="s">&#39;ABCD&#39;</span><span class="p">,</span> <span class="s">&#39;xy&#39;</span><span class="p">)]</span>
@@ -293,7 +294,7 @@ elements from iterable returning only those for which the predicate is True.</p>
 
 <h2>Repeat</h2>
 
-<div class="codehilite"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">repeat</span>
+<div class="style"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">repeat</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">repeat</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
 <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">repeat</span><span class="p">(</span><span class="s">&quot;*&quot;</span><span class="p">,</span> <span class="mi">13</span><span class="p">)]</span>
@@ -308,7 +309,7 @@ elements from iterable returning only those for which the predicate is True.</p>
 
 <h2>Starmap</h2>
 
-<div class="codehilite"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">starmap</span>
+<div class="style"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">starmap</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">starmap</span><span class="p">(</span><span class="nb">pow</span><span class="p">,</span> <span class="p">[(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">)])</span>
 <span class="o">&lt;</span><span class="n">itertools</span><span class="o">.</span><span class="n">starmap</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x109a3d1d0</span><span class="o">&gt;</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">starmap</span><span class="p">(</span><span class="nb">pow</span><span class="p">,</span> <span class="p">[(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">)])]</span>
@@ -317,7 +318,7 @@ elements from iterable returning only those for which the predicate is True.</p>
 
 <h2>TakeWhile</h2>
 
-<div class="codehilite"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">takewhile</span>
+<div class="style"><pre><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">takewhile</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">takewhile</span><span class="o">.</span><span class="n">__doc__</span>
 <span class="sd">&#39;&#39;&#39;takewhile(predicate, iterable) --&gt; takewhile object</span>
 <span class="sd">Return successive entries from an iterable as long as the </span>

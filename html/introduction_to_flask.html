@@ -11,6 +11,7 @@
  	<link href="//netdna.bootstrapcdn.com/bootswatch/2.3.2/flatly/bootstrap.min.css" rel='stylesheet' >
    <link href="//netdna.bootstrapcdn.com/font-awesome/2.0/css/font-awesome.css" rel="stylesheet">
     <link href="/static/css/app.css?v=2" rel="stylesheet">
+    <link href="/static/css/pysegments.css?v=2" rel="stylesheet">
 </head>
 <body>
 
@@ -74,7 +75,7 @@
     <p><a href="http://flask.pocoo.org/">Flask</a> is the minimalistic simple Web Framework for Python. 
 Want to start serving page immediately ? </p>
 
-<div class="codehilite"><pre><code>mkdir flask101
+<div class="style"><pre><code>mkdir flask101
 <span class="nb">cd </span>flask101
 virtualenv venv
 <span class="c"># Not installed virtualenv ? </span>
@@ -91,7 +92,7 @@ vim server.py
 
 <p>Save the following </p>
 
-<div class="codehilite"><pre><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<div class="style"><pre><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
 
 <span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
@@ -125,7 +126,7 @@ python server.py</p>
 &lt;/html&gt;
 </code></p>
 
-<div class="codehilite"><pre><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span>
+<div class="style"><pre><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
 <span class="n">current_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span>
@@ -146,7 +147,7 @@ python server.py</p>
 
 <p>Adding our parameter to the <code>hello.html</code></p>
 
-<div class="codehilite"><pre><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<div class="style"><pre><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
     <span class="nt">&lt;body&gt;</span>
         Hello world from flask! My name is {{name}}
@@ -157,7 +158,7 @@ python server.py</p>
 <p>As you see, <code>{{name}}</code> added to our HTML file. All we need to do, add <code>name</code> as a named parameter to our
 <code>render_template</code></p>
 
-<div class="codehilite"><pre><code><span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+<div class="style"><pre><code><span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
     <span class="c">#return &quot;Hello World!&quot;</span>
     <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&quot;hello.html&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;Bahadir&#39;</span><span class="p">)</span>
@@ -167,14 +168,14 @@ python server.py</p>
 
 <p>Our previous code was </p>
 
-<div class="codehilite"><pre><code><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+<div class="style"><pre><code><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div>
 
 <p>We would like to serve our static files in our development environment. Let's create a static folder under our project
 to put <code>JavaScript</code>, <code>CSS</code>, <code>Images</code></p>
 
-<div class="codehilite"><pre><code>mkdir static <span class="o">&amp;&amp;</span> <span class="nb">cd </span>static
+<div class="style"><pre><code>mkdir static <span class="o">&amp;&amp;</span> <span class="nb">cd </span>static
 mkdir img <span class="o">&amp;&amp;</span> mkdir js <span class="o">&amp;&amp;</span> mkdir css
 </code></pre></div>
 
