@@ -29,7 +29,7 @@ def render_plain():
             file_path = "%s%s" % (ARTICLE_PATH,file)
             content = "".join(open(file_path).readlines())
             print "{0}{1}{0}".format((20 * "-"), output_file)
-            gen_content = markdown2.markdown(content)
+            gen_content = markdown2.markdown(content,extras=['fenced-code-blocks'])
 
             with open('%s%s' % ( HTML_OUTPUT_PATH, output_file), "w+") as post:
                 post.write(base)
@@ -54,7 +54,7 @@ def render_jinja():
         for article in articles:
             article_path = "%s%s.md" % (ARTICLE_PATH, article.slug)
             content = "".join(open(article_path).readlines())
-            gen_content = markdown2.markdown(content)
+            gen_content = markdown2.markdown(content,extras=['fenced-code-blocks'])
             content = gen_content.encode('ascii', 'xmlcharrefreplace')
 
             with open('%s%s.html' % (HTML_OUTPUT_PATH, article.slug), "w+") as article_output:

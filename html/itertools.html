@@ -80,13 +80,12 @@
 <p>Make an iterator that returns elements from the first iterable until it is exhausted, then proceeds to the next iterable, until all of the iterables are exhausted. 
 Used for treating consecutive sequences as a single sequence. Equivalent to:</p>
 
-<p><code>python
-def chain(*iterables):
+<pre><code>def chain(*iterables):
     # chain('ABC', 'DEF') --&gt; A B C D E F
     for it in iterables:
         for element in it:
             yield element
-</code></p>
+</code></pre>
 
 <p>```python
 from itertools import chain</p>
@@ -105,8 +104,7 @@ print dir(chained_tuples)</p>
 
 <p>will output</p>
 
-<p><code>
-&lt;itertools.chain object at 0x1004ea750&gt;
+<pre><code>&lt;itertools.chain object at 0x1004ea750&gt;
 ['__class__', '__delattr__', '__doc__', '__format__', '__getattribute__', '__hash__', '__init__', 
 '__iter__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', 
 '__str__', '__subclasshook__', 'from_iterable', 'next']
@@ -117,63 +115,43 @@ print dir(chained_tuples)</p>
 5
 6
 Done iterating..
-</code></p>
+</code></pre>
 
 <h2>Combinations</h2>
 
 <p>Expects a iterable(1,2,3) and the length of the combinations(2) in our case.</p>
 
-<p>```python
-from itertools import combinations</p>
+<pre><code>from itertools import combinations
 
-<p>for i in combinations((1,2,3,4,),2):
-    print i</p>
+for i in combinations((1,2,3,4,),2):
+    print i
 
-<p>for i in combinations((1,2,3,4,),3):
-    print i</p>
+for i in combinations((1,2,3,4,),3):
+    print i
 
-<h1>Console Output</h1>
-
-<h1>(1, 2)</h1>
-
-<h1>(1, 3)</h1>
-
-<h1>(1, 4)</h1>
-
-<h1>(2, 3)</h1>
-
-<h1>(2, 4)</h1>
-
-<h1>(3, 4)</h1>
-
-<h1>(1, 2, 3)</h1>
-
-<h1>(1, 2, 4)</h1>
-
-<h1>(1, 3, 4)</h1>
-
-<h1>(2, 3, 4)</h1>
-
-<p>```</p>
+# Console Output
+# (1, 2)
+# (1, 3)
+# (1, 4)
+# (2, 3)
+# (2, 4)
+# (3, 4)
+# (1, 2, 3)
+# (1, 2, 4)
+# (1, 3, 4)
+# (2, 3, 4)
+</code></pre>
 
 <h2>Compress</h2>
 
 <p>Assume that <strong>[1,0,1,0,1,1]</strong> list is our truth table. Given a list of elements, select the only onces that the value at the 
 truth table is <strong>True</strong></p>
 
-<p>```python</p>
-
-<blockquote>
-  <blockquote>
-    <blockquote>
-      <p>from itertools import compress
-      compressed = compress('ABCDEF', [1,0,1,0,1,1])
-      [i for i in compressed]
-      ['A', 'C', 'E', 'F']
-      ```</p>
-    </blockquote>
-  </blockquote>
-</blockquote>
+<pre><code>&gt;&gt;&gt; from itertools import compress
+&gt;&gt;&gt; compressed = compress('ABCDEF', [1,0,1,0,1,1])
+&gt;&gt;&gt; [i for i in compressed]
+['A', 'C', 'E', 'F']
+</code></pre>
 
 <h2>GroupBy</h2>
 
@@ -182,15 +160,14 @@ that will be called for each element in the list, and a value will be evaluated.
 
 <p>In this scenario <code>lambda x: x[0]</code> gets the first element of the tuple <code>("animal", "bear")</code>, which will return <strong>animal</strong></p>
 
-<p>```python
-things = [("animal", "bear"), ("animal", "duck"), ("plant", "cactus"), 
-                    ("vehicle", "speed boat"), ("vehicle", "school bus")]</p>
+<pre><code>things = [("animal", "bear"), ("animal", "duck"), ("plant", "cactus"), 
+                    ("vehicle", "speed boat"), ("vehicle", "school bus")]
 
-<p>for key, group in groupby(things, lambda x: x[0]):
+for key, group in groupby(things, lambda x: x[0]):
     print 20 * "="
     for thing in group:
         print "A %s is a %s." % (thing[1], key)
-```</p>
+</code></pre>
 
 <h1>```</h1>
 
@@ -223,223 +200,151 @@ which enables us to iterate over the objects. &lt;code&gt;**for thing in group:*
 <p>As you might already know, Python has a builtin function called <strong>filter</strong>. Filter function accepts a sequence of elements,
 elements from iterable returning only those for which the predicate is True.</p>
 
-<p>```python</p>
+<pre><code>&gt;&gt;&gt; mod2 = lambda x: x%2
+&gt;&gt;&gt; filter.__doc__
+'''filter(function or None, sequence) -&gt; list, tuple, or string
+Return those items of sequence for which function(item) is true.  
+If function is None, return the items that are true.  
+If sequence is a tuple or string, return the same type, else return a list.'''
+&gt;&gt;&gt; filter(mod2, range(10))
+[1, 3, 5, 7, 9]
+&gt;&gt;&gt; '''The difference is filter result is evaluated whereas ifilter won't be 
+evaluated till iterated.
+'''
+&gt;&gt;&gt; from itertools import ifilter
+&gt;&gt;&gt; even_numbers_gen = ifilter( mod2, range(10) )
+&gt;&gt;&gt; print even_numbers_gen, type(even_numbers_gen), dir(even_numbers_gen)
+&lt;itertools.ifilter object at 0x1067d4390&gt; &lt;type 'itertools.ifilter'&gt; ['__class__', '__delattr__', '__doc__', '__format__', '__getattribute__', '__hash__', '__init__', '__iter__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', 'next']
+&gt;&gt;&gt; [i for i in even_numbers_gen]
+[1, 3, 5, 7, 9]
 
-<blockquote>
-  <blockquote>
-    <blockquote>
-      <p>mod2 = lambda x: x%2
-      filter.<strong>doc</strong>
-      '''filter(function or None, sequence) -> list, tuple, or string
-      Return those items of sequence for which function(item) is true. <br />
-      If function is None, return the items that are true. <br />
-      If sequence is a tuple or string, return the same type, else return a list.'''
-      filter(mod2, range(10))
-      [1, 3, 5, 7, 9]
-      '''The difference is filter result is evaluated whereas ifilter won't be 
-      evaluated till iterated.
-      '''
-      from itertools import ifilter
-      even<em>numbers</em>gen = ifilter( mod2, range(10) )
-      print even<em>numbers</em>gen, type(even<em>numbers</em>gen), dir(even<em>numbers</em>gen)
-      <itertools.ifilter object at 0x1067d4390> <type 'itertools.ifilter'> ['<strong>class</strong>', '<strong>delattr</strong>', '<strong>doc</strong>', '<strong>format</strong>', '<strong>getattribute</strong>', '<strong>hash</strong>', '<strong>init</strong>', '<strong>iter</strong>', '<strong>new</strong>', '<strong>reduce</strong>', '<strong>reduce<em>ex</strong>', '<strong>repr</strong>', '<strong>setattr</strong>', '<strong>sizeof</strong>', '<strong>str</strong>', '<strong>subclasshook</strong>', 'next']
-      [i for i in even</em>numbers_gen]
-      [1, 3, 5, 7, 9]</p>
-    </blockquote>
-  </blockquote>
-</blockquote>
-
-<p>```</p>
+</code></pre>
 
 <h2>IMap</h2>
 
-<p>```python</p>
-
-<blockquote>
-  <blockquote>
-    <blockquote>
-      <p>imap.<strong>doc</strong>
-      '''imap(func, *iterables) --> 
-      Make an iterator that computes the function using arguments from
-      each of the iterables.  Like map() except that it returns an iterator instead of a list and 
-      that it stops when the shortest iterable is exhausted 
-      instead of filling in None for shorter iterables.'''
-      [i for i in imap(pow, (2,3,10), (5,2,3))]
-      [32, 9, 1000]
-      [i for i in imap(add, (imap(pow, (2,3,10), (5,2,3)) ), (2,2,2))]
-      [34, 11, 1002]
-      ```</p>
-    </blockquote>
-  </blockquote>
-</blockquote>
+<pre><code>&gt;&gt;&gt; imap.__doc__
+'''imap(func, *iterables) --&gt; 
+Make an iterator that computes the function using arguments from
+each of the iterables.  Like map() except that it returns an iterator instead of a list and 
+that it stops when the shortest iterable is exhausted 
+instead of filling in None for shorter iterables.'''
+&gt;&gt;&gt; [i for i in imap(pow, (2,3,10), (5,2,3))]
+[32, 9, 1000]
+&gt;&gt;&gt; [i for i in imap(add, (imap(pow, (2,3,10), (5,2,3)) ), (2,2,2))]
+[34, 11, 1002]
+</code></pre>
 
 <h2>ISlice</h2>
 
-<p>```python</p>
-
-<blockquote>
-  <blockquote>
-    <blockquote>
-      <p>from itertools import islice
-      islice('ABCDEFG', 2)
-      <itertools.islice object at 0x1099b5cb0>
-      [i for i in islice('ABCDEFG', 2)]
-      ['A', 'B']
-      [i for i in islice('ABCDEFG', 2, 2)]
-      []
-      [i for i in islice('ABCDEFG', 2, None)]
-      ['C', 'D', 'E', 'F', 'G']
-      [i for i in islice('ABCDEFG', 2, None, 2)]
-      ['C', 'E', 'G']
-      [i for i in islice('ABCDEFG', 0, None, 2)]
-      ['A', 'C', 'E', 'G']
-      ```</p>
-    </blockquote>
-  </blockquote>
-</blockquote>
+<pre><code>&gt;&gt;&gt; from itertools import islice
+&gt;&gt;&gt; islice('ABCDEFG', 2)
+&lt;itertools.islice object at 0x1099b5cb0&gt;
+&gt;&gt;&gt; [i for i in islice('ABCDEFG', 2)]
+['A', 'B']
+&gt;&gt;&gt; [i for i in islice('ABCDEFG', 2, 2)]
+[]
+&gt;&gt;&gt; [i for i in islice('ABCDEFG', 2, None)]
+['C', 'D', 'E', 'F', 'G']
+&gt;&gt;&gt; [i for i in islice('ABCDEFG', 2, None, 2)]
+['C', 'E', 'G']
+&gt;&gt;&gt; [i for i in islice('ABCDEFG', 0, None, 2)]
+['A', 'C', 'E', 'G']
+</code></pre>
 
 <h2>IZip</h2>
 
-<p>```python</p>
+<pre><code>&gt;&gt;&gt; from itertools import izip
+&gt;&gt;&gt; [i for i in izip('ABCD', 'xy')]
+[('A', 'x'), ('B', 'y')]
+&gt;&gt;&gt; [i for i in izip('ABCD', 'xyz')]
+[('A', 'x'), ('B', 'y'), ('C', 'z')]
+&gt;&gt;&gt; [i for i in izip('ABCD', 'xyz0')]
+[('A', 'x'), ('B', 'y'), ('C', 'z'), ('D', '0')]
+&gt;&gt;&gt; [i for i in izip('ABCD', 'xyz01')]
+[('A', 'x'), ('B', 'y'), ('C', 'z'), ('D', '0')]
 
-<blockquote>
-  <blockquote>
-    <blockquote>
-      <p>from itertools import izip
-      [i for i in izip('ABCD', 'xy')]
-      [('A', 'x'), ('B', 'y')]
-      [i for i in izip('ABCD', 'xyz')]
-      [('A', 'x'), ('B', 'y'), ('C', 'z')]
-      [i for i in izip('ABCD', 'xyz0')]
-      [('A', 'x'), ('B', 'y'), ('C', 'z'), ('D', '0')]
-      [i for i in izip('ABCD', 'xyz01')]
-      [('A', 'x'), ('B', 'y'), ('C', 'z'), ('D', '0')]</p>
-    </blockquote>
-  </blockquote>
-</blockquote>
-
-<p>```</p>
+</code></pre>
 
 <h2>Permutations</h2>
 
-<p>```python</p>
-
-<blockquote>
-  <blockquote>
-    <blockquote>
-      <p>from itertools import permutations
-      permutations('ABCD', 2)
-      <itertools.permutations object at 0x1099b3cb0>
-      [i for i in permutations('ABCD', 2)]
-      [('A', 'B'), ('A', 'C'), ('A', 'D'), ('B', 'A'), ('B', 'C'), ('B', 'D'), ('C', 'A'), ('C', 'B'), ('C', 'D'), ('D', 'A'), ('D', 'B'), ('D', 'C')]
-      [i for i in permutations('ABCD', 3)]
-      [('A', 'B', 'C'), ('A', 'B', 'D'), ('A', 'C', 'B'), ('A', 'C', 'D'), ('A', 'D', 'B'), ('A', 'D', 'C'), ('B', 'A', 'C'), ('B', 'A', 'D'), ('B', 'C', 'A'), ('B', 'C', 'D'), ('B', 'D', 'A'), ('B', 'D', 'C'), ('C', 'A', 'B'), ('C', 'A', 'D'), ('C', 'B', 'A'), ('C', 'B', 'D'), ('C', 'D', 'A'), ('C', 'D', 'B'), ('D', 'A', 'B'), ('D', 'A', 'C'), ('D', 'B', 'A'), ('D', 'B', 'C'), ('D', 'C', 'A'), ('D', 'C', 'B')]
-      [i for i in permutations(range(3))]
-      [(0, 1, 2), (0, 2, 1), (1, 0, 2), (1, 2, 0), (2, 0, 1), (2, 1, 0)]
-      [i for i in permutations(range(3),2)]
-      [(0, 1), (0, 2), (1, 0), (1, 2), (2, 0), (2, 1)]
-      ```</p>
-    </blockquote>
-  </blockquote>
-</blockquote>
+<pre><code>&gt;&gt;&gt; from itertools import permutations
+&gt;&gt;&gt; permutations('ABCD', 2)
+&lt;itertools.permutations object at 0x1099b3cb0&gt;
+&gt;&gt;&gt; [i for i in permutations('ABCD', 2)]
+[('A', 'B'), ('A', 'C'), ('A', 'D'), ('B', 'A'), ('B', 'C'), ('B', 'D'), ('C', 'A'), ('C', 'B'), ('C', 'D'), ('D', 'A'), ('D', 'B'), ('D', 'C')]
+&gt;&gt;&gt; [i for i in permutations('ABCD', 3)]
+[('A', 'B', 'C'), ('A', 'B', 'D'), ('A', 'C', 'B'), ('A', 'C', 'D'), ('A', 'D', 'B'), ('A', 'D', 'C'), ('B', 'A', 'C'), ('B', 'A', 'D'), ('B', 'C', 'A'), ('B', 'C', 'D'), ('B', 'D', 'A'), ('B', 'D', 'C'), ('C', 'A', 'B'), ('C', 'A', 'D'), ('C', 'B', 'A'), ('C', 'B', 'D'), ('C', 'D', 'A'), ('C', 'D', 'B'), ('D', 'A', 'B'), ('D', 'A', 'C'), ('D', 'B', 'A'), ('D', 'B', 'C'), ('D', 'C', 'A'), ('D', 'C', 'B')]
+&gt;&gt;&gt; [i for i in permutations(range(3))]
+[(0, 1, 2), (0, 2, 1), (1, 0, 2), (1, 2, 0), (2, 0, 1), (2, 1, 0)]
+&gt;&gt;&gt; [i for i in permutations(range(3),2)]
+[(0, 1), (0, 2), (1, 0), (1, 2), (2, 0), (2, 1)]
+</code></pre>
 
 <h2>Product</h2>
 
-<p>```python</p>
-
-<blockquote>
-  <blockquote>
-    <blockquote>
-      <p>from itertools import product
-      product('ABCD', 'xy')
-      <itertools.product object at 0x109a3f730>
-      [i for i in product('ABCD', 'xy')]
-      [('A', 'x'), ('A', 'y'), ('B', 'x'), ('B', 'y'), ('C', 'x'), ('C', 'y'), ('D', 'x'), ('D', 'y')]
-      [i for i in product('ABCD', 'xyz')]
-      [('A', 'x'), ('A', 'y'), ('A', 'z'), ('B', 'x'), ('B', 'y'), ('B', 'z'), ('C', 'x'), ('C', 'y'), ('C', 'z'), ('D', 'x'), ('D', 'y'), ('D', 'z')]
-      [i for i in product('ABCD', '1')]
-      [('A', '1'), ('B', '1'), ('C', '1'), ('D', '1')]
-      ```</p>
-    </blockquote>
-  </blockquote>
-</blockquote>
+<pre><code>&gt;&gt;&gt; from itertools import product
+&gt;&gt;&gt; product('ABCD', 'xy')
+&lt;itertools.product object at 0x109a3f730&gt;
+&gt;&gt;&gt; [i for i in product('ABCD', 'xy')]
+[('A', 'x'), ('A', 'y'), ('B', 'x'), ('B', 'y'), ('C', 'x'), ('C', 'y'), ('D', 'x'), ('D', 'y')]
+&gt;&gt;&gt; [i for i in product('ABCD', 'xyz')]
+[('A', 'x'), ('A', 'y'), ('A', 'z'), ('B', 'x'), ('B', 'y'), ('B', 'z'), ('C', 'x'), ('C', 'y'), ('C', 'z'), ('D', 'x'), ('D', 'y'), ('D', 'z')]
+&gt;&gt;&gt; [i for i in product('ABCD', '1')]
+[('A', '1'), ('B', '1'), ('C', '1'), ('D', '1')]
+</code></pre>
 
 <h2>Repeat</h2>
 
-<p>```python</p>
-
-<blockquote>
-  <blockquote>
-    <blockquote>
-      <p>from itertools import repeat
-      [i for i in repeat(10, 3)]
-      [10, 10, 10]
-      [i for i in repeat("<em>", 13)]
-      ['</em>', '<em>', '</em>', '<em>', '</em>', '<em>', '</em>', '<em>', '</em>', '<em>', '</em>', '<em>', '</em>']
-      "".join([i for i in repeat("<em>", 13)])
-      '<strong></em><em>*</em><em>*</em><em>*</strong>'
-      "</em>" * 13
-      '<strong><em>*</em><em>*</em><em>*</em></strong>'
-      "".join(repeat("<em>",13))
-      '<strong></em><em>*</em><em>*</em>**</strong>'
-      ```</p>
-    </blockquote>
-  </blockquote>
-</blockquote>
+<pre><code>&gt;&gt;&gt; from itertools import repeat
+&gt;&gt;&gt; [i for i in repeat(10, 3)]
+[10, 10, 10]
+&gt;&gt;&gt; [i for i in repeat("*", 13)]
+['*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*']
+&gt;&gt;&gt; "".join([i for i in repeat("*", 13)])
+'*************'
+&gt;&gt;&gt; "*" * 13
+'*************'
+&gt;&gt;&gt; "".join(repeat("*",13))
+'*************'
+</code></pre>
 
 <h2>Starmap</h2>
 
-<p>```python</p>
+<pre><code>&gt;&gt;&gt; from itertools import starmap
+&gt;&gt;&gt; starmap(pow, [(2,5), (3,2), (10,3)])
+&lt;itertools.starmap object at 0x109a3d1d0&gt;
+&gt;&gt;&gt; [i for i in starmap(pow, [(2,5), (3,2), (10,3)])]
+[32, 9, 1000]
 
-<blockquote>
-  <blockquote>
-    <blockquote>
-      <p>from itertools import starmap
-      starmap(pow, [(2,5), (3,2), (10,3)])
-      <itertools.starmap object at 0x109a3d1d0>
-      [i for i in starmap(pow, [(2,5), (3,2), (10,3)])]
-      [32, 9, 1000]</p>
-    </blockquote>
-  </blockquote>
-</blockquote>
-
-<p>```</p>
+</code></pre>
 
 <h2>TakeWhile</h2>
 
-<p>```python</p>
+<pre><code>&gt;&gt;&gt; from itertools import takewhile
+&gt;&gt;&gt; takewhile.__doc__
+'''takewhile(predicate, iterable) --&gt; takewhile object
+Return successive entries from an iterable as long as the 
+predicate evaluates to true for each entry.'''
+&gt;&gt;&gt; [i for i in takewhile(lambda x: x&lt;5, [1,4,6,4,1])]
+[1, 4]
+&gt;&gt;&gt; condition = lambda x: x&lt;5
+&gt;&gt;&gt; working_list = [1, 4, 6, 4, 1]
+&gt;&gt;&gt; [i for i in takewhile(condition,working_list)]
+[1, 4]
+&gt;&gt;&gt; condition2 = lambda x: True
+&gt;&gt;&gt; [i for i in takewhile(condition2,working_list)]
+[1, 4, 6, 4, 1]
+&gt;&gt;&gt; condition = False
+&gt;&gt;&gt; ''' The first parameter is a function which returns True or False, not True/False directly'''
+&gt;&gt;&gt; [i for i in takewhile(condition,working_list)]
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+TypeError: 'bool' object is not callable
+&gt;&gt;&gt; condition = lambda x: False
+&gt;&gt;&gt; [i for i in takewhile(condition,working_list)]
+[]
 
-<blockquote>
-  <blockquote>
-    <blockquote>
-      <p>from itertools import takewhile
-      takewhile.<strong>doc</strong>
-      '''takewhile(predicate, iterable) --> takewhile object
-      Return successive entries from an iterable as long as the 
-      predicate evaluates to true for each entry.'''
-      [i for i in takewhile(lambda x: x&lt;5, [1,4,6,4,1])]
-      [1, 4]
-      condition = lambda x: x&lt;5
-      working_list = [1, 4, 6, 4, 1]
-      [i for i in takewhile(condition,working_list)]
-      [1, 4]
-      condition2 = lambda x: True
-      [i for i in takewhile(condition2,working_list)]
-      [1, 4, 6, 4, 1]
-      condition = False
-      ''' The first parameter is a function which returns True or False, not True/False directly'''
-      [i for i in takewhile(condition,working_list)]
-      Traceback (most recent call last):
-        File "<stdin>", line 1, in <module>
-      TypeError: 'bool' object is not callable
-      condition = lambda x: False
-      [i for i in takewhile(condition,working_list)]
-      []</p>
-    </blockquote>
-  </blockquote>
-</blockquote>
-
-<p>```</p>
+</code></pre>
 
     <hr />
     <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-related="bahadircambel: Entreprenership 'n Programming " data-text='itertools'>Tweet</a>

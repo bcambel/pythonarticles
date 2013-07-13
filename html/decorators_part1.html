@@ -80,135 +80,127 @@ how much time did it take ?</p>
 
 <p>In this example we will use the following function as the starting point</p>
 
-<p>```python
-import time</p>
+<pre><code>import time
 
-<p>def some<em>slow</em>function():
+def some_slow_function():
     time.sleep(1+ int(random.random()))
     return 'boohoo'
-```
-It will sleep between 1 to 2 seconds and return <strong>boohoo</strong>. </p>
+</code></pre>
+
+<p>It will sleep between 1 to 2 seconds and return <strong>boohoo</strong>. </p>
 
 <p>Adding some flavor into the mix with the following code; Let's call our slow function 3 times.</p>
 
-<p><code>python
-for i in range(0,3):
+<pre><code>for i in range(0,3):
     print some_slow_function()
-</code></p>
+</code></pre>
 
 <p>When we run the above code ;</p>
 
-<p><code>
+<pre><code>boohoo
 boohoo
 boohoo
-boohoo
-</code></p>
+</code></pre>
 
 <p>We couldn't capture how many seconds did it take to complete the operation. You might argue that we could add logging statements 
 into the mix. That's correct, and you probably should do it. </p>
 
 <p>Lets define our first decorator. </p>
 
-<p>```python</p>
-
-<h1><strong>intercepted_function</strong> is a parameter that will be passed</h1>
-
-<h1>by Python before the code works.</h1>
-
-<p>def intercept<em>me(intercepted</em>function):
-    # <em>args and *</em>kwargs are the parameters that are supplied to our original function
-    def timer(<em>args, *</em>kwargs):
+<pre><code>
+# **intercepted_function** is a parameter that will be passed
+# by Python before the code works.
+def intercept_me(intercepted_function):
+    # *args and **kwargs are the parameters that are supplied to our original function
+    def timer(*args, **kwargs):
         # call our actual function
         # store the return of the function in a parameter
-        actual<em>result = intercepted</em>function(<em>args, *</em>kwargs)
+        actual_result = intercepted_function(*args, **kwargs)
         return actual_result
     # return our inner function which will intercept the call
-    return timer</p>
+    return timer
 
-<p>@intercept<em>me
-def some</em>slow_function():
+@intercept_me
+def some_slow_function():
     time.sleep(1+ int(random.random()))
-    return 'boohoo'</p>
+    return 'boohoo'
 
-<h1>lets make a call to see the output</h1>
+# lets make a call to see the output
+print some_slow_function()    
 
-<p>print some<em>slow</em>function()    </p>
-
-<p>```</p>
+</code></pre>
 
 <p>As you see <code>time_me</code> is a function which returns a function which will intercept the call, but not going to do anything. 
 Exactly the same.</p>
 
-<p><code>
-boohoo
-</code></p>
+<pre><code>boohoo
+</code></pre>
 
 <p>Let's rewrite our decorator. Focus on the print line. </p>
 
-<p>```python
-def intercept<em>me(intercepted</em>function):
-    # <em>args and *</em>kwargs are the parameters that are supplied to our original function
-    def timer(<em>args, *</em>kwargs):
+<pre><code>def intercept_me(intercepted_function):
+    # *args and **kwargs are the parameters that are supplied to our original function
+    def timer(*args, **kwargs):
         # call our actual function
         # store the return of the function in a parameter
-        print "==I'm the timer within the decorator=intercept<em>me"
-        actual</em>result = intercepted<em>function(*args, **kwargs)
-        return actual</em>result
+        print "==I'm the timer within the decorator=intercept_me"
+        actual_result = intercepted_function(*args, **kwargs)
+        return actual_result
     # return our inner function which will intercept the call
-    return timer</p>
+    return timer
 
-<p>```
-and when you run the code you will get</p>
+</code></pre>
 
-<p><code>
-==I'm the timer within the decorator=intercept_me
+<p>and when you run the code you will get</p>
+
+<pre><code>==I'm the timer within the decorator=intercept_me
 boohoo
-</code></p>
+</code></pre>
 
 <p>As you see, the print statement within the decorator, was printed before the <strong>boohoo</strong>. 
 Let's add more logging statements to see the code flow more clear.</p>
 
-<p>```python
-import time
+<pre><code>import time
 import logging
-import random </p>
+import random 
 
-<p>logging.basicConfig(format='<a href="%(filename">%(asctime)s</a>s#%(lineno)d)%(levelname)-7s %(message)s',
-                    level=logging.NOTSET)</p>
+logging.basicConfig(format='[%(asctime)s](%(filename)s#%(lineno)d)%(levelname)-7s %(message)s',
+                    level=logging.NOTSET)
 
-<p>def intercept<em>me(intercepted</em>function):
-    # <em>args and *</em>kwargs are the parameters that are supplied to our original function
-    def timer(<em>args, *</em>kwargs):
+
+def intercept_me(intercepted_function):
+    # *args and **kwargs are the parameters that are supplied to our original function
+    def timer(*args, **kwargs):
         # call our actual function
         # store the return of the function in a parameter
-        logging.debug("==I'm the timer within the decorator=intercept<em>me")
-        actual</em>result = intercepted<em>function(*args, **kwargs)
-        logging.debug("Completed function call. Result =&gt; %s" % actual</em>result)
+        logging.debug("==I'm the timer within the decorator=intercept_me")
+        actual_result = intercepted_function(*args, **kwargs)
+        logging.debug("Completed function call. Result =&gt; %s" % actual_result)
         return actual_result
     # return our inner function which will intercept the call
-    return timer</p>
+    return timer
 
-<p>@intercept<em>me
-def some</em>slow_function():
+@intercept_me
+def some_slow_function():
     logging.info("Will sleep a bit..")
     time.sleep(1+ int((random.random()*10)%5))
-    return 'boohoo'</p>
+    return 'boohoo'
 
-<p>logging.info(some<em>slow</em>function())
+logging.info(some_slow_function())
 logging.info("Done....")
-```
-The result of the implementation is as follows. All the decorator related logging statements are DEBUG and the rest is INFO
+</code></pre>
+
+<p>The result of the implementation is as follows. All the decorator related logging statements are DEBUG and the rest is INFO
 After <strong>Line#15</strong> the actual call is made which you will get the next (<strong>Line#23</strong>) INFO logging. 
 <strong>Boohoo</strong> is printed after the DEBUG statement <strong>line#16</strong> because the return of the function call is used within the 
 <strong>line#23</strong> <code>logging.info(some<em>slow</em>function())</code></p>
 
-<p><code>
-[2013-07-09 14:20:08,903](test.py#14)DEBUG   ==I'm the timer within the decorator=intercept_me
+<pre><code>[2013-07-09 14:20:08,903](test.py#14)DEBUG   ==I'm the timer within the decorator=intercept_me
 [2013-07-09 14:20:08,903](test.py#23)INFO    Will sleep a bit..
 [2013-07-09 14:20:13,903](test.py#16)DEBUG   Completed function call. Result =&gt; boohoo
 [2013-07-09 14:20:13,904](test.py#27)INFO    boohoo
 [2013-07-09 14:20:13,904](test.py#28)INFO    Done....
-</code></p>
+</code></pre>
 
 <h2>Final version</h2>
 
@@ -223,47 +215,46 @@ and the docstring of the original example() would have been lost.
 Take a look at the [origin documentation](http://docs.python.org/2/library/functools.html#functools.wraps)
 </code></p>
 
-<p>```python
-import time
+<pre><code>import time
 import logging
 import random 
 from functools import wraps
-from datetime import datetime as dt</p>
+from datetime import datetime as dt
 
-<p>logging.basicConfig(format='<a href="%(filename">%(asctime)s</a>s#%(lineno)d)%(levelname)-7s %(message)s',
-                    level=logging.NOTSET)</p>
+logging.basicConfig(format='[%(asctime)s](%(filename)s#%(lineno)d)%(levelname)-7s %(message)s',
+                    level=logging.NOTSET)
 
-<p>def intercept<em>me(intercepted</em>function):
-    @wraps(intercepted<em>function)
+
+def intercept_me(intercepted_function):
+    @wraps(intercepted_function)
     def timer(*args, **kwargs):
         '''*args and **kwargs are the parameters that are supplied to our original function'''
         # get our actual function name
-        function</em>name = intercepted<em>function.func</em>name
+        function_name = intercepted_function.func_name
         # call our actual function
         # store the return of the function in a parameter
-        logging.debug("Starting capturing the time of the executing '%s'" % function<em>name)
+        logging.debug("Starting capturing the time of the executing '%s'" % function_name)
         start = dt.now()
-        actual</em>result = intercepted<em>function(*args, **kwargs)
+        actual_result = intercepted_function(*args, **kwargs)
         stop = dt.now()
-        execution</em>time = stop - start
-        logging.debug('Function: [{fnc}] =&gt; Took [{timed}]'.format(fnc=function<em>name, timed=execution</em>time))</p>
+        execution_time = stop - start
+        logging.debug('Function: [{fnc}] =&gt; Took [{timed}]'.format(fnc=function_name, timed=execution_time))
 
-<pre><code>    return actual_result
-# return our inner function which will intercept the call
-return timer
-</code></pre>
+        return actual_result
+    # return our inner function which will intercept the call
+    return timer
 
-<p>@intercept<em>me
-def some</em>slow_function():
+@intercept_me
+def some_slow_function():
     logging.info("Will sleep a bit..")
     time.sleep(1+ int((random.random()*10)%5))
-    return 'boohoo'</p>
+    return 'boohoo'
 
-<p>for i in range(0,10):
+for i in range(0,10):
     logging.info("{0} Starting iter {1}{0}".format(20*"=",i+1))
-    logging.info(some<em>slow</em>function())</p>
+    logging.info(some_slow_function())
 
-<p>```</p>
+</code></pre>
 
 <p>Here is the results;
 <code>

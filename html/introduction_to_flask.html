@@ -74,39 +74,33 @@
     <p><a href="http://flask.pocoo.org/">Flask</a> is the minimalistic simple Web Framework for Python. 
 Want to start serving page immediately ? </p>
 
-<p>```bash
-mkdir flask101
+<pre><code>mkdir flask101
 cd flask101
-virtualenv venv</p>
-
-<h1>Not installed virtualenv ?</h1>
-
-<p>curl -O https://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.9.1.tar.gz
+virtualenv venv
+# Not installed virtualenv ? 
+curl -O https://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.9.1.tar.gz
 tar xvfz virtualenv-1.9.1.tar.gz
 cd virtualenv-1.9.1
-sudo python setup.py install</p>
-
-<h1>now activate the virtualenv</h1>
-
-<p>source venv/bin/activate
+sudo python setup.py install
+# now activate the virtualenv
+source venv/bin/activate
 pip install Flask
 touch server.py
 vim server.py
-```</p>
+</code></pre>
 
 <p>Save the following </p>
 
-<p>```python
-from flask import Flask
-app = Flask(<strong>name</strong>)</p>
+<pre><code>from flask import Flask
+app = Flask(__name__)
 
-<p>@app.route("/")
+@app.route("/")
 def hello():
-    return "Hello World!"</p>
+    return "Hello World!"
 
-<p>if <strong>name</strong> == "<strong>main</strong>":
+if __name__ == "__main__":
     app.run()
-```</p>
+</code></pre>
 
 <p>```shell
 python server.py</p>
@@ -131,62 +125,58 @@ python server.py</p>
 &lt;/html&gt;
 </code></p>
 
-<p>```python
-from flask import Flask, render_template
-import os</p>
+<pre><code>from flask import Flask, render_template
+import os
 
-<p>current<em>dir = os.path.dirname(os.path.abspath(<strong>file</strong>))
-template</em>folder = os.path.join(current<em>dir, 'templates')
-app = Flask(<strong>name</strong>, template</em>folder=template_folder)</p>
+current_dir = os.path.dirname(os.path.abspath(__file__))
+template_folder = os.path.join(current_dir, 'templates')
+app = Flask(__name__, template_folder=template_folder)
 
-<p>@app.route("/")
+@app.route("/")
 def hello():
     #return "Hello World!"
-    return render_template("hello.html")</p>
+    return render_template("hello.html")
 
-<p>if <strong>name</strong> == "<strong>main</strong>":
+
+if __name__ == "__main__":
     app.run(debug=True)
-```</p>
+</code></pre>
 
 <h2>How to send a parameter to Flask template ?</h2>
 
 <p>Adding our parameter to the <code>hello.html</code></p>
 
-<p><code>html
-&lt;!DOCTYPE html&gt;
+<pre><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
     &lt;body&gt;
         Hello world from flask! My name is {{name}}
     &lt;/body&gt;
 &lt;/html&gt;
-</code></p>
+</code></pre>
 
 <p>As you see, <code>{{name}}</code> added to our HTML file. All we need to do, add <code>name</code> as a named parameter to our
 <code>render_template</code></p>
 
-<p><code>python
-@app.route("/")
+<pre><code>@app.route("/")
 def hello():
     #return "Hello World!"
     return render_template("hello.html", name='Bahadir')
-</code></p>
+</code></pre>
 
 <h2>How to serve static files from Flask ? </h2>
 
 <p>Our previous code was </p>
 
-<p><code>python
-if __name__ == "__main__":
+<pre><code>if __name__ == "__main__":
     app.run(debug=True)
-</code></p>
+</code></pre>
 
 <p>We would like to serve our static files in our development environment. Let's create a static folder under our project
 to put <code>JavaScript</code>, <code>CSS</code>, <code>Images</code></p>
 
-<p><code>bash
-mkdir static &amp;&amp; cd static
+<pre><code>mkdir static &amp;&amp; cd static
 mkdir img &amp;&amp; mkdir js &amp;&amp; mkdir css
-</code></p>
+</code></pre>
 
 <p>```python
 if <strong>name</strong> == "<strong>main</strong>":
