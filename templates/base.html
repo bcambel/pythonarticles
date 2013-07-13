@@ -4,13 +4,13 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>The Journey of Programming Entrepreneurship</title>
+    <title>Python Articles</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="http://fonts.googleapis.com/css?family=Muli|Domine|Amaranth:400,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
     <!--link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet"-->
  	<link href="//netdna.bootstrapcdn.com/bootswatch/2.3.2/flatly/bootstrap.min.css" rel='stylesheet' >
    <link href="//netdna.bootstrapcdn.com/font-awesome/2.0/css/font-awesome.css" rel="stylesheet">
-    <link href="/media/css/app.css?v=2" rel="stylesheet">
+    <link href="/static/css/app.css?v=2" rel="stylesheet">
 </head>
 <body>
 
@@ -27,7 +27,7 @@
                     <ul class="dropdown-menu">
                         {% for article in articles %}
                         <li>
-                            <a href="/posts/{{article.slug}}.html">
+                            <a href="/articles/{{article.slug}}.html">
                                 {{article.title}}
                             </a>
                         </li>
