@@ -192,7 +192,8 @@ for i in range(0,10):
 ```
 
 Here is the results;
-```
+
+```python
 [2013-07-09 14:30:56,366](ver2.py#35)INFO    ========== Starting iter 1==========
 [2013-07-09 14:30:56,366](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
 [2013-07-09 14:30:56,366](ver2.py#30)INFO    Will sleep a bit..
