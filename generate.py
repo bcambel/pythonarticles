@@ -70,6 +70,7 @@ def render_jinja():
             article_configuration = dict(content=content, title=article.title, articles=articles,
                                          disqus=True,
                                          url='http://pythonarticles.com/%s.html'%article.slug,
+                                         ts=dt.utcnow()
                                          )
 
             print article_settings
