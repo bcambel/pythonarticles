@@ -1,4 +1,7 @@
-[Flask](http://flask.pocoo.org/) is the minimalistic simple Web Framework for Python. 
+Introduction to Flask
+========================
+
+[Flask](http://flask.pocoo.org/) is the minimalistic simple Web Framework for Python.
 Want to start serving page immediately ? 
 
 

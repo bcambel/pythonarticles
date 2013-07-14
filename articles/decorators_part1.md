@@ -1,4 +1,7 @@
-Decorators are really nice way of doing some work without effecting the actual implementation. Its similar to wire tapping but 
+Decorators - Part I
+========================
+
+Decorators are really nice way of doing some work without effecting the actual implementation. Its similar to wire tapping but
 with additional functionality. This article is part 1 for describing the basic usage and the execution flow of the 
 decorators. In the next part, we will dive into more detail into the decorator magic.
 
