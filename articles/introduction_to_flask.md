@@ -111,6 +111,7 @@ We would like to serve our static files in our development environment. Let's cr
 to put <code>JavaScript</code>, <code>CSS</code>, <code>Images</code>
 
 > mkdir static && cd static
+
 > mkdir img && mkdir js && mkdir css
 
 
