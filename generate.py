@@ -2,13 +2,18 @@ import markdown2
 import os
 from jinja2 import *
 from datetime import datetime as dt
+import ConfigParser
 
+config = ConfigParser.RawConfigParser()
 
 cur_dir = os.path.dirname(os.path.realpath(__file__))
 env = Environment(loader=FileSystemLoader(os.path.join(cur_dir, "templates")))
 
 ARTICLE_PATH = 'articles/'
 HTML_OUTPUT_PATH = 'html/'
+
+configfiles = ['article.cfg']
+files_read = config.read(configfiles)
 
 
 class Article:
@@ -49,18 +54,30 @@ def render_jinja():
     for directory, directories, filenames in os.walk(ARTICLE_PATH):
         for file in filenames:
             title = slug = file[:-3]
-            title = title.replace("-", " ")
+            title = title.replace("-", " ").replace("_"," ")
             articles.append(Article(title=title, slug=slug))
 
         for article in articles:
+            article_settings = {}
+            if config.has_section(article.slug):
+                article_settings = {i[0]: i[1] for i in config.items(article.slug)}
+
             article_path = "%s%s.md" % (ARTICLE_PATH, article.slug)
             content = "".join(open(article_path).readlines())
             gen_content = markdown2.markdown(content, extras=['fenced-code-blocks'])
             content = gen_content.encode('ascii', 'xmlcharrefreplace')
 
+            article_configuration = dict(content=content, title=article.title, articles=articles,
+                                         disqus=True,
+                                         url='http://pythonarticles.com/%s.html'%article.slug,
+                                         )
+
+            print article_settings
+            article_configuration.update(**article_settings)
+
             with open('%s%s.html' % (HTML_OUTPUT_PATH, article.slug), "w+") as article_output:
                 article_output.write(
-                    article_jinja_tmpl.render(content=content, title=article.title, articles=articles, disqus=True))
+                    article_jinja_tmpl.render(**article_configuration))
                 article_output.flush()
 
     index_jinja_tmpl = env.get_template('index.html')
