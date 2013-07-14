@@ -189,7 +189,7 @@ Let's add more logging statements to see the code flow more clear.</p>
 </code></pre></div>
 
 <p>The result of the implementation is as follows. All the decorator related logging statements are DEBUG and the rest is INFO
-After <strong>Line#15</strong> the actual call is made which you will get the next (<strong>Line#23</strong>) INFO logging. 
+After <strong>Line#15</strong> the actual call is made which you will get the next (<strong>Line#27</strong>) INFO logging.
 <strong>Boohoo</strong> is printed after the DEBUG statement <strong>line#16</strong> because the return of the function call is used within the 
 <strong>line#23</strong> <code>logging.info(some<em>slow</em>function())</code></p>
 
@@ -205,108 +205,109 @@ After <strong>Line#15</strong> the actual call is made which you will get the ne
 <p>Here is the <a href="https://github.com/bcambel/pythonarticles/blob/master/examples/decorators/part1/ver2.py">latest version of the code</a></p>
 
 <p>When you look carefully to the latest version of the sample, you will see the <strong>@wrap(intercepted_function)</strong>
-decorator added to our inner function(<strong>timer</strong>). The reason for that is ;
-<code>
-Without the use of this decorator factory, the name of the example 
+decorator added to our inner function(<strong>timer</strong>). The reason for that is ;</p>
+
+<pre><code>Without the use of this decorator factory, the name of the example 
 function would have been 'wrapper', 
 and the docstring of the original example() would have been lost.
 Take a look at the [origin documentation](http://docs.python.org/2/library/functools.html#functools.wraps)
-</code></p>
-
-<div class="syntax"><pre><code><span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">random</span> 
-<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span> <span class="k">as</span> <span class="n">dt</span>
-
-<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">format</span><span class="o">=</span><span class="s">&#39;[</span><span class="si">%(asctime)s</span><span class="s">](</span><span class="si">%(filename)s</span><span class="s">#</span><span class="si">%(lineno)d</span><span class="s">)</span><span class="si">%(levelname)-7s</span><span class="s"> </span><span class="si">%(message)s</span><span class="s">&#39;</span><span class="p">,</span>
-                    <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">NOTSET</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">intercept_me</span><span class="p">(</span><span class="n">intercepted_function</span><span class="p">):</span>
-    <span class="nd">@wraps</span><span class="p">(</span><span class="n">intercepted_function</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">timer</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;*args and **kwargs are the parameters that are supplied to our original function&#39;&#39;&#39;</span>
-        <span class="c"># get our actual function name</span>
-        <span class="n">function_name</span> <span class="o">=</span> <span class="n">intercepted_function</span><span class="o">.</span><span class="n">func_name</span>
-        <span class="c"># call our actual function</span>
-        <span class="c"># store the return of the function in a parameter</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Starting capturing the time of the executing &#39;</span><span class="si">%s</span><span class="s">&#39;&quot;</span> <span class="o">%</span> <span class="n">function_name</span><span class="p">)</span>
-        <span class="n">start</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
-        <span class="n">actual_result</span> <span class="o">=</span> <span class="n">intercepted_function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">stop</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
-        <span class="n">execution_time</span> <span class="o">=</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">start</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&#39;Function: [{fnc}] =&gt; Took [{timed}]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fnc</span><span class="o">=</span><span class="n">function_name</span><span class="p">,</span> <span class="n">timed</span><span class="o">=</span><span class="n">execution_time</span><span class="p">))</span>
-
-<pre><code>    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;actual_result&lt;/span&gt;
-&lt;span class="c"&gt;# return our inner function which will intercept the call&lt;/span&gt;
-&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;timer&lt;/span&gt;
 </code></pre>
 
-<span class="nd">@intercept_me</span>
-<span class="k">def</span> <span class="nf">some_slow_function</span><span class="p">():</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&quot;Will sleep a bit..&quot;</span><span class="p">)</span>
-    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span> <span class="nb">int</span><span class="p">((</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span><span class="o">%</span><span class="mi">5</span><span class="p">))</span>
-    <span class="k">return</span> <span class="s">&#39;boohoo&#39;</span>
+<p>```python
+import time
+import logging
+import random 
+from functools import wraps
+from datetime import datetime as dt</p>
 
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&quot;{0} Starting iter {1}{0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">20</span><span class="o">*</span><span class="s">&quot;=&quot;</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">some_slow_function</span><span class="p">())</span>
-</code></pre></div>
+<p>logging.basicConfig(format='<a href="%(filename">%(asctime)s</a>s#%(lineno)d)%(levelname)-7s %(message)s',
+                    level=logging.NOTSET)</p>
 
-<p>Here is the results;
-<code>
-[2013-07-09 14:30:56,366](ver2.py#35)INFO    ==================== Starting iter 1====================
-[2013-07-09 14:30:56,366](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
-[2013-07-09 14:30:56,366](ver2.py#30)INFO    Will sleep a bit..
-[2013-07-09 14:31:00,367](ver2.py#22)DEBUG   Function: [some_slow_function] =&gt; Took [0:00:04.001038]
+<p>def intercept<em>me(intercepted</em>function):
+    @wraps(intercepted<em>function)
+    def timer(*args, **kwargs):
+        '''*args and **kwargs are the parameters that are supplied to our original function'''
+        # get our actual function name
+        function</em>name = intercepted<em>function.func</em>name
+        # call our actual function
+        # store the return of the function in a parameter
+        logging.debug("Starting capturing the time of the executing '%s'" % function<em>name)
+        start = dt.now()
+        actual</em>result = intercepted<em>function(*args, **kwargs)
+        stop = dt.now()
+        execution</em>time = stop - start
+        logging.debug('Function: [{fnc}] =&gt; Took [{timed}]'.format(fnc=function<em>name, timed=execution</em>time))</p>
+
+<pre><code>    return actual_result
+# return our inner function which will intercept the call
+return timer
+</code></pre>
+
+<p>@intercept<em>me
+def some</em>slow_function():
+    logging.info("Will sleep a bit..")
+    time.sleep(1+ int((random.random()*10)%5))
+    return 'boohoo'</p>
+
+<p>for i in range(0,10):
+    logging.info("{0} Starting iter {1}{0}".format(10*"=",i+1))
+    logging.info(some<em>slow</em>function())</p>
+
+<pre><code>
+Here is the results;
+</code></pre>
+
+<p><a href="ver2.py#35">2013-07-09 14:30:56,366</a>INFO    ========== Starting iter 1==========
+<a href="ver2.py#17">2013-07-09 14:30:56,366</a>DEBUG   Starting capturing the time of the executing 'some<em>slow</em>function'
+<a href="ver2.py#30">2013-07-09 14:30:56,366</a>INFO    Will sleep a bit..
+<a href="ver2.py#22">2013-07-09 14:31:00,367</a>DEBUG   Function: [some<em>slow</em>function] =&gt; Took [0:00:04.001038]
 [2013-07-09 14:31:00,367](ver2.py#36)INFO    boohoo
-[2013-07-09 14:31:00,367](ver2.py#35)INFO    ==================== Starting iter 2====================
-[2013-07-09 14:31:00,367](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
-[2013-07-09 14:31:00,368](ver2.py#30)INFO    Will sleep a bit..
-[2013-07-09 14:31:02,368](ver2.py#22)DEBUG   Function: [some_slow_function] =&gt; Took [0:00:02.000702]
+<a href="ver2.py#35">2013-07-09 14:31:00,367</a>INFO    ========== Starting iter 2==========
+<a href="ver2.py#17">2013-07-09 14:31:00,367</a>DEBUG   Starting capturing the time of the executing 'some<em>slow</em>function'
+<a href="ver2.py#30">2013-07-09 14:31:00,368</a>INFO    Will sleep a bit..
+<a href="ver2.py#22">2013-07-09 14:31:02,368</a>DEBUG   Function: [some<em>slow</em>function] =&gt; Took [0:00:02.000702]
 [2013-07-09 14:31:02,368](ver2.py#36)INFO    boohoo
-[2013-07-09 14:31:02,369](ver2.py#35)INFO    ==================== Starting iter 3====================
-[2013-07-09 14:31:02,369](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
-[2013-07-09 14:31:02,369](ver2.py#30)INFO    Will sleep a bit..
-[2013-07-09 14:31:03,370](ver2.py#22)DEBUG   Function: [some_slow_function] =&gt; Took [0:00:01.000704]
+<a href="ver2.py#35">2013-07-09 14:31:02,369</a>INFO    ========== Starting iter 3==========
+<a href="ver2.py#17">2013-07-09 14:31:02,369</a>DEBUG   Starting capturing the time of the executing 'some<em>slow</em>function'
+<a href="ver2.py#30">2013-07-09 14:31:02,369</a>INFO    Will sleep a bit..
+<a href="ver2.py#22">2013-07-09 14:31:03,370</a>DEBUG   Function: [some<em>slow</em>function] =&gt; Took [0:00:01.000704]
 [2013-07-09 14:31:03,370](ver2.py#36)INFO    boohoo
-[2013-07-09 14:31:03,370](ver2.py#35)INFO    ==================== Starting iter 4====================
-[2013-07-09 14:31:03,370](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
-[2013-07-09 14:31:03,370](ver2.py#30)INFO    Will sleep a bit..
-[2013-07-09 14:31:08,371](ver2.py#22)DEBUG   Function: [some_slow_function] =&gt; Took [0:00:05.000781]
+<a href="ver2.py#35">2013-07-09 14:31:03,370</a>INFO    ========== Starting iter 4==========
+<a href="ver2.py#17">2013-07-09 14:31:03,370</a>DEBUG   Starting capturing the time of the executing 'some<em>slow</em>function'
+<a href="ver2.py#30">2013-07-09 14:31:03,370</a>INFO    Will sleep a bit..
+<a href="ver2.py#22">2013-07-09 14:31:08,371</a>DEBUG   Function: [some<em>slow</em>function] =&gt; Took [0:00:05.000781]
 [2013-07-09 14:31:08,371](ver2.py#36)INFO    boohoo
-[2013-07-09 14:31:08,371](ver2.py#35)INFO    ==================== Starting iter 5====================
-[2013-07-09 14:31:08,371](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
-[2013-07-09 14:31:08,371](ver2.py#30)INFO    Will sleep a bit..
-[2013-07-09 14:31:13,372](ver2.py#22)DEBUG   Function: [some_slow_function] =&gt; Took [0:00:05.000993]
+<a href="ver2.py#35">2013-07-09 14:31:08,371</a>INFO    ========== Starting iter 5==========
+<a href="ver2.py#17">2013-07-09 14:31:08,371</a>DEBUG   Starting capturing the time of the executing 'some<em>slow</em>function'
+<a href="ver2.py#30">2013-07-09 14:31:08,371</a>INFO    Will sleep a bit..
+<a href="ver2.py#22">2013-07-09 14:31:13,372</a>DEBUG   Function: [some<em>slow</em>function] =&gt; Took [0:00:05.000993]
 [2013-07-09 14:31:13,373](ver2.py#36)INFO    boohoo
-[2013-07-09 14:31:13,373](ver2.py#35)INFO    ==================== Starting iter 6====================
-[2013-07-09 14:31:13,373](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
-[2013-07-09 14:31:13,373](ver2.py#30)INFO    Will sleep a bit..
-[2013-07-09 14:31:14,374](ver2.py#22)DEBUG   Function: [some_slow_function] =&gt; Took [0:00:01.001138]
+<a href="ver2.py#35">2013-07-09 14:31:13,373</a>INFO    ========== Starting iter 6==========
+<a href="ver2.py#17">2013-07-09 14:31:13,373</a>DEBUG   Starting capturing the time of the executing 'some<em>slow</em>function'
+<a href="ver2.py#30">2013-07-09 14:31:13,373</a>INFO    Will sleep a bit..
+<a href="ver2.py#22">2013-07-09 14:31:14,374</a>DEBUG   Function: [some<em>slow</em>function] =&gt; Took [0:00:01.001138]
 [2013-07-09 14:31:14,374](ver2.py#36)INFO    boohoo
-[2013-07-09 14:31:14,375](ver2.py#35)INFO    ==================== Starting iter 7====================
-[2013-07-09 14:31:14,375](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
-[2013-07-09 14:31:14,375](ver2.py#30)INFO    Will sleep a bit..
-[2013-07-09 14:31:17,376](ver2.py#22)DEBUG   Function: [some_slow_function] =&gt; Took [0:00:03.001073]
+<a href="ver2.py#35">2013-07-09 14:31:14,375</a>INFO    ========== Starting iter 7==========
+<a href="ver2.py#17">2013-07-09 14:31:14,375</a>DEBUG   Starting capturing the time of the executing 'some<em>slow</em>function'
+<a href="ver2.py#30">2013-07-09 14:31:14,375</a>INFO    Will sleep a bit..
+<a href="ver2.py#22">2013-07-09 14:31:17,376</a>DEBUG   Function: [some<em>slow</em>function] =&gt; Took [0:00:03.001073]
 [2013-07-09 14:31:17,376](ver2.py#36)INFO    boohoo
-[2013-07-09 14:31:17,376](ver2.py#35)INFO    ==================== Starting iter 8====================
-[2013-07-09 14:31:17,376](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
-[2013-07-09 14:31:17,376](ver2.py#30)INFO    Will sleep a bit..
-[2013-07-09 14:31:22,378](ver2.py#22)DEBUG   Function: [some_slow_function] =&gt; Took [0:00:05.001008]
+<a href="ver2.py#35">2013-07-09 14:31:17,376</a>INFO    ========== Starting iter 8==========
+<a href="ver2.py#17">2013-07-09 14:31:17,376</a>DEBUG   Starting capturing the time of the executing 'some<em>slow</em>function'
+<a href="ver2.py#30">2013-07-09 14:31:17,376</a>INFO    Will sleep a bit..
+<a href="ver2.py#22">2013-07-09 14:31:22,378</a>DEBUG   Function: [some<em>slow</em>function] =&gt; Took [0:00:05.001008]
 [2013-07-09 14:31:22,378](ver2.py#36)INFO    boohoo
-[2013-07-09 14:31:22,378](ver2.py#35)INFO    ==================== Starting iter 9====================
-[2013-07-09 14:31:22,378](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
-[2013-07-09 14:31:22,378](ver2.py#30)INFO    Will sleep a bit..
-[2013-07-09 14:31:27,379](ver2.py#22)DEBUG   Function: [some_slow_function] =&gt; Took [0:00:05.000956]
+<a href="ver2.py#35">2013-07-09 14:31:22,378</a>INFO    ========== Starting iter 9==========
+<a href="ver2.py#17">2013-07-09 14:31:22,378</a>DEBUG   Starting capturing the time of the executing 'some<em>slow</em>function'
+<a href="ver2.py#30">2013-07-09 14:31:22,378</a>INFO    Will sleep a bit..
+<a href="ver2.py#22">2013-07-09 14:31:27,379</a>DEBUG   Function: [some<em>slow</em>function] =&gt; Took [0:00:05.000956]
 [2013-07-09 14:31:27,379](ver2.py#36)INFO    boohoo
-[2013-07-09 14:31:27,380](ver2.py#35)INFO    ==================== Starting iter 10====================
-[2013-07-09 14:31:27,380](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
-[2013-07-09 14:31:27,380](ver2.py#30)INFO    Will sleep a bit..
-[2013-07-09 14:31:30,381](ver2.py#22)DEBUG   Function: [some_slow_function] =&gt; Took [0:00:03.000916]
+<a href="ver2.py#35">2013-07-09 14:31:27,380</a>INFO    ========== Starting iter 10==========
+<a href="ver2.py#17">2013-07-09 14:31:27,380</a>DEBUG   Starting capturing the time of the executing 'some<em>slow</em>function'
+<a href="ver2.py#30">2013-07-09 14:31:27,380</a>INFO    Will sleep a bit..
+<a href="ver2.py#22">2013-07-09 14:31:30,381</a>DEBUG   Function: [some<em>slow</em>function] =&gt; Took [0:00:03.000916]
 [2013-07-09 14:31:30,381](ver2.py#36)INFO    boohoo
-</code></p>
+```</p>
 
 <h2>Shameless plug</h2>
 

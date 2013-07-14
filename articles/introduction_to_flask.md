@@ -14,7 +14,6 @@ sudo python setup.py install
 # now activate the virtualenv
 source venv/bin/activate
 pip install Flask
-touch server.py
 vim server.py
 ```
 
@@ -110,9 +109,10 @@ if __name__ == "__main__":
 We would like to serve our static files in our development environment. Let's create a static folder under our project
 to put <code>JavaScript</code>, <code>CSS</code>, <code>Images</code>
 
-> mkdir static && cd static
-
-> mkdir img && mkdir js && mkdir css
+<code>
+mkdir static && cd static
+mkdir img && mkdir js && mkdir css
+</code>
 
 
 ```python
