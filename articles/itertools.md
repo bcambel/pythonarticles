@@ -8,7 +8,7 @@ Chain
 Make an iterator that returns elements from the first iterable until it is exhausted, then proceeds to the next iterable, until all of the iterables are exhausted. 
 Used for treating consecutive sequences as a single sequence.
 
-Chain is quivalent to:
+Chain is equivalent to:
 
 ```python
 def chain(*iterables):
@@ -17,7 +17,7 @@ def chain(*iterables):
         for element in it:
             yield element
 ```
-An example;
+An example usage of chain;
 
 ```python
 

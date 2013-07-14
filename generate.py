@@ -10,6 +10,7 @@ env = Environment(loader=FileSystemLoader(os.path.join(cur_dir, "templates")))
 ARTICLE_PATH = 'articles/'
 HTML_OUTPUT_PATH = 'html/'
 
+
 class Article:
     title = ''
     slug = ''
@@ -26,10 +27,10 @@ def render_plain():
     for dirname, dirnames, file_names in os.walk(ARTICLE_PATH):
         for file in file_names:
             output_file = "%s.html" % file[:-3]
-            file_path = "%s%s" % (ARTICLE_PATH,file)
+            file_path = "%s%s" % (ARTICLE_PATH, file)
             content = "".join(open(file_path).readlines())
             print "{0}{1}{0}".format((20 * "-"), output_file)
-            gen_content = markdown2.markdown(content,extras=['fenced-code-blocks'])
+            gen_content = markdown2.markdown(content, extras=['fenced-code-blocks'])
 
             with open('%s%s' % ( HTML_OUTPUT_PATH, output_file), "w+") as post:
                 post.write(base)
@@ -54,7 +55,7 @@ def render_jinja():
         for article in articles:
             article_path = "%s%s.md" % (ARTICLE_PATH, article.slug)
             content = "".join(open(article_path).readlines())
-            gen_content = markdown2.markdown(content,extras=['fenced-code-blocks'])
+            gen_content = markdown2.markdown(content, extras=['fenced-code-blocks'])
             content = gen_content.encode('ascii', 'xmlcharrefreplace')
 
             with open('%s%s.html' % (HTML_OUTPUT_PATH, article.slug), "w+") as article_output:
@@ -66,9 +67,10 @@ def render_jinja():
     index = HTML_OUTPUT_PATH + 'index.html'
 
     with open(index, "w+") as index:
-        index.write(index_jinja_tmpl.render(articles=articles, disqus=False,ts=dt.utcnow()))
+        index.write(index_jinja_tmpl.render(articles=articles, disqus=False, ts=dt.utcnow()))
         index.flush()
 
 
 if __name__ == "__main__":
     render_jinja()
+
