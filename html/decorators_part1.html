@@ -236,11 +236,9 @@ Take a look at the <a href="http://docs.python.org/2/library/functools.html#func
         <span class="n">stop</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
         <span class="n">execution_time</span> <span class="o">=</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">start</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&#39;Function: [{fnc}] =&gt; Took [{timed}]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fnc</span><span class="o">=</span><span class="n">function_name</span><span class="p">,</span> <span class="n">timed</span><span class="o">=</span><span class="n">execution_time</span><span class="p">))</span>
-
-<pre><code>    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;actual_result&lt;/span&gt;
-&lt;span class="c"&gt;# return our inner function which will intercept the call&lt;/span&gt;
-&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;timer&lt;/span&gt;
-</code></pre>
+        <span class="k">return</span> <span class="n">actual_result</span>
+    <span class="c"># return our inner function which will intercept the call</span>
+    <span class="k">return</span> <span class="n">timer</span>
 
 <span class="nd">@intercept_me</span>
 <span class="k">def</span> <span class="nf">some_slow_function</span><span class="p">():</span>

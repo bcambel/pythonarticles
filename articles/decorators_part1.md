@@ -175,7 +175,6 @@ def intercept_me(intercepted_function):
         stop = dt.now()
         execution_time = stop - start
         logging.debug('Function: [{fnc}] => Took [{timed}]'.format(fnc=function_name, timed=execution_time))
-        
         return actual_result
     # return our inner function which will intercept the call
     return timer
