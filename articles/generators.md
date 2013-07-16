@@ -53,27 +53,7 @@ An object is that supports iterator has to have the following to methods;
 
 A Basic iterator is as follows.
 
-```python
-class Counter:
-    def __init__(self, low, high):
-        self.current = low
-        self.high = high
-
-    def __iter__(self):
-        return self
-
-    def next(self):
-        if self.current > self.high:
-            raise StopIteration
-        else:
-            self.current += 1
-            return self.current - 1
-
-for c in Counter(3, 8):
-    print c
-
-#3, 4, 5, 6, 7, 8
-```
+<script src="https://gist.github.com/spil-bahadir/6008139.js"></script>
 
 But we don't have to write ourselves each time when we want to iterate through an object
 
