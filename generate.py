@@ -66,7 +66,7 @@ def render_jinja():
             content = "".join(open(article_path).readlines())
             gen_content = markdown2.markdown(content, extras=['fenced-code-blocks'])
             content = gen_content.encode('ascii', 'xmlcharrefreplace')
-
+            content = content.replace("codehilite","syntax")
             article_configuration = dict(content=content, title=article.title, articles=articles,
                                          disqus=True,
                                          url='http://pythonarticles.com/%s.html'%article.slug,
