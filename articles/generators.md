@@ -1,4 +1,4 @@
-# Generators
+# Generators, yield explained
 
 Generators functions allow you to declare a function that behaves like a iterator.
 
@@ -25,7 +25,7 @@ Lets increase our target number from 10K to 100M
 # 10 loops, best of 3: 1.14 sec per loop
 ```
 
-What made the huge different between **3GB** vs **4MB** ? ```Generator```
+What made the huge different between **3GB** vs **4MB** ? ```Generators```
 
 
 ```python
@@ -41,25 +41,62 @@ slightly faster than range() and more memory efficient.
 **Generate a range on demand** means that, when the function is called, the <code>__iter__()</code> method
 will keep on generating the next number.
 
+Iterables
+-------------------
+
+A container is iterable if it has the __iter__ method defined. Lists, Tuples are all containers.
+
+An object is that supports iterator has to have the following to methods;
+
+- Has <code>__iter__</code> method which returns itself
+- It has a <code>next</code> method which returns the next element in the container.
+
+A Basic iterator is as follows.
+
+```python
+class Counter:
+    def __init__(self, low, high):
+        self.current = low
+        self.high = high
+
+    def __iter__(self):
+        return self
+
+    def next(self):
+        if self.current > self.high:
+            raise StopIteration
+        else:
+            self.current += 1
+            return self.current - 1
+
+for c in Counter(3, 8):
+    print c
+
+#3, 4, 5, 6, 7, 8
+```
+
+But we don't have to write ourselves each time when we want to iterate through an object
+
+Yield
+----------------
+
 At the following piece of code, we will generate maximum 100 numbers, which will be randomly generated.
 Concatenate the results via a comma. ( <code> ",".join([]) </code> )
 When the <code>iter_test</code> method called directly, it returns a **Generator object**. Python magic!
 
 <script src="https://gist.github.com/spil-bahadir/6007597.js"></script>
 
+Lets call our method and see what happens
 ```python
->>> import random
->>> def iter_test():
-...     max = 100
-...     while max > 0:
-...             yield int(random.random() * 100)
-...             max -= 1
-...
 >>> iter_test()
 <generator object iter_test at 0x106163c30>
->>> ",".join([str(i) for i in iter_test()][:100])
+>>> ",".join([str(i) for i in iter_test()])
 '20,68,65,78,56,23,18,10,47,69,95,58,6,89,19,94,58,56,75,13,37,
 73,31,98,82,78,71,32,14,55,38,95,68,18,9,32,61,82,49,75,38,20,17,
 3,7,94,99,1,55,22,91,81,40,78,1,71,83,78,89,52,46,42,20,74,96,52,
 34,75,26,17,83,96,22,18,80,70,25,35,20,53,0,42,72,54,80,3,92,70,35,53,31,76,41,68,66,23,35,8,20,89'
 ```
+
+If you have the idea of **generators and iterator**, read the [Itertools article](http://pythonarticles.com/itertools.html)
+
+To understand more, view [this StackOverflow Answer](http://stackoverflow.com/questions/231767/the-python-yield-keyword-explained)
