@@ -3,6 +3,8 @@ import os
 from jinja2 import *
 from datetime import datetime as dt
 import ConfigParser
+import datetime
+from rss import RSS2, Guid, RSSItem
 
 config = ConfigParser.RawConfigParser()
 
@@ -15,6 +17,7 @@ HTML_OUTPUT_PATH = 'html/'
 configfiles = ['article.cfg']
 files_read = config.read(configfiles)
 
+rss_items = []
 
 class Article:
     title = ''
@@ -76,6 +79,17 @@ def render_jinja():
             print article_settings
             article_configuration.update(**article_settings)
 
+            publish_date = dt.strptime(article_configuration.get("publish_date", ), "%Y-%m-%d")
+
+            rss_items.append(
+                RSSItem(
+                     title = article_configuration.get("title"),
+                     link = article_configuration.get("url"),
+                     description = article_configuration.get("description"),
+                     guid = Guid(article_configuration.get("url")),
+                     pubDate = publish_date)
+            )
+
             with open('%s%s.html' % (HTML_OUTPUT_PATH, article.slug), "w+") as article_output:
                 article_output.write(
                     article_jinja_tmpl.render(**article_configuration))
@@ -91,4 +105,16 @@ def render_jinja():
 
 if __name__ == "__main__":
     render_jinja()
+
+
+    rss = RSS2(
+        title = "Python Articles Feed",
+        link = "http://pythonarticles.com/rss.xml",
+        description = "Latest articles about Python.",
+        lastBuildDate = datetime.datetime.utcnow(),
+
+        items = rss_items
+    )
+
+    rss.write_xml(open("html/rss.xml", "w"))
 
