@@ -99,7 +99,10 @@ def render_jinja():
     index = HTML_OUTPUT_PATH + 'index.html'
 
     with open(index, "w+") as index:
-        index.write(index_jinja_tmpl.render(articles=articles, disqus=False, ts=dt.utcnow()))
+        index_configs = {i[0]: i[1] for i in config.items("index")}
+
+        index_configs.update(**dict(articles=articles, disqus=False, ts=dt.utcnow()))
+        index.write(index_jinja_tmpl.render(**index_configs))
         index.flush()
 
 
