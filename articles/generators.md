@@ -67,6 +67,7 @@ When the <code>iter_test</code> method called directly, it returns a **Generator
 <script src="https://gist.github.com/spil-bahadir/6007597.js"></script>
 
 Lets call our method and see what happens
+
 ```python
 >>> iter_test()
 <generator object iter_test at 0x106163c30>
