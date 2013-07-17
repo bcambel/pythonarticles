@@ -3,6 +3,9 @@ Itertools
 
 Functions creating iterators for efficient looping says [Python documentation](http://docs.python.org/2/library/itertools.html)
 
+<div class='alert alert-info'> If you don't know what <code>generators</code>, <code>yield</code> does, I suggest you to
+read the [Generators](http://pythonarticles.com/generators.html) first.</div>
+
 Chain
 -----------
 Make an iterator that returns elements from the first iterable until it is exhausted, then proceeds to the next iterable, until all of the iterables are exhausted. 
