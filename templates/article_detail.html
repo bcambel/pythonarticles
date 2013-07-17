@@ -2,8 +2,8 @@
 
 {% block body %}
 <article id="content_html" class="span10">
-    <p>Published at {{ publish_date }}</p>
-    
+    <span class='pull-right'>{{ publish_date }}</span>
+
     {{content|safe}}
     <hr />
     <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-related="bahadircambel: Entreprenership 'n Programming " data-text='{{title}}'>Tweet</a>

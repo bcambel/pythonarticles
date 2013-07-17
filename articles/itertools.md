@@ -2,7 +2,7 @@ Itertools
 ====================
 
 <div class='alert alert-warn'> If you don't know what <code>generators</code>, <code>yield</code> does, I suggest you to
-read the <a href='http://pythonarticles.com/generators.html' target='_blank'>Generators</a> first.</div>
+read the <a href='http://pythonarticles.com/generators.html' target='_blank' style='color:black;font-weight:bolder;'>Generators</a> first.</div>
 
 Functions creating iterators for efficient looping says [Python documentation](http://docs.python.org/2/library/itertools.html)
 
