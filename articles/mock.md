@@ -53,7 +53,7 @@ KeyError: 'Bang!'
 How to check if a mocked method is called ? ( Expectation )
 -------------------------------------------------------
 
-If you expect a specific method is called with specific argument, use the <code>assert_called_with</code> method in your mock object
+If you expect a specific method is called with specific argument, use the **assert_called_with** method in your mock object
 
 
 ```python
@@ -63,7 +63,7 @@ If you expect a specific method is called with specific argument, use the <code>
 >>> mock.method.assert_called_with(1, 2, 3, test='wow')
 ```
 
-If you expect a method whether called **only one time**, use the <code>assert_called_once_with</code> method in your mock object
+If you expect a method whether called **only one time**, use the **assert_called_once_with** method in your mock object
 
 ```python
 >>> mock = Mock(return_value=None)
@@ -81,12 +81,20 @@ is raised.
 
 
 assert_any_call
+----------------
+
 
 assert_has_calls
+----------------
+
 
 reset_mock
+------------
+
+
 
 configure_mock
+---------------
 
 Set attributes on the mock through keyword arguments.
 
