@@ -84,7 +84,7 @@ Assert Any Call
 ----------------
 <code>assert_any_call</code>
 
-``python
+```python
 
 ```
 
@@ -95,7 +95,7 @@ Assert Has Calls
 reset_mock
 ------------
 
-``python
+```python
 
 ```
 
