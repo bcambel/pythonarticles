@@ -4,8 +4,15 @@
 easy to start with.
 
 <div class='alert alert-info'>
-<p>pip install mock</p>
+pip install mock
 </div>
+
+One of the biggest problem with the unit testing when you are using Django like framework, the unit testing includes database
+stuff which really slows down your unit test's run time and also creates a lot of garbage, and a lot of useless code.
+But you don't need to use django unittests to run unit tests in a Django project.
+
+[Mock](http://www.voidspace.org.uk/python/mock/index.html) library helps you to achieve that.
+I highly suggest you to also take a look at the <a href='https://factoryboy.readthedocs.org/en/latest/' target='_blank'><code>Factory_Boy</code> library</a>
 
 How to return a value when a method is called ?
 -------------------------------------------------------
