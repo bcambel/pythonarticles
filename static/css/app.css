@@ -96,7 +96,11 @@ article .article_date{
 .articles h3:first-letter {
 	text-transform: uppercase;
 }
-
+.articles h3 a p {
+    text-decoration: none;
+    color:black;
+    font-size:1.5em;
+}
 .masonry,
 .masonry .masonry-brick {
 	-webkit-transition-duration: 0.7s;
