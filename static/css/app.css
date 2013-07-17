@@ -56,6 +56,7 @@ article h2 {
 	font-family: 'Domine',verdana,sans-serif;
 	font-size:21px;
     border-bottom: 1px solid darkgray;
+    margin-bottom: 10px;
 }
 
 article li {
@@ -69,6 +70,12 @@ article p,.footer {
 	font-size: 1.2em;
 	line-height: 29px;
 }
+
+article .article_date{
+    font-weight: bolder;
+    text-decoration: underline;
+}
+
 .footer i{
 	margin-top:5px;
 }
