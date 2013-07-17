@@ -55,6 +55,7 @@ article h1{
 article h2 {
 	font-family: 'Domine',verdana,sans-serif;
 	font-size:21px;
+    border-bottom: 1px solid darkgray;
 }
 
 article li {
