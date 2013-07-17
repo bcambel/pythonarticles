@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {% block body %}
-        <div class="articles row">
+        <div class="articles row-fluid">
     {% for article in articles %}
-        <h3 class="">
+        <h3 class="span4">
         <a href="/{{article.slug}}.html">
             {{article.title}}
             <p>
