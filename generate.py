@@ -23,9 +23,11 @@ class Article:
     title = ''
     slug = ''
 
-    def __init__(self, title, slug):
+
+    def __init__(self, title, slug, description):
         self.title = title
         self.slug = slug
+        self.description = description
 
 
 def render_plain():
@@ -52,13 +54,14 @@ def render_plain():
 
 def render_jinja():
     articles = []
+    index_articles = []
     article_jinja_tmpl = env.get_template("article_detail.html")
 
     for directory, directories, filenames in os.walk(ARTICLE_PATH):
         for file in filenames:
             title = slug = file[:-3]
             title = title.replace("-", " ").replace("_"," ")
-            articles.append(Article(title=title, slug=slug))
+            articles.append(Article(title=title, slug=slug, description=None))
 
         for article in articles:
             article_settings = {}
@@ -80,6 +83,7 @@ def render_jinja():
             article_configuration.update(**article_settings)
 
             publish_date = dt.strptime(article_configuration.get("publish_date", ), "%Y-%m-%d")
+            index_articles.append(Article(title=article.title,slug=article.slug,description=article_configuration.get("description","") ))
 
             rss_items.append(
                 RSSItem(
@@ -101,7 +105,7 @@ def render_jinja():
     with open(index, "w+") as index:
         index_configs = {i[0]: i[1] for i in config.items("index")}
 
-        index_configs.update(**dict(articles=articles, disqus=False, ts=dt.utcnow()))
+        index_configs.update(**dict(articles=index_articles, disqus=False, ts=dt.utcnow()))
         index.write(index_jinja_tmpl.render(**index_configs))
         index.flush()
 
