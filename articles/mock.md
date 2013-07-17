@@ -80,18 +80,24 @@ The above example calls the mock, and it does not fail at the first time, but af
 is raised.
 
 
-assert_any_call
+Assert Any Call
 ----------------
+<code>assert_any_call</code>
 
+``python
 
-assert_has_calls
+```
+
+Assert Has Calls
 ----------------
-
+<code>assert_has_calls</code>
 
 reset_mock
 ------------
 
+``python
 
+```
 
 configure_mock
 ---------------
@@ -111,3 +117,39 @@ Traceback (most recent call last):
   ...
 KeyError
 ```
+
+Specification
+--------------
+
+Mock class has a keyword argument called **spec**. Spec allows you to specify the specification of the mock object.
+Anything that does not belong to the specification will create a <code>AttributeError</code>
+
+Example
+
+```python
+>>> my_mock = Mock(spec=file)
+>>> my_mock.size
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/Users/bcambel/code/cas/lib/python2.7/site-packages/mock.py", line 658, in __getattr__
+    raise AttributeError("Mock object has no attribute %r" % name)
+AttributeError: Mock object has no attribute 'size'
+>>> file
+<type 'file'>
+>>> dir(file)
+['__class__', '__delattr__', '__doc__', '__enter__', '__exit__', '__format__', '__getattribute__',
+'__hash__', '__init__', '__iter__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__',
+'__str__', '__subclasshook__', 'close', 'closed', 'encoding', 'errors', 'fileno', 'flush',
+'isatty', 'mode', 'name', 'newlines', 'next', 'read', 'readinto', 'readline', 'readlines', 'seek',
+'softspace', 'tell', 'truncate', 'write', 'writelines', 'xreadlines']
+>>> my_mock.readlines
+<Mock name='mock.readlines' id='4421180496'>
+>>> my_mock.readliness
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/Users/bcambel/code/cas/lib/python2.7/site-packages/mock.py", line 658, in __getattr__
+    raise AttributeError("Mock object has no attribute %r" % name)
+AttributeError: Mock object has no attribute 'readliness'
+```
+
+As you see our mock object that the shape of the file object type
