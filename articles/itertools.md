@@ -1,10 +1,10 @@
 Itertools
 ====================
 
-Functions creating iterators for efficient looping says [Python documentation](http://docs.python.org/2/library/itertools.html)
+<div class='alert alert-warn'> If you don't know what <code>generators</code>, <code>yield</code> does, I suggest you to
+read the <a href='http://pythonarticles.com/generators.html' target='_blank'>Generators</a> first.</div>
 
-<div class='alert alert-info'> If you don't know what <code>generators</code>, <code>yield</code> does, I suggest you to
-read the [Generators](http://pythonarticles.com/generators.html) first.</div>
+Functions creating iterators for efficient looping says [Python documentation](http://docs.python.org/2/library/itertools.html)
 
 Chain
 -----------
