@@ -100,9 +100,11 @@ article .article_date{
     text-decoration: none;
 }
 .articles h3 a p {
+    text-transform: uppercase;
     text-decoration: none;
     color:darkgray;
     font-size:0.75em;
+    font-weight: normal;
 }
 .masonry,
 .masonry .masonry-brick {
