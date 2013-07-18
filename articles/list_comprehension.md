@@ -49,12 +49,12 @@ There are two inner loops in this example. Starting with <code>for i in range(10
 
 <code>[0, 1, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 6, 7]</code>
 
-Usages
-------------
+### Usages
+
 
 Lets abuse the list comprehensions ; 
 
-### Search Highlighting
+#### Search Highlighting
 
 Given a text, replace all the occurences of a keyword with **bold** text, print the lines that contains the keyword and combine them via "..."
 
@@ -63,6 +63,17 @@ Given a text, replace all the occurences of a keyword with **bold** text, print 
 >>> "...".join([sentence.lower().replace("python","<b>python</b>") for sentence in text.split(".") for word in sentence.split(" ") if 'python' in word.lower() ])
 '<b>python</b> is a great language to work with... i like <b>python</b> a lot'
 ```
+
+#### Which sentence to analyze for which words
+
+Let's say you want to write an algorithm that analyzes the words within sentences which contains the search keyword
+
+```python
+>>> [ (sent,word) for sent in text.split(".") for word in sent.split(" ") if len(word)> 2 and 'Python' in sent]
+[('Python is a great language to work with', 'Python'), ('Python is a great language to work with', 'great'), ('Python is a great language to work with', 'language'), ('Python is a great language to work with', 'work'), ('Python is a great language to work with', 'with')]
+```
+
+
 
 
 
