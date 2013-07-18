@@ -45,5 +45,28 @@ Exactly the same run sequence from the previous example, with a additional evalu
 [0, 1, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 6, 7]
 ```
 
+There are two inner loops in this example. Starting with <code>for i in range(10)</code>, if the current element passes the condition <code>if i % 2 == 0</code> then the second for loop starts to run <code>for j in range(0,i)</code> and as last the element is added to the list <code>[j ...]</code>
+
 <code>[0, 1, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 6, 7]</code>
+
+Usages
+------------
+
+Lets abuse the list comprehensions ; 
+
+### Search Highlighting
+
+Given a text, replace all the occurences of a keyword with **bold** text, print the lines that contains the keyword and combine them via "..."
+
+```python
+>>> text = "Python is a great language to work with. I like python a lot. The reasons are obvious; its simple and elegant. Great to read"
+>>> "...".join([sentence.lower().replace("python","<b>python</b>") for sentence in text.split(".") for word in sentence.split(" ") if 'python' in word.lower() ])
+'<b>python</b> is a great language to work with... i like <b>python</b> a lot'
+```
+
+
+
+
+
+
 
