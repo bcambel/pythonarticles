@@ -45,7 +45,7 @@ will return <code>None</code> so that you won't see anything in the terminal.
 'D.get(k[,d]) -> D[k] if k in D, else d.  d defaults to None.'
 ``` 
 
-The value of a non-existing key is None, Let's specify a default value <code>&gt;no_name&lt;</code>
+The value of a non-existing key is None, Let's specify a default value <code>&lt;no_name&gt;</code>
 
 ```python
 >>> mr_jordan.get("nama","<no_name>")
@@ -141,3 +141,5 @@ Our <code>team</code> key became pointless once we set the <code>teams</code> ke
 >>> mr_jordan
 {'status': 'Legend', 'surname': 'Jordan', 'name': 'Micheal', 'age': 50, 'teams': [{'end_year': 1998, 'start_year': 1984, 'name': 'Chicago Bulls'}, {'end_year': 2003, 'start_year': 2001, 'name': 'Washington Wizards'}], 'nick': 'AirJordan'}
 ```
+
+<iframe width="560" height="315" src="//www.youtube.com/embed/LAr6oAKieHk" frameborder="0" allowfullscreen></iframe>
