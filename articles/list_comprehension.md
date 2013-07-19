@@ -66,13 +66,12 @@ Given a text, replace all the occurences of a keyword with **bold** text, print 
 
 #### Which sentence to analyze for which words
 
-Let's say you want to write an algorithm that analyzes the words within sentences which contains the search keyword
+Let's say you want to write an algorithm that analyzes the words within sentences which contains the search keyword	
 
 ```python
 >>> [ (sent,word) for sent in text.split(".") for word in sent.split(" ") if len(word)> 2 and 'Python' in sent]
 [('Python is a great language to work with', 'Python'), ('Python is a great language to work with', 'great'), ('Python is a great language to work with', 'language'), ('Python is a great language to work with', 'work'), ('Python is a great language to work with', 'with')]
 ```
-
 
 
 
