@@ -16,6 +16,8 @@ There are two ways to create dictionaries in Python;
 
 As you see when you define a dictionary via curly brackets <code>{}</code>, you have to use string declaration syntax for keys as well. 
 
+
+
 ## How to get the value of a key ?
 
  There are a number of ways to get the value(s) of a key
@@ -34,11 +36,13 @@ Traceback (most recent call last):
 KeyError: 'python_articles'
 ```
 
+
 Python is a straightforward language, if you want to get a value of a key, use <code>get</code> function.
 
 ```python
 >>> mr_jordan.get("python_articles")
 ```
+
 
 will return <code>None</code> so that you won't see anything in the terminal.
 
@@ -47,12 +51,14 @@ will return <code>None</code> so that you won't see anything in the terminal.
 'D.get(k[,d]) -> D[k] if k in D, else d.  d defaults to None.'
 ``` 
 
+
 The value of a non-existing key is None, Let's specify a default value <code>&lt;no_name&gt;</code>
 
 ```python
 >>> mr_jordan.get("python_articles","<no_name>")
 '<no_name>'
 ``` 
+
 
 ## Check if a key exist
 
@@ -71,6 +77,7 @@ False
 >>> 'name' in mr_jordan
 True
 ```
+
 
 ## How to get all the keys within a dictionary ? 
 
@@ -146,6 +153,7 @@ Lets combine our [List Comprehension knowledge](http://pythonarticles.com/list_c
 [(1998, 1984, 'Chicago Bulls'), (2003, 2001, 'Washington Wizards')]
 ```
 
+
 ## Delete a key from the dictionary
 
 Our <code>team</code> key became pointless once we set the <code>teams</code> key. Lets remove it
@@ -155,6 +163,7 @@ Our <code>team</code> key became pointless once we set the <code>teams</code> ke
 >>> mr_jordan
 {'status': 'Legend', 'surname': 'Jordan', 'name': 'Micheal', 'age': 50, 'teams': [{'end_year': 1998, 'start_year': 1984, 'name': 'Chicago Bulls'}, {'end_year': 2003, 'start_year': 2001, 'name': 'Washington Wizards'}], 'nick': 'AirJordan'}
 ```
+
 
 ### Contributors
 
