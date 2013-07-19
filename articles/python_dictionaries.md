@@ -120,9 +120,24 @@ But Mr. Jordan did not play only for Chicago Bulls
 ```python
 >>> mr_jordan['teams'] = [ {"name" : "Chicago Bulls" , "start_year" : 1984 , "end_year" : 1998 }, { "name" : "Washington Wizards" , "start_year" : 2001 , "end_year" : 2003 } ]
 ```
+
+Iterate through all the teams that Mr. Jordan played
+
 ```python
+>>> mr_jordan['teams'] = [ {"name" : "Chicago Bulls" , "start_year" : 1984 , "end_year" : 1998 }, { "name" : "Washington Wizards" , "start_year" : 2001 , "end_year" : 2003 } ]
 >>> for team in mr_jordan['teams'] :
->>>		print team['name'], team['start_year'], team['end_year'] 
+...     print team['name'], team['start_year'], team['end_year'] 
+... 
+Chicago Bulls 1984 1998
+Washington Wizards 2001 2003
 ```
 
-## KeyError
+## Delete a key from the dictionary
+
+Our <code>team</code> key became pointless once we set the <code>teams</code> key. Lets remove it
+
+```python
+>>> del mr_jordan['team']
+>>> mr_jordan
+{'status': 'Legend', 'surname': 'Jordan', 'name': 'Micheal', 'age': 50, 'teams': [{'end_year': 1998, 'start_year': 1984, 'name': 'Chicago Bulls'}, {'end_year': 2003, 'start_year': 2001, 'name': 'Washington Wizards'}], 'nick': 'AirJordan'}
+```
