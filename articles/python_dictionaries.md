@@ -16,26 +16,28 @@ There are two ways to create dictionaries in Python;
 
 As you see when you define a dictionary via curly brackets <code>{}</code>, you have to use string declaration syntax for keys as well. 
 
-## Get the value of a key
+## How to get the value of a key ?
+
+ There are a number of ways to get the value(s) of a key
 
 ```python
->>> my_jordan['name']
+>>> mr_jordan['name']
 'Michael'
 ```
 
 there is a side effect when using this version; if the given <code>key</code> does not exist, Python will throw a <code>KeyError</code> exception. I typed the following into the Python REPL, and got the following result
 
 ```python
->>> mr_jordan["nama"]
+>>> mr_jordan["python_articles"]
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
-KeyError: 'nama'
+KeyError: 'python_articles'
 ```
 
 Python is a straightforward language, if you want to get a value of a key, use <code>get</code> function.
 
 ```python
->>> mr_jordan.get("nama")
+>>> mr_jordan.get("python_articles")
 ```
 
 will return <code>None</code> so that you won't see anything in the terminal.
@@ -48,23 +50,23 @@ will return <code>None</code> so that you won't see anything in the terminal.
 The value of a non-existing key is None, Let's specify a default value <code>&lt;no_name&gt;</code>
 
 ```python
->>> mr_jordan.get("nama","<no_name>")
+>>> mr_jordan.get("python_articles","<no_name>")
 '<no_name>'
 ``` 
 
 ## Check if a key exist
 
-Dictionaries has <code>has_key</code> method
+Dictionaries have **has_key** method which returns a bool value;
 
 ```python
->>> mr_jordan.has_key("nama")
+>>> mr_jordan.has_key("python_articles")
 False
 ```
 
 but it's not the preferred way. The better way to do it is;
 
 ```python
->>> 'nama' in mr_jordan
+>>> 'python_articles' in mr_jordan
 False
 >>> 'name' in mr_jordan
 True
@@ -84,7 +86,7 @@ True
 I made a typo while setting the name of Mr Jordan. Let's fix it.
 
 ```python
-my_jordan['name'] = "Michael"
+mr_jordan['name'] = "Michael"
 mr_jordan_two['name'] = "Michael"
 ```
 
@@ -93,7 +95,7 @@ mr_jordan_two['name'] = "Michael"
 It's pretty straight forward as well
 
 ```python
-my_jordan['team'] = "Chicago Bulls"
+mr_jordan['team'] = "Chicago Bulls"
 ```
 
 adds the key **team** to the dictionary
@@ -109,7 +111,7 @@ Let's add Mr. Jordans work history. Starting with Chicago Bulls
 >>> mr_jordan = { "name" : "Micheal", "surname" : "Jordan", "nick" : "AirJordan", "status" : "Legend", "age" : 50 , "team" : { "name" : "Chicago Bulls" , "start_year" : 1984 , "end_year" : 1998 } }
 ```
 
-Lets get the <code>start_year</code> and <code>end_year</code> from the dictionary.
+Lets get the **start_year** and **end_year** from the dictionary.
 
 ```python
 >>> mr_jordan['team']['start_year']
@@ -156,6 +158,6 @@ Our <code>team</code> key became pointless once we set the <code>teams</code> ke
 
 ### Contributors
 
-Thanks Mr. Jordan...
+Thanks to [@thijsdezoete](https://github.com/thijsdezoete)  and thanks Mr. Jordan for being awesome...
 
 <iframe width="560" height="315" src="//www.youtube.com/embed/LAr6oAKieHk" frameborder="0" allowfullscreen></iframe>
