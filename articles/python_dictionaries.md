@@ -132,6 +132,18 @@ Chicago Bulls 1984 1998
 Washington Wizards 2001 2003
 ```
 
+Lets combine our [List Comprehension knowledge](http://pythonarticles.com/list_comprehension.html) with dictionaries. Create an array of array which contains the values and key of the teams data. 
+
+```python
+>>> [team.values() for team in mr_jordan['teams']]
+[[1998, 1984, 'Chicago Bulls'], [2003, 2001, 'Washington Wizards']]
+>>> [team.keys() for team in mr_jordan['teams']]
+[['end_year', 'start_year', 'name'], ['end_year', 'start_year', 'name']]
+>>> """Rather than using a list, lets use a tuple"""
+>>> [tuple(team.values()) for team in mr_jordan['teams']]
+[(1998, 1984, 'Chicago Bulls'), (2003, 2001, 'Washington Wizards')]
+```
+
 ## Delete a key from the dictionary
 
 Our <code>team</code> key became pointless once we set the <code>teams</code> key. Lets remove it
