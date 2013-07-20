@@ -37,13 +37,13 @@ body{
 }
 
 @media (min-width: 1200px) {
-	article{
+	article,#disqus_thread{
 		width: 1024px;	
 	}
 	
 }
 
-article{
+article, #disqus_thread{
 	box-shadow: 0 2px 4px rgba(34, 25, 25, 0.4);
 	-moz-box-shadow: 0 1px 2px rgba(34,25,25,0.4);
 	-webkit-box-shadow: 0 1px 4px rgba(34, 25, 25, 0.4);
