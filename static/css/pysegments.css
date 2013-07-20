@@ -1,4 +1,4 @@
-.syntax code { background-color: #272822 !important; }
+.syntax code { background-color: #272822 !important; color:white; }
 .syntax pre { background-color: transparent !important;}
 .syntax .hll { background-color: #49483e }
 .syntax  { background: #272822 !important; color: #f8f8f2; }
@@ -25,7 +25,7 @@
 .syntax .m { color: #ae81ff } /* Literal.Number */
 .syntax .s { color: #e6db74 } /* Literal.String */
 .syntax .na { color: #a6e22e } /* Name.Attribute */
-.syntax .nb { color: #f8f8f2 } /* Name.Builtin */
+.syntax .nb { color: turquoise } /* Name.Builtin */
 .syntax .nc { color: #a6e22e } /* Name.Class */
 .syntax .no { color: #66d9ef } /* Name.Constant */
 .syntax .nd { color: #a6e22e } /* Name.Decorator */
