@@ -1,5 +1,7 @@
 # Dictionaries
 
+<img src='https://developers.google.com/edu/python/images/dict.png' alt='python dictionary' />
+
 Dictionaries might be one of the most common used data structures in programming. But they are named differently in almost most common languages. In Java they're called <code>HashMap</code>, in .NET <code>KeyValuePair</code>.
 
 
@@ -76,6 +78,36 @@ but it's not the preferred way. The better way to do it is;
 False
 >>> 'name' in mr_jordan
 True
+```
+
+
+## Iterate all the key/values of the dictionary
+
+
+```python
+>>> mr_jordan.items()
+[('status', 'Legend'), ('nick', 'AirJordan'), ('age', 50), ('surname', 'Jordan'), ('name', 'Micheal')]
+>>> for key, value in mr_jordan.items():
+...     print key, value
+... 
+status Legend
+nick AirJordan
+age 50
+surname Jordan
+name Micheal
+```
+
+To print key values, sorted by the key, you can use the built in <code>sorted</code> function
+
+```python
+>>> for key, value in sorted(mr_jordan.items()):
+...     print key, value
+... 
+age 50
+name Micheal
+nick AirJordan
+status Legend
+surname Jordan
 ```
 
 
