@@ -1,20 +1,19 @@
 {% extends "base.html" %}
-
+<h3 class=""></h3>
 {% block body %}
         <div class="articles row-fluid">
     {% for article in articles %}
-        <h3 class="">
+        
         <a href="/{{article.slug}}.html">
             {{article.title}}
             <p>
                 {{ article.description }}
             </p>
-        </a>
-        </h3>
         <span class='pull-left badge badge-info'>{{level}}</span>
             {% for tag in article.tags %}
             <span class='pull-left badge badge-warn'>{{tag}}</span>
             {% endfor %}
+            </a>
      {% endfor %}
         </div>
 {% endblock %}
