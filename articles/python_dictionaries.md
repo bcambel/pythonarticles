@@ -206,7 +206,7 @@ KeyError: 'test'
 'D.copy() -> a shallow copy of D'
 ```
 
-As the copy function descriptor explains, method copies all the value of the <code>mr_jordan</code> variable into a new **dictionary instance**.
+As the copy function descriptor explains, method copies all the value of the <pre>mr_jordan</pre> variable into a new **dictionary instance**.
 
 ```python
 >>> mr_jordan_three = mr_jordan
@@ -215,7 +215,7 @@ As the copy function descriptor explains, method copies all the value of the <co
 2
 ```
 
-Whereas assigning <code>mr_jordan_three</code> to <code>mr_jordan</code> made the <code>mr_jordan_three</code> pointing to the value of the <code>mr_jordan</code>. So when working with dictionaries, think carefully how the new variable should act upon the changes in the original variable. 
+Whereas assigning <code>mr_jordan_three</code> to <pre><code>mr_jordan</code></pre> made the <code>mr_jordan_three</code> pointing to the value of the <code>mr_jordan</code>. So when working with dictionaries, think carefully how the new variable should act upon the changes in the original variable. 
 
 
 ## Delete a key from the dictionary
