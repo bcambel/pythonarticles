@@ -4,7 +4,9 @@
 <article id="content_html" >
     <span class='pull-right article_date'>{{ publish_date }}</span>
     <span class='pull-right badge badge-info'>{{level}}</span>
-
+     {% for tag in tags %}
+            <span class='pull-right badge badge-warn'>{{tag}}</span>
+            {% endfor %}
     {{content|safe}}
 
     <hr />

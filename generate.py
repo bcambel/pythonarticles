@@ -25,8 +25,8 @@ class Article:
         self.title = title
         self.slug = slug
         self.description = description
-        self.tags = []
-        self.level = None
+        self.tags = tags or []
+        self.level = level or ""
 
 
 def render_plain():
@@ -70,8 +70,8 @@ def render_jinja():
             article_path = "%s%s.md" % (ARTICLE_PATH, article.slug)
             content = "".join(open(article_path).readlines())
             gen_content = markdown2.markdown(content, extras=['fenced-code-blocks'])
-            content = gen_content.encode('ascii', 'xmlcharrefreplace')
-            content = content.replace("codehilite","syntax")
+            content = gen_content.encode('ascii', 'xmlcharrefreplace').replace("codehilite","syntax")
+            
             article_configuration = dict(content=content, title=article.title, articles=articles,
                                          disqus=True,
                                          url='http://pythonarticles.com/%s.html'%article.slug,
@@ -81,7 +81,7 @@ def render_jinja():
             print article_settings
             article_configuration.update(**article_settings)
             article_configuration['tags'] = article_configuration['tag'].split(",")
-            del article_configuration['tag']
+            # del article_configuration['tag']
             print "=====", article_configuration['tags']
 
             publish_date = dt.strptime(article_configuration.get("publish_date", ), "%Y-%m-%d")
@@ -111,7 +111,7 @@ def render_jinja():
     with open(index, "w+") as index:
         index_configs = {i[0]: i[1] for i in config.items("index")}
 
-        index_configs.update(**dict(articles=index_articles, disqus=False, ts=dt.utcnow()))
+        index_configs.update(**dict(articles=index_articles, disqus=False, ts=dt.utcnow(),))
         index.write(index_jinja_tmpl.render(**index_configs))
         index.flush()
 
