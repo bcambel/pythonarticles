@@ -26,7 +26,7 @@ class Article:
         self.slug = slug
         self.description = description
         self.tags = tags or []
-        self.level = level or ""
+        self.level = level
 
 
 def render_plain():
@@ -82,7 +82,7 @@ def render_jinja():
             article_configuration.update(**article_settings)
             article_configuration['tags'] = article_configuration['tag'].split(",")
             # del article_configuration['tag']
-            print "=====", article_configuration['tags']
+            print "=====", article_configuration['tags'],article_configuration['level']
 
             publish_date = dt.strptime(article_configuration.get("publish_date", ), "%Y-%m-%d")
             index_articles.append(Article(title=article.title,slug=article.slug,

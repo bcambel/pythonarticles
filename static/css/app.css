@@ -121,6 +121,12 @@ article .article_date{
 .articles a p:first-letter{
     text-transform: uppercase;
 }
+
+.articles a .badge{
+	font-family: verdana;
+	font-weight: normal;
+}
+
 .masonry,
 .masonry .masonry-brick {
 	-webkit-transition-duration: 0.7s;
