@@ -90,7 +90,7 @@ article .article_date{
 .footer i{
 	margin-top:5px;
 }
-.articles h3{
+.articles a{
 	font-family: 'Amaranth','Domine',verdana,sans-serif;
 	font-size: 28px;
 	padding: 10px 10px 10px 20px;
@@ -104,13 +104,13 @@ article .article_date{
 	min-height: 60px;
 }
 
-.articles h3:first-letter {
+.articles a:first-letter {
 	text-transform: uppercase;
 }
-.articles h3 a:hover{
+.articles a:hover{
     text-decoration: none;
 }
-.articles h3 a p {
+.articles a p {
 
     text-decoration: none;
     color:darkgray;
@@ -118,7 +118,7 @@ article .article_date{
     font-weight: normal;
 }
 
-.articles h3 a p:first-letter{
+.articles a p:first-letter{
     text-transform: uppercase;
 }
 .masonry,
