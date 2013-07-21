@@ -81,6 +81,8 @@ def render_jinja():
 
             print article_settings
             article_configuration.update(**article_settings)
+            article_configuration['tags'] = article_configuration['tag'].split(",")
+            del article_configuration['tag']
 
             publish_date = dt.strptime(article_configuration.get("publish_date", ), "%Y-%m-%d")
             index_articles.append(Article(title=article.title,slug=article.slug,description=article_configuration.get("description","") ))
