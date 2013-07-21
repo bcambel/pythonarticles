@@ -222,36 +222,14 @@ Here is the results;
 [2013-07-09 14:31:08,371](ver2.py#30)INFO    Will sleep a bit..
 [2013-07-09 14:31:13,372](ver2.py#22)DEBUG   Function: [some_slow_function] => Took [0:00:05.000993]
 [2013-07-09 14:31:13,373](ver2.py#36)INFO    boohoo
-[2013-07-09 14:31:13,373](ver2.py#35)INFO    ========== Starting iter 6==========
-[2013-07-09 14:31:13,373](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
-[2013-07-09 14:31:13,373](ver2.py#30)INFO    Will sleep a bit..
-[2013-07-09 14:31:14,374](ver2.py#22)DEBUG   Function: [some_slow_function] => Took [0:00:01.001138]
-[2013-07-09 14:31:14,374](ver2.py#36)INFO    boohoo
-[2013-07-09 14:31:14,375](ver2.py#35)INFO    ========== Starting iter 7==========
-[2013-07-09 14:31:14,375](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
-[2013-07-09 14:31:14,375](ver2.py#30)INFO    Will sleep a bit..
-[2013-07-09 14:31:17,376](ver2.py#22)DEBUG   Function: [some_slow_function] => Took [0:00:03.001073]
-[2013-07-09 14:31:17,376](ver2.py#36)INFO    boohoo
-[2013-07-09 14:31:17,376](ver2.py#35)INFO    ========== Starting iter 8==========
-[2013-07-09 14:31:17,376](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
-[2013-07-09 14:31:17,376](ver2.py#30)INFO    Will sleep a bit..
-[2013-07-09 14:31:22,378](ver2.py#22)DEBUG   Function: [some_slow_function] => Took [0:00:05.001008]
-[2013-07-09 14:31:22,378](ver2.py#36)INFO    boohoo
-[2013-07-09 14:31:22,378](ver2.py#35)INFO    ========== Starting iter 9==========
-[2013-07-09 14:31:22,378](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
-[2013-07-09 14:31:22,378](ver2.py#30)INFO    Will sleep a bit..
-[2013-07-09 14:31:27,379](ver2.py#22)DEBUG   Function: [some_slow_function] => Took [0:00:05.000956]
-[2013-07-09 14:31:27,379](ver2.py#36)INFO    boohoo
-[2013-07-09 14:31:27,380](ver2.py#35)INFO    ========== Starting iter 10==========
-[2013-07-09 14:31:27,380](ver2.py#17)DEBUG   Starting capturing the time of the executing 'some_slow_function'
-[2013-07-09 14:31:27,380](ver2.py#30)INFO    Will sleep a bit..
-[2013-07-09 14:31:30,381](ver2.py#22)DEBUG   Function: [some_slow_function] => Took [0:00:03.000916]
-[2013-07-09 14:31:30,381](ver2.py#36)INFO    boohoo
+
 ```
+
+[Part 2](http://pythonarticles.com/decorators_part2.html)
 
 Shameless plug
 -------------
 Thanks to [@thijsdezoete](https://github.com/thijsdezoete) for the initial kick in..
 
-Well I literally stole Thijs's initial code and made minor modifications. We were talking about how to implement a 
-performance tracker. 
+Well I literally stole Thijs's initial code and made modifications. We were talking about how to implement a 
+performance tracker...

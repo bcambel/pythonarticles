@@ -47,9 +47,12 @@ article, #disqus_thread{
 	padding-bottom: 10px;
 	padding-right: 30px;
 	border-radius: 1px;
-	margin:10px;
+	margin-bottom:10px;
+	margin-top:10px;
 	background-color: white;
 	width:95%;
+	margin-left:auto;
+	margin-right: auto;
 }
 
 @media (min-width: 1200px) {

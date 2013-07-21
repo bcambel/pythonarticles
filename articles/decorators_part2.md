@@ -1,4 +1,6 @@
-In the part 1, we described the most basic usage of the decorators. Decorators are functions that intercepts the actual implementation
+# Decorators - Part II
+
+In the [part 1](http://pythonarticles.com/decorators_part1.html), we described the most basic usage of the decorators. Decorators are functions that intercepts the actual implementation
 and do something. Remember that functions are first class citizens(objects) in Python.
 
 Fire up your favorite terminal, navigate to code directory and initialize python; start typing 
