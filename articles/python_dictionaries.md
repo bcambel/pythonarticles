@@ -188,7 +188,7 @@ Lets combine our [List Comprehension knowledge](http://pythonarticles.com/list_c
 
 ## Copy a dictionary into another one
 
-Our original Mr. Jordan information was stored in a variable called <code>mr_jordan</code> and we made some changes, but <code>mr_jordan_two</code> was not sync with the <code>mr_jordan</code>
+Our original Mr. Jordan information was stored in a variable called **mr_jordan** and we made some changes, but **mr_jordan_two** was not sync with the <code>mr_jordan</code>
 
 ```python
 >>> mr_jordan = { "name" : "Micheal", "surname" : "Jordan", "nick" : "AirJordan", "status" : "Legend", "age" : 50}
@@ -206,7 +206,7 @@ KeyError: 'test'
 'D.copy() -> a shallow copy of D'
 ```
 
-As the copy function descriptor explains, the copies all the value of the <code>mr_jordan</code> variable into a new dictionary instance.
+As the copy function descriptor explains, method copies all the value of the <code>mr_jordan</code> variable into a new **dictionary instance**.
 
 ```python
 >>> mr_jordan_three = mr_jordan
@@ -215,7 +215,7 @@ As the copy function descriptor explains, the copies all the value of the <code>
 2
 ```
 
-Whereas, assigning <code>mr_jordan_three</code> to <code>mr_jordan</code> made the <code>mr_jordan_three</code> pointing to the value of the <code>mr_jordan</code>. So when working with dictionaries, think carefully how the new variable should act upon the changes in the original variable. 
+Whereas assigning <code>mr_jordan_three</code> to <code>mr_jordan</code> made the <code>mr_jordan_three</code> pointing to the value of the <code>mr_jordan</code>. So when working with dictionaries, think carefully how the new variable should act upon the changes in the original variable. 
 
 
 ## Delete a key from the dictionary
@@ -233,4 +233,4 @@ Our <code>team</code> key became pointless once we set the <code>teams</code> ke
 
 Thanks to [@thijsdezoete](https://github.com/thijsdezoete)  and thanks Mr. Jordan for being awesome...
 
-<iframe width="560" height="315" src="//www.youtube.com/embed/LAr6oAKieHk" frameborder="0" allowfullscreen></iframe>
+<iframe src="//www.youtube.com/embed/LAr6oAKieHk" frameborder="0" allowfullscreen></iframe>
