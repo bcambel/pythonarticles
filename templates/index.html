@@ -6,15 +6,15 @@
         <h3 class="">
         <a href="/{{article.slug}}.html">
             {{article.title}}
-            <span class='pull-left badge'>{{level}}</span>
-            {% for tag in article.tags %}
-            <span class='pull-left badge badge-warn'>{{tag}}</span>
-            {% endfor %}
             <p>
                 {{ article.description }}
             </p>
         </a>
         </h3>
+        <span class='pull-left badge badge-info'>{{level}}</span>
+            {% for tag in article.tags %}
+            <span class='pull-left badge badge-warn'>{{tag}}</span>
+            {% endfor %}
      {% endfor %}
         </div>
 {% endblock %}

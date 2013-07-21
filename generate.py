@@ -20,14 +20,13 @@ files_read = config.read(configfiles)
 rss_items = []
 
 class Article:
-    title = ''
-    slug = ''
 
-
-    def __init__(self, title, slug, description):
+    def __init__(self, title, slug, description,level=None,tags=None):
         self.title = title
         self.slug = slug
         self.description = description
+        self.tags = []
+        self.level = None
 
 
 def render_plain():
@@ -83,9 +82,14 @@ def render_jinja():
             article_configuration.update(**article_settings)
             article_configuration['tags'] = article_configuration['tag'].split(",")
             del article_configuration['tag']
+            print "=====", article_configuration['tags']
 
             publish_date = dt.strptime(article_configuration.get("publish_date", ), "%Y-%m-%d")
-            index_articles.append(Article(title=article.title,slug=article.slug,description=article_configuration.get("description","") ))
+            index_articles.append(Article(title=article.title,slug=article.slug,
+                description=article_configuration.get("description",""),
+                level=article_configuration['level'],
+                tags=article_configuration['tags'] )
+            )
 
             rss_items.append(
                 RSSItem(
