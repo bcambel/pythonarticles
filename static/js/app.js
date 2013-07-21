@@ -2,7 +2,7 @@
 	$(init);
 	function init(){
 		$(".articles").masonry({
-								   itemSelector : 'h3',
+								   itemSelector : 'a',
 								   columnWidth : 400
 							   });
 	}
