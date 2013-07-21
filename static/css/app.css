@@ -36,12 +36,7 @@ body{
 	margin-bottom: 10px;
 }
 
-@media (min-width: 1200px) {
-	article,#disqus_thread{
-		width: 1024px;	
-	}
-	
-}
+
 
 article, #disqus_thread{
 	box-shadow: 0 2px 4px rgba(34, 25, 25, 0.4);
@@ -55,6 +50,12 @@ article, #disqus_thread{
 	margin:10px;
 	background-color: white;
 	width:95%;
+}
+
+@media (min-width: 1200px) {
+	article,#disqus_thread{
+		width: 1024px;	
+	}	
 }
 
 article h1{
