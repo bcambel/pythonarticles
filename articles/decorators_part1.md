@@ -63,7 +63,7 @@ print some_slow_function()
 
 ```
 
-As you see ```time_me``` is a function which returns a function which will intercept the call, but not going to do anything. 
+As you see ```intercept_me``` is a function which returns a function which will intercept the call, but not going to do anything. 
 Exactly the same.
 
 ```

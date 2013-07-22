@@ -61,9 +61,10 @@ Create a folder named ```templates``` and lets add a basic HTML page under the t
 from flask import Flask, render_template
 import os
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
-template_folder = os.path.join(current_dir, 'templates')
-app = Flask(__name__, template_folder=template_folder)
+# if you have different folder path than templates, uncomment the following lines...
+# current_dir = os.path.dirname(os.path.abspath(__file__))
+# template_folder = os.path.join(current_dir, 'templates')
+app = Flask(__name__)  #, template_folder=template_folder)
 
 @app.route("/")
 def hello():
