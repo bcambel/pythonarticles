@@ -74,7 +74,9 @@ article h2 {
 	font-family: 'Domine',verdana,sans-serif;
 	font-size:21px;
     border-bottom: 1px solid darkgray;
-    margin-bottom: 10px;
+    
+    margin-bottom: 30px;
+	margin-top: 30px;
 }
 
 article li {
@@ -89,6 +91,10 @@ article p,.footer {
 	line-height: 29px;
 }
 
+article p {
+	margin-bottom:15px;
+	margin-top:15px;
+}
 article .article_date{
     font-weight: bolder;
     text-decoration: underline;
