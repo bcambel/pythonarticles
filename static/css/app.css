@@ -60,6 +60,9 @@ article, #disqus_thread{
 		width: 1024px;	
 	}	
 }
+article span.pull-right{
+	margin-right:5px;
+}
 
 article h1{
 	font-family: 'Amaranth','Domine',verdana,sans-serif;
