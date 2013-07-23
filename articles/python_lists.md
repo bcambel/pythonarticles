@@ -101,7 +101,7 @@ TypeError: can only concatenate list (not "str") to list
 ['Python', 'is', 'awesome', 'Go', 'is', 'also', 'nice', 1, 2, 3]
 ```
 
-<div class='alert alert-danger'><p>Be careful</p></div>
+**Be careful**
 
 ```python
 >>> words = words.extend([1,2,3])
@@ -148,7 +148,6 @@ Since we can use negative indexes, lets find the last 3 elements at the list, an
 []
 ```
 
-### 
 
 ## For loop, iteration
 
@@ -178,7 +177,7 @@ Python
 
 <div class='alert alert-info'> <p> Be aware that <code>list.sort()</code> has a side effect that the 
 actual list is sorted and the place of the elements will be changed afterwards
-</p>
+</p></div>
 
 ```python
 >>> words = ['Python','is','awesome','testing']
