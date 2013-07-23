@@ -2,55 +2,61 @@
 <urlset xmlns="http://www.google.com/schemas/sitemap/0.84">
 <url>
   <loc>http://pythonarticles.com/html/decorators_part1.html</loc>
-  <lastmod>2013-07-19</lastmod>
+  <lastmod>2013-07-23</lastmod>
   <changefreq>daily</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>http://pythonarticles.com/html/decorators_part2.html</loc>
-  <lastmod>2013-07-19</lastmod>
+  <lastmod>2013-07-23</lastmod>
   <changefreq>daily</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>http://pythonarticles.com/html/generators.html</loc>
-  <lastmod>2013-07-19</lastmod>
+  <lastmod>2013-07-23</lastmod>
   <changefreq>daily</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>http://pythonarticles.com/html/index.html</loc>
-  <lastmod>2013-07-19</lastmod>
+  <lastmod>2013-07-23</lastmod>
   <changefreq>daily</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>http://pythonarticles.com/html/introduction_to_flask.html</loc>
-  <lastmod>2013-07-19</lastmod>
+  <lastmod>2013-07-23</lastmod>
   <changefreq>daily</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>http://pythonarticles.com/html/itertools.html</loc>
-  <lastmod>2013-07-19</lastmod>
+  <lastmod>2013-07-23</lastmod>
   <changefreq>daily</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>http://pythonarticles.com/html/list_comprehension.html</loc>
-  <lastmod>2013-07-19</lastmod>
+  <lastmod>2013-07-23</lastmod>
   <changefreq>daily</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>http://pythonarticles.com/html/mock.html</loc>
-  <lastmod>2013-07-19</lastmod>
+  <lastmod>2013-07-23</lastmod>
   <changefreq>daily</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>http://pythonarticles.com/html/python_dictionaries.html</loc>
-  <lastmod>2013-07-19</lastmod>
+  <lastmod>2013-07-23</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>http://pythonarticles.com/html/python_lists.html</loc>
+  <lastmod>2013-07-23</lastmod>
   <changefreq>daily</changefreq>
   <priority>0.5</priority>
 </url>

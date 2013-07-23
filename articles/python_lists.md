@@ -1,10 +1,6 @@
-<div class='alert alert-danger'>
-Work in progress...
-</div>
-
 # Lists
 
-Python lists are array implementation with dynamic sizing. A list is a sequence of elements. Python enables you to put any type of object into the same list. So it doesn't matter.
+Python list is a collection of elements and based on array. Python enables you to put any type of object into the same list and the size of the list is expaned automatically ( behind the scenes ) so that you don't need to worry. 
 
 Everything starts with the square brackets <code>[]</code>
 
@@ -116,12 +112,7 @@ Traceback (most recent call last):
 TypeError: object of type 'NoneType' has no len()
 ```
 
-Nothing is printed, because our list became a **None (Object)**
-
-
-## Last element, splitting items
-
-<code>words[len(words)-1]</code> is not the preffered way. Because we can use **-1**
+Nothing is printed, because our list became a **None (Object)**. <code>words[len(words)-1]</code> is not the preffered way. Because we can use **-1**
 If you are going to built a programming language, please implement this as a must-to-have.
 Java, C#, javascript don't have this feature. I still cannot understand, wtf?!
 
@@ -134,17 +125,42 @@ Java, C#, javascript don't have this feature. I still cannot understand, wtf?!
 'Python'
 ```
 
+## Slicing - Sublist
+
+<code>list[first:last]</code> slice up the list into a sublist. **Last** is not included!
+
+```python
+>>> words = ['Python', 'is', 'awesome', 'Go', 'is', 'also', 'nice', 1, 2, 3]
+>>> words[0:3] # beaware 3 is not included!
+['Python', 'is', 'awesome']
+>>> words[:3] # is also same with [0:3]
+['Python', 'is', 'awesome']
+```
+
+Since we can use negative indexes, lets find the last 3 elements at the list, and try other variations.
+
+```python
+>>> words[-3:]
+[1, 2, 3]
+>>> words[-3:-1]
+[1, 2]
+>>> words[-3:0] # were you expecting something else ? :)
+[]
+```
+
+### 
+
 ## For loop, iteration
 
 Iterating though each element within the list
 
 ```python
+words = ['Python', 'is', 'awesome']
 >>> for word in words:
 ...		print word
 Python
 is
 awesome
-!
 ```
 
 <h2 id='sort'>Sort</h2>
@@ -174,6 +190,3 @@ actual list is sorted and the place of the elements will be changed afterwards
 >>> words
 ['Python', 'awesome', 'is', 'testing']
 ```
-
-##
-
