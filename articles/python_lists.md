@@ -148,6 +148,78 @@ Since we can use negative indexes, lets find the last 3 elements at the list, an
 []
 ```
 
+## Extended Slicing
+
+<code>list[first:last:step]</code> slice up a list with step
+
+```python
+>>> words = ['Python', 'is', 'awesome', 'Go', 'is', 'also', 'nice', 1, 2, 3]
+>>> words[::2]
+['Python', 'awesome', 'is', 'nice', 2]
+>>> words[1:6:2]
+['is', 'Go', 'also']
+```
+
+## Reverse & Copy a List
+
+<code>list.reverse()</code>
+
+```python
+>>> text = words
+>>> text
+['Python', 'is', 'awesome', 'Go', 'is', 'also', 'nice', 1, 2, 3]
+>>> text.reverse()
+>>> text
+[3, 2, 1, 'nice', 'also', 'is', 'Go', 'awesome', 'is', 'Python']
+>>> words
+[3, 2, 1, 'nice', 'also', 'is', 'Go', 'awesome', 'is', 'Python']
+>>> words.copy()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'list' object has no attribute 'copy'
+```
+
+As you see the original list modified when <code>reverse</code> method runs and since <code>text=words</code> both variables pointing to the same value. How can we get a shallow copy of the list ?
+
+```python
+>>> words.reverse()
+>>> words
+['Python', 'is', 'awesome', 'Go', 'is', 'also', 'nice', 1, 2, 3]
+>>> text
+['Python', 'is', 'awesome', 'Go', 'is', 'also', 'nice', 1, 2, 3]
+>>> text = list(words) # create a new copy of the list
+>>> text
+['Python', 'is', 'awesome', 'Go', 'is', 'also', 'nice', 1, 2, 3]
+>>> words
+['Python', 'is', 'awesome', 'Go', 'is', 'also', 'nice', 1, 2, 3]
+>>> id(text)
+4299649968
+>>> id(words)
+4299609872
+>>> text.reverse()
+>>> text
+[3, 2, 1, 'nice', 'also', 'is', 'Go', 'awesome', 'is', 'Python']
+>>> words
+['Python', 'is', 'awesome', 'Go', 'is', 'also', 'nice', 1, 2, 3]
+>>> other_reverse_text = words[0:-1] # slicing creating a new list instance as well
+>>> other_reverse_text
+['Python', 'is', 'awesome', 'Go', 'is', 'also', 'nice', 1, 2]
+>>> id(other_reverse_text)
+4299649896
+>>> id(words)
+4299609872
+```
+
+
+You can also use **extended slicing** to get the reversed copy of a list
+
+```pyton
+>>> words = ['Python', 'is', 'awesome', 'Go', 'is', 'also', 'nice', 1, 2, 3]
+>>> words[::-1]
+[3, 2, 1, 'nice', 'also', 'is', 'Go', 'awesome', 'is', 'Python']
+```
+
+Oh I <i class='icon-heart'></i> Python!
 
 ## For loop, iteration
 
