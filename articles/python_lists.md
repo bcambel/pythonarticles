@@ -1,14 +1,29 @@
 # Lists
 
-Python list is a collection of elements and based on array. Python enables you to put any type of object into the same list and the size of the list is expaned automatically ( behind the scenes ) so that you don't need to worry. 
+Python list is a collection of elements and based on array. Python enables you to put any type of object into the same list and the size of the list is expanded automatically ( behind the scenes ) so that you don't need to worry. 
 
-Everything starts with the square brackets <code>[]</code>
+Everything starts with the square brackets <code>[]</code> 
 
 Lets start with a basic example. Let's say we have a sentence. 
 
 ```python
 >>> words = ['Python','is','awesome']
 ```
+
+or <code>list(iterable)<code> which can also convert other types of iterable objects(sequences) into a list
+
+```python
+>>> list.__doc__
+"""list() -> new empty list
+list(iterable) -> new list initialized from iterable's items"""
+>>> list((1,2,3)) # a tuple converted into a list
+[1, 2, 3]
+>>> list({"a":1,"b":2}) # dictionary converted to a list
+['a', 'b']
+>>> list(xrange(10)) # a generator converted/transformed into a list
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+
 
 ## Append
 
