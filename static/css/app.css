@@ -140,7 +140,7 @@ article .article_date{
 	font-family: verdana;
 	font-weight: normal;
 }
-
+#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
 .masonry,
 .masonry .masonry-brick {
 	-webkit-transition-duration: 0.7s;
