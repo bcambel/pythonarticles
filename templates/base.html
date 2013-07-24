@@ -49,6 +49,9 @@
                 <li><a href='#mc_embed_signup' data-toggle='modal'>Newsletter</a></li>
             </ul>
             <ul class="nav pull-right">
+                <li style='margin-top:10px'>
+<div class="fb-like" data-href="http://facebook.com/pythonhackers" data-send="false" data-layout="button_count" data-width="50" data-show-faces="false" data-font="lucida grande"></div>
+                </li>
                 <li style='margin-top:10px;'>
                     <div class="g-plusone" data-annotation="inline" data-width="300" data-href="http://pythonarticles.com"></div>
                 </li>
@@ -145,6 +148,14 @@ UserVoice.push(['showTab', 'classic_widget', {
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
   })();
 </script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=572493392790094";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 {% include "mailchimp.html" %}
 </body>
 </html>
