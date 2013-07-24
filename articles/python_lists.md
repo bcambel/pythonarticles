@@ -10,7 +10,7 @@ Lets start with a basic example. Let's say we have a sentence.
 >>> words = ['Python','is','awesome']
 ```
 
-or <code>list(iterable)<code> which can also convert other types of iterable objects(sequences) into a list
+or <code>list(iterable)</code> which can also convert other types of iterable objects(sequences) into a list
 
 ```python
 >>> list.__doc__
