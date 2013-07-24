@@ -213,7 +213,7 @@ As you see the original list modified when <code>reverse</code> method runs and 
 
 You can also use **extended slicing** to get the reversed copy of a list
 
-```pyton
+```python
 >>> words = ['Python', 'is', 'awesome', 'Go', 'is', 'also', 'nice', 1, 2, 3]
 >>> words[::-1]
 [3, 2, 1, 'nice', 'also', 'is', 'Go', 'awesome', 'is', 'Python']
