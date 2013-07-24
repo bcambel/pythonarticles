@@ -12,6 +12,7 @@ In this example we will use the following function as the starting point
 
 ```python
 import time
+import random
 
 def some_slow_function():
     time.sleep(1+ int(random.random()))
