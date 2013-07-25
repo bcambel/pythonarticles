@@ -50,13 +50,13 @@ article, #disqus_thread{
 	margin-bottom:10px;
 	margin-top:10px;
 	background-color: white;
-	width:95%;
+	/*width:95%;*/
 	margin-left:auto;
 	margin-right: auto;
 }
 
 @media (min-width: 1200px) {
-	article,#disqus_thread{
+	#disqus_thread{
 		width: 1024px;	
 	}	
 }
