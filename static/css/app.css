@@ -2,7 +2,9 @@ body{
 
 }
 
-
+ul{
+	list-style-type: none;
+}
 .main-content{
 	margin-top: 60px;;
 }
