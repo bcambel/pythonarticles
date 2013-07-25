@@ -2,8 +2,11 @@ body{
 
 }
 
-ul{
+ul.socialism{
 	list-style-type: none;
+}
+ul.socialism li {
+	margin-bottom:20px;
 }
 .main-content{
 	margin-top: 60px;;
