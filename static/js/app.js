@@ -3,7 +3,7 @@
 	function init(){
 		$(".articles").masonry({
 								   itemSelector : 'a',
-								   columnWidth : 400
+								   columnWidth : 230
 							   });
 	}
 })(jQuery);
