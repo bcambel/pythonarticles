@@ -7,8 +7,8 @@ ul.socialism{
 }
 ul.socialism li {
 	margin-bottom:20px;
-	width:45%;
 	float:left;
+	margin-right: 10px;
 }
 .main-content{
 	margin-top: 60px;;
