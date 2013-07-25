@@ -61,9 +61,9 @@ article, #disqus_thread, .socialism{
 }
 
 @media (min-width: 1200px) {
-	#disqus_thread{
+	/*#disqus_thread{
 		width: 1024px;	
-	}	
+	}	*/
 }
 article span.pull-right{
 	margin-right:5px;
