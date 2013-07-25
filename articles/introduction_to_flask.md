@@ -8,13 +8,7 @@ Want to start serving page immediately ?
 ```bash
 mkdir flask101
 cd flask101
-virtualenv venv
-# Not installed virtualenv ? 
-curl -O https://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.9.1.tar.gz
-tar xvfz virtualenv-1.9.1.tar.gz
-cd virtualenv-1.9.1
-sudo python setup.py install
-# now activate the virtualenv
+virtualenv venv 
 source venv/bin/activate
 pip install Flask
 vim server.py

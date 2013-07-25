@@ -80,6 +80,7 @@ def render_jinja():
 
             print article_settings
             article_configuration.update(**article_settings)
+            print "Current article: %s" % article.title
             article_configuration['tags'] = article_configuration['tag'].split(",")
             # del article_configuration['tag']
             print "=====", article_configuration['tags'],article_configuration['level']
