@@ -38,7 +38,7 @@ free -lmt
 
 ```bash
 apt-get update
-apt-get install make python-dev build-essential
+apt-get install make python-dev
 ```
 
 Lets check which python version we are running. I have Python 2.7.3 installed on default on 12.10 Ubuntu 64bit
@@ -83,6 +83,8 @@ root      1376  0.0  0.0   9388   892 pts/0    S+   20:48   0:00 grep --color=au
 
 Only the <code>grep</code> itsself. Nginx is not installed. Let's install it. <code>apt-get install nginx</code>
 
+## Install Nginx
+
 ```bash
 user@PythonHackers:~# sudo apt-get install nginx
 Processing triggers for libc-bin ...
@@ -108,34 +110,33 @@ that the Nginx default page is rendered.
 
 We have add our pythonhackers configuration to Nginx.
 
+## Configure Nginx
+
 ```bash
 user@PythonHackers:~# vim /etc/nginx/nginx.conf
 ```
 
-Press <code>:71</code> you will see that all the conf files underneath the conf.d folder will be included. This is
-also the preferred/suggested way of adding configurations for websites(virtualhosts).
+Press <code>:71</code> you will see that all the conf files underneath the conf.d folder will be included.
 
-```
-Line 71: include /etc/nginx/conf.d/*.conf;
-Line 72: include /etc/nginx/sites-enabled/*;
-```
+<div class='alert alert-info'>
+<p>Creating separate <code>.conf</code> files and placing it underneath <code>/etc/nginx/conf.d/</code> folder is the preferred/suggested way of adding configurations for websites(virtualhosts).
+On Line 71: <code> include /etc/nginx/conf.d/*.conf;</code> get the job done which includes all the files that have the
+file extension .conf added to the overall configuration of <b>Nginx</b>.
+</p>
+</div>
 
-Let's create a new virtualhost configuration file for nginx
 
-```bash
-user@PythonHackers:~# vim /etc/nginx/conf.d/stg.pythonhackers.com
-```
+Let's keep it simple and change the <code>nginx.conf</code> file directly. Create a new virtualhost configuration section for nginx, paste the following configuration after line 72.
 
 ```conf
 server {
     # virtualhost
     server_name    stg.pythonhackers.com;
-    #include     conf/defaults.conf ;
 
     # serve static files from webroot
-    location /static/ {
-        alias /var/www/pythonhackers.com/src/;
-    }
+    #location /static/ {
+    #    alias /var/www/pythonhackers.com/src/;
+    #}
 
     location / {
         include uwsgi_params;
@@ -150,11 +151,10 @@ user@PythonHackers:~# service nginx reload
 Reloading nginx configuration: nginx.
 ```
 
-
 You will start to get 502 - Bad Gateway
 
 ```bash
-user@PythonHackers:/var/log/nginx/stg.pythonhackers.com# less access.log
+user@PythonHackers:/var/log/nginx/stg.pythonhackers.com# tail -f access.log
 ```
 
 ```
@@ -167,12 +167,13 @@ and the error.log will say
 2013/07/26 22:09:19 [crit] 9461#0: *1 connect() to unix:/tmp/stg.pythonhackers.sock failed (2: No such file or directory) while connecting to upstream, client: XX.XXX.XX.XX, server: stg.pythonhackers.com, request: "GET / HTTP/1.1", upstream: "uwsgi://unix:/tmp/stg.pythonhackers.sock:", host: "stg.pythonhackers.com"
 ```
 
-Allright, now nginx tried to open a socket connection to our specified socket <code>/tmp/stg.pythonhackers.com.sock</code>
+Allright, now nginx tried to open a connection to our specified socket file <code>/tmp/stg.pythonhackers.com.sock</code>
 but failed, so we received a 502. <code>uwsgi_pass unix:/tmp/stg.pythonhackers.sock;</code> contains the nginx directive.
 
-Let's step back, and change this into a port forwarding operation.
+Let's step back, and change this into a port forwarding operation and comment out all previous <code>location /</code>section and add the following
+part
 
-```
+```conf
 location / {
     proxy_pass  http://127.0.0.1:5000/;
     proxy_set_header    Host    $host;
@@ -180,11 +181,13 @@ location / {
     }
 ```
 
-This will tell the nginx to forward the request to the post 5000. Comment out the previous <code>location /</code>
-and replace with the <code>proxy_pass</code> block.
+This will tell the nginx to forward the request to the port 5000.
+
+## Start Serving from a port
 
 Python has a builtin http server module <code>python -m SimpleHTTPServer port_number</code>. Go to stg.pythonhackers.com
 and you will see the directory listing
+
 
 ```bash
 user@PythonHackers:/var/log/nginx/stg.pythonhackers.com# python -m SimpleHTTPServer 5000
@@ -197,6 +200,8 @@ The access log will also say
 ```
 XX.XXX.XX.XX - - [26/Jul/2013:22:31:09 +0000] "GET / HTTP/1.1" 200 183 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36"
 ```
+
+## First Python code to serve
 
 ```bash
 user@PythonHackers:# mkdir -p /var/www/stg.pythonhackers.com/src
@@ -233,6 +238,8 @@ serving at port 5000
 
 Congrulatulations, your dummy app is served through port 5000...
 
+## Configure Supervisor
+
 [Supervisor](http://supervisord.org) is our tool to manage our required processes and it's not bound to the Python
 only processes as well.
 
@@ -256,6 +263,8 @@ stopsignal=INT
 ```
 
 Lets kick off supervisor again. Then <code>supervisorctl</code> will help us manage our processes.
+
+## Supervisorctl
 
 ```bash
 user@PythonHackers:/etc/supervisor/conf.d# service supervisor restart
@@ -292,54 +301,76 @@ From command line you can also start/stop your application via <code> supervisor
 
 ## VirtualEnv
 
-The next step will be installing Flask, and starting to serve our Flask application through port 5000.
+The next step will be installing Flask, and starting to serve our Flask application through port 5000. But before that, lets
+create our **python virtual environment** to install our python packages which will be in this case Flask only. As you will see soon
+Flask also depends on other packages.
 
 ```bash
-root@PythonHackers:/var/www/stg.pythonhackers.com/src# cd ../
-root@PythonHackers:/var/www/stg.pythonhackers.com# ls
+user@PythonHackers:/var/www/stg.pythonhackers.com/src# cd ../
+user@PythonHackers:/var/www/stg.pythonhackers.com# ls
 src
-root@PythonHackers:/var/www/stg.pythonhackers.com# virtualenv venv
+user@PythonHackers:/var/www/stg.pythonhackers.com# virtualenv venv
 New python executable in venv/bin/python
 Installing setuptools............done.
 Installing pip...............done.
-root@PythonHackers:/var/www/stg.pythonhackers.com# source venv/bin/activate
-(venv)root@PythonHackers:/var/www/stg.pythonhackers.com# pip install Flask
+user@PythonHackers:/var/www/stg.pythonhackers.com# source venv/bin/activate
+(venv)user@PythonHackers:/var/www/stg.pythonhackers.com# pip install Flask
 Downloading/unpacking Flask
   Downloading Flask-0.10.1.tar.gz (544kB): 544kB downloaded
   Running setup.py egg_info for package Flask
   # After a BIT OF LINES
  Successfully installed Flask Werkzeug Jinja2 itsdangerous markupsafe
 Cleaning up...
-(venv)root@PythonHackers:/var/www/stg.pythonhackers.com# pip freeze
-Flask==0.10.1
-Jinja2==2.7
-MarkupSafe==0.18
-Werkzeug==0.9.3
-argparse==1.2.1
-itsdangerous==0.22
-wsgiref==0.1.2
-(venv)root@PythonHackers:/var/www/stg.pythonhackers.com# pip freeze > requirements.txt
-(venv)root@PythonHackers:/var/www/stg.pythonhackers.com# cat requirements.txt
-Flask==0.10.1
-Jinja2==2.7
-MarkupSafe==0.18
-Werkzeug==0.9.3
-argparse==1.2.1
-itsdangerous==0.22
-wsgiref==0.1.2
 ```
 
-We will use this structure later.
+## Pip
 
-## Flask
-
-Follow the bash command to create the flask code;
+Once a virtualenv is initialized for a folder, python copied and linked to our <code>venv</code> folder , and pip is also installed
+Lets ask bash <code>which pip</code> we are using.
 
 ```bash
-(venv)root@PythonHackers:/var/www/stg.pythonhackers.com/src# vim flask_app.py
+(venv)root@PythonHackers:/var/www/stg.pythonhackers.com# which pip
+/var/www/stg.pythonhackers.com/venv/bin/pip
+(venv)user@PythonHackers:/var/www/stg.pythonhackers.com# pip freeze
+Flask==0.10.1
+Jinja2==2.7
+MarkupSafe==0.18
+Werkzeug==0.9.3
+argparse==1.2.1
+itsdangerous==0.22
+wsgiref==0.1.2
 ```
 
-Paste the following lines to your <code>flask_app.py</code>. That is all you need in Flask to start everything ( **Cough Cough Django** )
+## Pip Freeze
+
+To install our python environment with required packages in any machine we deploy or develop our code <code>pip freeze</code>
+command will help us and lets output that to a file called <code>requirements.txt<code>
+
+```
+(venv)user@PythonHackers:/var/www/stg.pythonhackers.com# pip freeze > requirements.txt
+(venv)user@PythonHackers:/var/www/stg.pythonhackers.com# cat requirements.txt
+Flask==0.10.1
+Jinja2==2.7
+MarkupSafe==0.18
+Werkzeug==0.9.3
+argparse==1.2.1
+itsdangerous==0.22
+wsgiref==0.1.2
+```
+
+We will use this requirements file later on our development.
+
+## Serving through Flask
+
+Hello Flask, you need to work now. Follow the below bash command to create the flask code;
+
+```bash
+(venv)user@PythonHackers:/var/www/stg.pythonhackers.com/src# vim flask_app.py
+```
+
+Paste the following lines to your <code>flask_app.py</code>. <code>7 lines of code</code> is all you need to start Flask web server ( **Cough Cough Django** )
+No config, no settings, no start project, start app blah blah blah...
+
 
 ```python
 from flask import Flask
@@ -348,7 +379,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return "Hello World!"
+    return "<html><body>Hello World!</body></html>"
 
 
 if __name__ == "__main__":
@@ -358,12 +389,21 @@ if __name__ == "__main__":
 lets fire up the flask engine..
 
 ```bash
-(venv)root@PythonHackers:/var/www/stg.pythonhackers.com/src# python flask_app.py
+(venv)user@PythonHackers:/var/www/stg.pythonhackers.com/src# python flask_app.py
  * Running on http://127.0.0.1:5000/
  * Restarting with reloader
 ```
 
+which will serve the following html code...
+
+```html
+<html>
+    <body>Hello World!</body>
+</html>
+```
+
 It's time to update our supervisor configuration file to serve our most basic Flask server...
+
 
 ```conf
 [program:pythonhackers]
@@ -390,7 +430,7 @@ Now our Flask app is running via supervisord.
 
 Web Server Gateway Interface
 
-The internet is full of slow connections and in our setup right now, Flask needs to deal with that. This is not a good way to 
+The internet is full of slow connections and in our setup right now, Flask needs to deal with that. This is not a good way to
 continue our development, and also we are running a single instance of our application. **Not good**!
 
 Let's introduce the awesomeness of uWSGI which will take care a lot for us.
@@ -433,7 +473,7 @@ spawned uWSGI http 1 (pid: 13980)
 [pid: 13979|app: 0|req: 1/1] 127.0.0.1 () {40 vars in 924 bytes} [Sat Jul 27 01:56:10 2013] GET / => generated 38 bytes in 3 msecs (HTTP/1.0 200) 2 headers in 79 bytes (1 switches on core 0)
 ```
 
-So what do we know ? 
+So what do we know ?
 
 - Set the correct directory
 - Since we are still communicating via port use <code> --http :5000</code> syntax
