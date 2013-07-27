@@ -1,27 +1,32 @@
 
 # Server setup
 
-This article describes the server setup for your python project. The assumption is that
-you will use **Ubuntu**. Probably depending on the distribution, you might use other package managers ;
+3 years ago, after I have decided to quit .NET and move to Linux world; First Ruby then Python, the hardest thing was for me to
+setup staging, production environments on Linux. I hope to reduce the pain you will have (Believe me you will) If you are working in a company which deploys projects
+to Linux Environment, those **devops** guys know way better than me. Don't take this is a must way to go (esp steps before supervisor), but for a Python project
+nginx -> supervisor/uWSGI or supervisor+uWSGI is a common setup.
 
-Red Hat EL or SL => yum
-CentOS => yum
-Arch Linux => pacman
-Fedora => yum
-Debian => dpkg
+<div class='alert alert-info'>
+<p> If you already know a lot about Nginx, jump those sections via the left menu</p>
+</div>
 
-Starting with generating ssh keys
+This article will describe the following route to setup server for your python project.
 
-```bash
-cd ~/.ssh
-ssh-keygen -t rsa -C "email@example.com"
-# Print it to the terminal
-cat ~/.ssh/id_rsa.pub
-ssh-add -K id_pub.pub
-```
+- Nginx
+- Nginx -> Supervisor -> Python SimpleHTTPServer [via port]
+- Nginx -> Supervisor -> Python Flask [via port]
+- Nginx -> Supervisor -> uWSGI -> Python Flask [via port]
+- Nginx -> Supervisor -> uWSGI -> Python Flask [via unix socket]
 
-If your hosting provider supports adding ssh keys, add it through their webinterface. This will allow you to ssh to your server machines without typing your password.
-Let's install the **vim** and **HTOP** which is the advanced version of the TOP tool
+The assumption is that you will use **Ubuntu**. Depending on the distribution, you need to use other package managers ;
+
+<code>Red Hat EL or SL => yum</code>
+<code>CentOS => yum</code>
+<code>Arch Linux => pacman</code>
+<code>Fedora => yum</code>
+<code>Debian => dpkg</code>
+
+## Update Apt-Get, Install basic packages
 
 ```bash
 # before doing anything, update the package manager's repositories
@@ -40,7 +45,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
 
-## Installing VirtualEnv
+## Install VirtualEnv
 
 ```bash
 user@PythonHackers:~# curl -O https://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.9.1.tar.gz
