@@ -3,12 +3,12 @@
 {% block body %}
 <div class='span2' id='left-menu'>
     <a href="https://twitter.com/share" class="twitter-share-button" data-via="bahadircambel" data-size="large" data-related="pythonhackers">Tweet</a>
-            <ul style='list-style-type:none;margin-left:none;padding-left:3px;'>
+            <ul style='list-style-type:none;margin-left:3px;padding-left:3px;'>
 
             </ul>
 </div>
 <div class="span10">
-<article id="content_html" >
+<article id="content_html" data-spy="affix" data-offset-top="100">
     <span class='pull-right article_date'>{{ publish_date }}</span>
     <span class='pull-right badge badge-info'>{{level}}</span>
      {% for tag in tags %}

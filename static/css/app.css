@@ -27,6 +27,20 @@ ul.socialism li {
 	padding: 20px;
 }
 
+#left-menu ul {
+	list-style-type: none;
+	margin-left:5px;
+	padding-left:0;
+}
+
+#left-menu ul li {
+	font-size: 12px;
+	overflow-x: hidden;
+	line-height: 15px;
+	overflow-y: hidden;
+	height: 20px;
+}
+
 .profile img{
 	width:150px;
 	margin-bottom: 20px;
