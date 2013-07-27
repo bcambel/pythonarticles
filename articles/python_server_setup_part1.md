@@ -457,6 +457,8 @@ pip install http://projects.unbit.it/downloads/uwsgi-lts.tar.gz
 (venv)root@PythonHackers:~# pip install [](http://projects.unbit.it/downloads/uwsgi-lts.tar.gz)
 ```
 
+Start our simple flask app with via uWSGI
+
 ```bash
 (venv)root@PythonHackers:/var/www/stg.pythonhackers.com/src# /var/www/stg.pythonhackers.com/venv/bin/uwsgi  -H /var/www/stg.pythonhackers.com/venv/ -w flask_app:app -M -p 1 --http :5000
 *** Starting uWSGI 1.4.9 (64bit) on [Sat Jul 27 01:56:06 2013] ***

@@ -580,15 +580,15 @@ pip install http://projects.unbit.it/downloads/uwsgi-lts.tar.gz
 <span class="o">(</span>venv<span class="o">)</span>root@PythonHackers:~# pip install <span class="o">[](</span>http://projects.unbit.it/downloads/uwsgi-lts.tar.gz<span class="o">)</span>
 </code></pre></div>
 
-<p>```bash
-(venv)root@PythonHackers:/var/www/stg.pythonhackers.com/src# /var/www/stg.pythonhackers.com/venv/bin/uwsgi  -H /var/www/stg.pythonhackers.com/venv/ -w flask_app:app -M -p 1 --http :5000
-<strong>* Starting uWSGI 1.4.9 (64bit) on [Sat Jul 27 01:56:06 2013] *</strong></p>
+<p>Start our simple flask app with via uWSGI</p>
 
-<h1>after a lot of lines</h1>
+<div class="syntax"><pre><code><span class="o">(</span>venv<span class="o">)</span>root@PythonHackers:/var/www/stg.pythonhackers.com/src# /var/www/stg.pythonhackers.com/venv/bin/uwsgi  -H /var/www/stg.pythonhackers.com/venv/ -w flask_app:app -M -p 1 --http :5000
+*** Starting uWSGI 1.4.9 <span class="o">(</span>64bit<span class="o">)</span> on <span class="o">[</span>Sat Jul 27 01:56:06 2013<span class="o">]</span> ***
+<span class="c"># after a lot of lines</span>
+<span class="o">[</span>pid: 13979|app: 0|req: 1/1<span class="o">]</span> 127.0.0.1 <span class="o">()</span> <span class="o">{</span>40 vars in 924 bytes<span class="o">}</span> <span class="o">[</span>Sat Jul 27 01:56:10 2013<span class="o">]</span> GET / <span class="o">=</span>&gt; generated 38 bytes in 3 msecs <span class="o">(</span>HTTP/1.0 200<span class="o">)</span> 2 headers in 79 bytes <span class="o">(</span>1 switches on core 0<span class="o">)</span>
+</code></pre></div>
 
-<p>[pid: 13979|app: 0|req: 1/1] 127.0.0.1 () {40 vars in 924 bytes} [Sat Jul 27 01:56:10 2013] GET / =&gt; generated 38 bytes in 3 msecs (HTTP/1.0 200) 2 headers in 79 bytes (1 switches on core 0)
-```
-Check the <a href="http://pastebin.com/F2JUkjNq">whole trace here</a></p>
+<p>Check the <a href="http://pastebin.com/F2JUkjNq">whole trace here</a></p>
 
 <p>So what do we know ?</p>
 
