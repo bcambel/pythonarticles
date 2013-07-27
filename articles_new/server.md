@@ -439,9 +439,9 @@ So what do we know ?
 - Since we are still communicating via port use <code> --http :5000</code> syntax
 - Set the Environment Home directory <code>-H /var/www/stg.pythonhackers.com/venv/ </code>
 - Set process to 1 <code> -p 1 </code>
-- Set the worker <code>-w flask_app:app</code>
--- There is a worker inside the <code>flask_app</code> py file and in that file use the variable called <code>app</code>
 - Set to master process <code> -m </code>
+- Set the worker <code>-w flask_app:app</code> There is a worker inside the <code>flask_app</code> py file and in that file use the variable called <code>app</code>
+
 
 ```conf
 command=uwsgi
@@ -450,6 +450,9 @@ command=uwsgi
             --virtualenv=/var/www/stg.pythonhackers.com/venv/
             --workers=4
             --chdir=/var/www/stg.pythonhackers.com/src
+```
+
+more settings
 
 ```conf
 #--socket=/tmp/stg.pythonhackers.com.sock
