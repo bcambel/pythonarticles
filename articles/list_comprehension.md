@@ -49,12 +49,12 @@ There are two inner loops in this example. Starting with <code>for i in range(10
 
 <code>[0, 1, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 6, 7]</code>
 
-### Usages
+## Usages
 
 
 Lets abuse the list comprehensions ; 
 
-#### Search Highlighting
+## Search Highlighting
 
 Given a text, replace all the occurences of a keyword with **bold** text, print the lines that contains the keyword and combine them via "..."
 
@@ -64,7 +64,7 @@ Given a text, replace all the occurences of a keyword with **bold** text, print 
 '<b>python</b> is a great language to work with... i like <b>python</b> a lot'
 ```
 
-#### Which sentence to analyze for which words
+## Analyze for which words
 
 Let's say you want to write an algorithm that analyzes the words within sentences which contains the search keyword	
 
