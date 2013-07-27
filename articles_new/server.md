@@ -20,25 +20,14 @@ cat ~/.ssh/id_rsa.pub
 ssh-add -K id_pub.pub
 ```
 
-If your hosting provider supports adding ssh keys, add it through their webinterface.
-
-This will allow you to ssh to your server machines without typing your password.
-
-Let's install the HTOP tool which is the advanced version of the TOP tool
+If your hosting provider supports adding ssh keys, add it through their webinterface. This will allow you to ssh to your server machines without typing your password.
+Let's install the **vim** and **HTOP** which is the advanced version of the TOP tool
 
 ```bash
-sudo apt-get install htop vim
-```
-
-List the available memory on the machine
-
-```bash
-free -lmt
-```
-
-```bash
-apt-get update
-apt-get install make python-dev
+# before doing anything, update the package manager's repositories
+user@PythonHackers:~# sudo apt-get update
+user@PythonHackers:~# sudo apt-get install htop vim
+user@PythonHackers:~# sudo apt-get install make python-dev
 ```
 
 Lets check which python version we are running. I have Python 2.7.3 installed on default on 12.10 Ubuntu 64bit
@@ -54,10 +43,10 @@ Type "help", "copyright", "credits" or "license" for more information.
 ## Installing VirtualEnv
 
 ```bash
-curl -O https://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.9.1.tar.gz
-tar xvfz virtualenv-1.9.1.tar.gz
-cd virtualenv-1.9.1
-sudo python setup.py install
+user@PythonHackers:~# curl -O https://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.9.1.tar.gz
+user@PythonHackers:~# tar xvfz virtualenv-1.9.1.tar.gz
+user@PythonHackers:~# cd virtualenv-1.9.1
+user@PythonHackers:~# sudo python setup.py install
 ```
 
 ## Install Supervisor
@@ -65,7 +54,7 @@ sudo python setup.py install
 <code> apt-get install supervisor</code> will get the job done...
 
 ```bash
-user@PythonHackers:~# apt-get install supervisor
+user@PythonHackers:~# sudo apt-get install supervisor
 Setting up supervisor (3.0a8-1.1) ...
 Starting supervisor: supervisord.
 Processing triggers for python-support ...
@@ -178,7 +167,7 @@ location / {
     proxy_pass  http://127.0.0.1:5000/;
     proxy_set_header    Host    $host;
     proxy_set_header    X-Real-IP   $remote_addr;
-    }
+}
 ```
 
 This will tell the nginx to forward the request to the port 5000.
@@ -236,7 +225,7 @@ serving at port 5000
 127.0.0.1 - - [26/Jul/2013 22:35:19] "GET /app.py HTTP/1.0" 200 -
 ```
 
-Congrulatulations, your dummy app is served through port 5000...
+Congratulations, your dummy app is served through port 5000... Press <code>Ctrl+C</code> to kill it.
 
 ## Configure Supervisor
 
