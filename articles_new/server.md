@@ -26,6 +26,24 @@ The assumption is that you will use **Ubuntu**. Depending on the distribution, y
 <code>Fedora => yum</code>
 <code>Debian => dpkg</code>
 
+## Fake it
+
+Till you make it. Since [stg.pythonhackers.com](stg.pythonhackers.com) DNS is pointed to my server, you won't see requests arriving to your own machine.
+
+
+```bash
+bahadir@local:~# vim /etc/hosts
+```
+
+add the following line to the end of the <code>/etc/hosts</code> file
+
+```
+127.0.0.1   stg.pythonhackers.com
+```
+
+If you have a hosting, or you're already using ubuntu on your local desktop, change <code>127.0.0.1</code> to an appropriate one.
+
+
 ## Update Apt-Get, Install basic packages
 
 ```bash
