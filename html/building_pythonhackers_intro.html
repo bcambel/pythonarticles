@@ -4,15 +4,15 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Introduction To Python Flask</title>
+    <title>Building PythonHackers.com</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Introduction To Python Flask"/>
+    <meta property="og:title" content="Building PythonHackers.com"/>
     <meta property="og:type" content="article"/>
-    <meta property="og:url" content="http://pythonarticles.com/introduction_to_flask.html"/>
+    <meta property="og:url" content="http://pythonarticles.com/building_pythonhackers_intro.html"/>
     <meta property="og:site_name" content="PythonArticles"/>
-    <meta property="og:description" content="The minimalist elegant Python web framework"/>
-    <meta name="description" content="The minimalist elegant Python web framework" />
-    <meta name='keywords' content='flask tutorial, flask, python flask, introduction to flask' />
+    <meta property="og:description" content="A step by step tutorial to build a Python Hacker community"/>
+    <meta name="description" content="A step by step tutorial to build a Python Hacker community" />
+    <meta name='keywords' content='python hackers, python developers, python coders' />
     <link rel="alternate" type="application/rss+xml" title="PythonArticles RSS Feed" href="http://feeds.feedburner.com/PyArticles" />
 
     <link href="http://fonts.googleapis.com/css?family=Muli|Domine|Amaranth:400,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
@@ -149,122 +149,65 @@
 </div>
 <div class="span11" >
 <article id="content_html" >
-    <span class='pull-right article_date'>2013-07-12</span>
+    <span class='pull-right article_date'>2013-07-23</span>
     <span class='pull-right badge badge-info'>beginner</span>
      
-            <span class='pull-right badge badge-warning'>flask</span>
+            <span class='pull-right badge badge-warning'>hacker</span>
             
-    <h1>Introduction to Flask</h1>
+            <span class='pull-right badge badge-warning'> developer</span>
+            
+            <span class='pull-right badge badge-warning'> coder</span>
+            
+    <h1>Building Python Hackers</h1>
 
-<p><a href="http://flask.pocoo.org/">Flask</a> is the minimalistic simple Web Framework for Python.
-Want to start serving page immediately ? </p>
+<p>I am going to build <a href="http://pythonhackers.com">pythonhackers.com</a> and I will write articles about it.
+Setting up, deploy, coding, unit testing, process management, monitoring, databases, queues, statistics, log management, error handling, continuous integration, build server, and a lot more
+about it.</p>
 
-<div class="syntax"><pre><code>mkdir flask101
-<span class="nb">cd </span>flask101
-virtualenv venv 
-<span class="nb">source </span>venv/bin/activate
-pip install Flask
-vim server.py
-</code></pre></div>
+<p>I've done professional programming with multiple languages. After 7 years of .NET, 6 months of PHP, some lines of Java, in 2011 I've decided to learn Ruby and wrote a small project with it using Rails.</p>
 
-<p>Save the following </p>
+<p>Then for my last startup, I've decided to go with the Python. Mostly because of the NLTK and the simplicity of the syntax. Tornado was
+5 lines to start with.
+Django was hugely popular ( like Rails ) so I give Python a try. Glad I did.</p>
 
-<div class="syntax"><pre><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<p>Today, I've been writing Python almost 1.5 years and I have really enjoyed it so far. There is a great ecosystem behind it. System admins, DevOps,
+academia, big startups like <a href="http://disqus.com">Disqus</a>, <a href="http://dropbox.com">Dropbox</a>, <a href="http://chart.io">Chart.io</a>, <a href="http://quora.com">Quora</a></p>
 
-<span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
-        <span class="k">return</span> <span class="s">&quot;Hello World!&quot;</span>
+<p>There is a great amount of documentation for almost any open source Python project.</p>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-        <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-</code></pre></div>
+<h2>Why ?</h2>
 
-<p><code>bash
-python server.py
-</code></p>
+<p>I do have a deep passion about Python, and startups. I'm going to build a community of people who also loves Pythons.</p>
 
-<p>Navigate to <code>http://localhost:5000/</code> and you will get the Hello World message.</p>
+<h2>How ?</h2>
 
-<p>Flask comes with the <a href="http://werkzeug.pocoo.org/">Werkzeug server</a> and <a href="http://jinja.pocoo.org/">Jinja2 templating</a> which both of them done by <a href="http://lucumr.pocoo.org/projects/">Armin Ronacher</a>.</p>
+<p>Plan, develop, build, deploy, get feedback, Plan .... You know where it's going.</p>
 
-<h2>Templating</h2>
+<p>I will use Python 2.7, Flask, PostgreSQL, Memcache as starters.</p>
 
-<p>Create a folder named <code>templates</code> and lets add a basic HTML page under the templates folder.</p>
+<h2>What ?</h2>
 
-<div class="syntax"><pre><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="nt">&lt;html&gt;</span>
-    <span class="nt">&lt;body&gt;</span>
-        Hello world from flask
-    <span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
-</code></pre></div>
+<ul>
+<li>Discuss/vote open source projects</li>
+<li>Find fellow hackers on your area</li>
+<li>Share articles</li>
+<li>Share pycode</li>
+<li>Built awesome stuff together</li>
+</ul>
 
-<div class="syntax"><pre><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<p>This is what I want to build.</p>
 
-<span class="c"># if you have different folder path than templates, uncomment the following lines...</span>
-<span class="c"># current_dir = os.path.dirname(os.path.abspath(__file__))</span>
-<span class="c"># template_folder = os.path.join(current_dir, &#39;templates&#39;)</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>  <span class="c">#, template_folder=template_folder)</span>
+<p>Here is the <a href="https://trello.com/b/2oZYRze9/pythonhackers-com">Trello Board</a></p>
 
-<span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
-    <span class="c">#return &quot;Hello World!&quot;</span>
-    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&quot;hello.html&quot;</span><span class="p">)</span>
+<h2>Building website</h2>
 
+<p><a href="http://pythonhackers.com">PythonHackers.com</a> is already live. I've done a static simple web page. There is nothing faster than a static website.
+And there is completely no need to do anything with Python + Flask.</p>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-</code></pre></div>
+<p>I connected the twitter account, and also created a <a href="http://mailchimp.com">Mail Chimp</a> list to early adaptors can
+drop their email address to learn the status of the project on the upcoming weeks.</p>
 
-<h2>How to send a parameter to Flask template ?</h2>
-
-<p>Adding our parameter to the <code>hello.html</code></p>
-
-<div class="syntax"><pre><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="nt">&lt;html&gt;</span>
-    <span class="nt">&lt;body&gt;</span>
-        Hello world from flask! My name is {{name}}
-    <span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
-</code></pre></div>
-
-<p>As you see, <code>{{name}}</code> added to our HTML file. All we need to do, add <code>name</code> as a named parameter to our
-<code>render_template</code></p>
-
-<div class="syntax"><pre><code><span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
-    <span class="c">#return &quot;Hello World!&quot;</span>
-    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&quot;hello.html&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;Bahadir&#39;</span><span class="p">)</span>
-</code></pre></div>
-
-<h2>How to serve static files from Flask ? </h2>
-
-<p>Our previous code was </p>
-
-<div class="syntax"><pre><code><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-</code></pre></div>
-
-<p>We would like to serve our static files in our development environment. Let's create a static folder under our project
-to put <code>JavaScript</code>, <code>CSS</code>, <code>Images</code></p>
-
-<p><code>
-mkdir static &amp;&amp; cd static
-mkdir img &amp;&amp; mkdir js &amp;&amp; mkdir css
-</code></p>
-
-<div class="syntax"><pre><code><span class="kn">from</span> <span class="nn">werkzeug</span> <span class="kn">import</span> <span class="n">SharedDataMiddleware</span>
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">app</span><span class="o">.</span><span class="n">debug</span><span class="p">:</span>
-       <span class="n">app</span><span class="o">.</span><span class="n">wsgi_app</span> <span class="o">=</span> <span class="n">SharedDataMiddleware</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">wsgi_app</span><span class="p">,</span> <span class="p">{</span>
-            <span class="s">&#39;/static&#39;</span><span class="p">:</span> <span class="n">static_folder</span>
-        <span class="p">})</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_debugger</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-</code></pre></div>
-
-<p>Set <code>use_reloader=True</code> to restart flask server whenever a Python file changes. Very handy!</p>
+<p><a href="btn btn-large btn-success"> Start Series </a></p>
 
 
     <hr />
