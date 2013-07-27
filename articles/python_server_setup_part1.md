@@ -360,7 +360,7 @@ wsgiref==0.1.2
 ## Pip Freeze
 
 To install our python environment with required packages in any machine we deploy or develop our code <code>pip freeze</code>
-command will help us and lets output that to a file called <code>requirements.txt<code>
+command will help us and lets output that to a file called <code>requirements.txt</code>
 
 ```
 (venv)user@PythonHackers:/var/www/stg.pythonhackers.com# pip freeze > requirements.txt
