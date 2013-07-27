@@ -38,7 +38,7 @@ free -lmt
 
 ```bash
 apt-get update
-apt-get install make python-dev
+apt-get install make python-dev build-essential
 ```
 
 Lets check which python version we are running. I have Python 2.7.3 installed on default on 12.10 Ubuntu 64bit
@@ -364,3 +364,95 @@ lets fire up the flask engine..
 ```
 
 It's time to update our supervisor configuration file to serve our most basic Flask server...
+
+```conf
+[program:pythonhackers]
+killgroup=true
+directory=/var/www/stg.pythonhackers.com/src
+environment=HOME=/var/www/stg.pythonhackers.com/venv/,
+command=/var/www/stg.pythonhackers.com/venv/bin/python flask_app.py
+autostart=true
+autorestart=true
+redirect_stderr=true
+stopsignal=INT
+```
+
+set our virtualenvironment home directory <code>/var/www/stg.pythonhackers.com/venv/</code> and also change the command to run <code>/var/www/stg.pythonhackers.com/venv/bin/python</code> with <code>flask_app.py</code> argument.
+
+```bash
+user@PythonHackers:~# /etc/init.d/supervisor stop
+user@PythonHackers:~# /etc/init.d/supervisor start
+```
+
+Now our Flask app is running via supervisord.
+
+## uWSGI
+
+Web Server Gateway Interface
+
+The internet is full of slow connections and in our setup right now, Flask needs to deal with that. This is not a good way to 
+continue our development, and also we are running a single instance of our application. **Not good**!
+
+Let's introduce the awesomeness of uWSGI which will take care a lot for us.
+
+```bash
+user@PythonHackers:~# source /var/www/stg.pythonhackers.com/venv/bin/activate
+pip install http://projects.unbit.it/downloads/uwsgi-lts.tar.gz
+(venv)root@PythonHackers:~# pip install [](http://projects.unbit.it/downloads/uwsgi-lts.tar.gz)
+```
+
+```bash
+(venv)root@PythonHackers:/var/www/stg.pythonhackers.com/src# /var/www/stg.pythonhackers.com/venv/bin/uwsgi  -H /var/www/stg.pythonhackers.com/venv/ -w flask_app:app -M -p 1 --http :5000
+*** Starting uWSGI 1.4.9 (64bit) on [Sat Jul 27 01:56:06 2013] ***
+compiled with version: 4.7.2 on 27 July 2013 01:52:19
+os: Linux-3.5.0-17-generic #28-Ubuntu SMP Tue Oct 9 19:31:23 UTC 2012
+nodename: PythonHackers
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 2
+current working directory: /var/www/stg.pythonhackers.com/src
+detected binary path: /var/www/stg.pythonhackers.com/venv/bin/uwsgi
+your processes number limit is 31578
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+uWSGI http bound on :5000 fd 4
+uwsgi socket 0 bound to TCP address 127.0.0.1:33661 (port auto-assigned) fd 3
+Python version: 2.7.3 (default, Apr 10 2013, 05:16:12)  [GCC 4.7.2]
+Set PythonHome to /var/www/stg.pythonhackers.com/venv/
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x22a3910
+your server socket listen backlog is limited to 100 connections
+mapped 144848 bytes (141 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x22a3910 pid: 13974 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 13974)
+spawned uWSGI worker 1 (pid: 13979, cores: 1)
+spawned uWSGI http 1 (pid: 13980)
+[pid: 13979|app: 0|req: 1/1] 127.0.0.1 () {40 vars in 924 bytes} [Sat Jul 27 01:56:10 2013] GET / => generated 38 bytes in 3 msecs (HTTP/1.0 200) 2 headers in 79 bytes (1 switches on core 0)
+```
+
+So what do we know ? 
+
+- Set the correct directory
+- Since we are still communicating via port use <code> --http :5000</code> syntax
+- Set the Environment Home directory <code>-H /var/www/stg.pythonhackers.com/venv/ </code>
+- Set process to 1 <code> -p 1 </code>
+- Set the worker <code>-w flask_app:app</code>
+-- There is a worker inside the <code>flask_app</code> py file and in that file use the variable called <code>app</code>
+- Set to master process <code> -m </code>
+
+```conf
+command=uwsgi
+            --master
+            --http :5000
+            --virtualenv=/var/www/stg.pythonhackers.com/venv/
+            --workers=4
+            --chdir=/var/www/stg.pythonhackers.com/src
+
+```conf
+#--socket=/tmp/stg.pythonhackers.com.sock
+#-C666
+uwsgi -s /tmp/multicdn.sock -H /var/www/stg.pythonhackers.com/venv/ -w spilmulticdn.wsgi -M -p 4 -C 666
+```
