@@ -50,4 +50,4 @@ And there is completely no need to do anything with Python + Flask.
 I connected the twitter account, and also created a [Mail Chimp](http://mailchimp.com) list to early adaptors can
 drop their email address to learn the status of the project on the upcoming weeks.
 
-<a href="btn btn-large btn-success"> Start Series </a>
+<a class="btn btn-large btn-success" href='http://pythonarticles.com/python_server_setup_part1.html'> Start Series </a>
