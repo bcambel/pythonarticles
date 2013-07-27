@@ -102,6 +102,8 @@ We have add our pythonhackers configuration to Nginx.
 ## Configure Nginx
 
 ```bash
+# create log directory for stg.pythonhackers.com
+user@PythonHackers:~# mkdir -p /var/log/nginx/stg.pythonhackers.com/
 user@PythonHackers:~# vim /etc/nginx/nginx.conf
 ```
 
@@ -140,7 +142,7 @@ user@PythonHackers:~# service nginx reload
 Reloading nginx configuration: nginx.
 ```
 
-You will start to get 502 - Bad Gateway
+Open your browser and go to [stg.pythonhackers.com](stg.pythonhackers.com) and you will start to get 502 - Bad Gateway
 
 ```bash
 user@PythonHackers:/var/log/nginx/stg.pythonhackers.com# tail -f access.log
