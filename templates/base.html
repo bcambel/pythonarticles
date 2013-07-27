@@ -76,8 +76,8 @@
         {% block body %}
         {% endblock %}
         </div>
-        <div class='span4'>
-            <ul class='socialism'>
+        <div class='span2'>
+            <ul class='socialism' style='height:130px;'>
                 <li>
                     <a href="https://twitter.com/pythonhackers" class="twitter-follow-button" data-show-count="true" data-lang="en" data-large='true'>Follow us</a>        
                 </li>
@@ -90,12 +90,13 @@
             </ul>
             <hr />
 
-            {% if disqus %}<div id="disqus_thread"></div>{% endif %}
+            
         </div>
 
 </div>
 <div class="container-fluid">
-        
+        {% if disqus %}<div id="disqus_thread"></div>{% endif %}
+
         <hr />
 
         <div class="footer">
@@ -154,7 +155,7 @@ UserVoice.push(['showTab', 'classic_widget', {
   forum_id: 215760,
   tab_label: 'Feedback & Support',
   tab_color: '#cc6d00',
-  tab_position: 'middle-left',
+  tab_position: 'bottom-right',
   tab_inverted: false
 }]);
 
