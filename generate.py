@@ -120,7 +120,7 @@ def render_jinja():
 if __name__ == "__main__":
     render_jinja()
 
-
+    
     rss = RSS2(
         title = "Python Articles Feed",
         link = "http://pythonarticles.com/rss.xml",
@@ -130,5 +130,5 @@ if __name__ == "__main__":
         items = rss_items
     )
 
-    rss.write_xml(open("html/rss.xml", "w"))
+    #rss.write_xml(open("html/rss.xml", "w"))
 
