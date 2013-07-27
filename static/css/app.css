@@ -41,6 +41,28 @@ ul.socialism li {
 	height: 20px;
 }
 
+#left-menu {  
+    position:absolute;  
+    top:150px;  
+    left:10px;  
+    /*margin-left:235px;  */
+    width:200px;  
+}  
+#left-menu ul {  
+    margin-bottom:20px;  
+}  
+
+#left-menu ul li a {  
+    display:block;  
+    border:1px solid #999;  
+    background-color:#222;  
+    border-left:6px solid #999;  
+    text-decoration:none;  
+    color:#ccc;  
+    padding:5px 5px 5px 25px;  
+}  
+
+
 .profile img{
 	width:150px;
 	margin-bottom: 20px;
