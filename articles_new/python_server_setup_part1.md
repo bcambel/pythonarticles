@@ -16,7 +16,7 @@ This article will describe the following route to setup server for your python p
 - Nginx -> Supervisor -> Python SimpleHTTPServer [via port]
 - Nginx -> Supervisor -> Python Flask [via port]
 - Nginx -> Supervisor -> uWSGI -> Python Flask [via port]
-- Nginx -> Supervisor -> uWSGI -> Python Flask [via unix socket]
+
 
 The assumption is that you will use **Ubuntu**. Depending on the distribution, you need to use other package managers ;
 

@@ -1,3 +1,16 @@
+Starting with generating ssh keys
+
+```bash
+cd ~/.ssh
+ssh-keygen -t rsa -C "email@example.com"
+# Print it to the terminal
+cat ~/.ssh/id_rsa.pub
+ssh-add -K id_pub.pub
+```
+
+If your hosting provider supports adding ssh keys, add it through their webinterface. This will allow you to ssh to your server machines without typing your password.
+Let's install the **vim** and **HTOP** which is the advanced version of the TOP tool
+
 you can also install nginx from the souce with different options enabled
 
 ```bash
@@ -53,4 +66,10 @@ Starting memcached: memcached.
 Processing triggers for libc-bin ...
 ldconfig deferred processing now taking place
 Processing triggers for ureadahead ...
+```
+
+List the available memory on the machine
+
+```bash
+free -lmt
 ```
