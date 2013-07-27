@@ -160,6 +160,8 @@ server {
 }
 ```
 
+Reload the nginx afterwards
+
 ```bash
 user@PythonHackers:~# service nginx reload
 Reloading nginx configuration: nginx.
@@ -171,7 +173,7 @@ Open your browser and go to [stg.pythonhackers.com](stg.pythonhackers.com) and y
 user@PythonHackers:/var/log/nginx/stg.pythonhackers.com# tail -f access.log
 ```
 
-```
+```bash
 XX.XXX.XX.XX - - [26/Jul/2013:22:09:19 +0000] "GET / HTTP/1.1" 502 574 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36"
 ```
 
@@ -309,7 +311,7 @@ pythonhackers                    RUNNING    pid 9840, uptime 0:00:04
 
 ```
 
-<code>reread</code> command looks for configuration changes. Consult supervisor documentation for more detail.
+Supervisorctl <code>reread</code> command looks for configuration changes. Consult supervisor documentation for more detail.
 
 From command line you can also start/stop your application via <code> supervisorctl restart pythonhackers </code>
 
