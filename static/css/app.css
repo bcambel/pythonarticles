@@ -38,12 +38,12 @@ ul.socialism li {
 	overflow-x: hidden;
 	line-height: 15px;
 	overflow-y: hidden;
-	height: 20px;
+	height: 30px;
 }
 
 #left-menu {  
-    position:absolute;  
-    top:150px;  
+    position:fixed;  
+    top:70px;  
     left:10px;  
     /*margin-left:235px;  */
     width:200px;  
@@ -54,11 +54,11 @@ ul.socialism li {
 
 #left-menu ul li a {  
     display:block;  
-    border:1px solid #999;  
+    border:1px solid #EEE;  
     /*background-color:#222;  */
-    border-left:6px solid #999;  
+    /*border-left:6px solid #999;  */
     text-decoration:none;  
-    color:#ccc;  
+    /*color:#ccc;  */
     padding:5px 5px 5px 25px;  
 }  
 
