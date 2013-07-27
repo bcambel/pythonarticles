@@ -55,7 +55,7 @@ ul.socialism li {
 #left-menu ul li a {  
     display:block;  
     border:1px solid #999;  
-    background-color:#222;  
+    /*background-color:#222;  */
     border-left:6px solid #999;  
     text-decoration:none;  
     color:#ccc;  
@@ -108,6 +108,10 @@ article, #disqus_thread, .socialism{
 }
 article span.pull-right{
 	margin-right:5px;
+}
+
+article ,#disqus_thread {
+	margin-left:200px;
 }
 
 article h1{
