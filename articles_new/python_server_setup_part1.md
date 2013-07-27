@@ -458,58 +458,66 @@ pip install http://projects.unbit.it/downloads/uwsgi-lts.tar.gz
 ```bash
 (venv)root@PythonHackers:/var/www/stg.pythonhackers.com/src# /var/www/stg.pythonhackers.com/venv/bin/uwsgi  -H /var/www/stg.pythonhackers.com/venv/ -w flask_app:app -M -p 1 --http :5000
 *** Starting uWSGI 1.4.9 (64bit) on [Sat Jul 27 01:56:06 2013] ***
-compiled with version: 4.7.2 on 27 July 2013 01:52:19
-os: Linux-3.5.0-17-generic #28-Ubuntu SMP Tue Oct 9 19:31:23 UTC 2012
-nodename: PythonHackers
-machine: x86_64
-clock source: unix
-detected number of CPU cores: 2
-current working directory: /var/www/stg.pythonhackers.com/src
-detected binary path: /var/www/stg.pythonhackers.com/venv/bin/uwsgi
-your processes number limit is 31578
-your memory page size is 4096 bytes
-detected max file descriptor number: 1024
-lock engine: pthread robust mutexes
-uWSGI http bound on :5000 fd 4
-uwsgi socket 0 bound to TCP address 127.0.0.1:33661 (port auto-assigned) fd 3
-Python version: 2.7.3 (default, Apr 10 2013, 05:16:12)  [GCC 4.7.2]
-Set PythonHome to /var/www/stg.pythonhackers.com/venv/
-*** Python threads support is disabled. You can enable it with --enable-threads ***
-Python main interpreter initialized at 0x22a3910
-your server socket listen backlog is limited to 100 connections
-mapped 144848 bytes (141 KB) for 1 cores
-*** Operational MODE: single process ***
-WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x22a3910 pid: 13974 (default app)
-*** uWSGI is running in multiple interpreter mode ***
-spawned uWSGI master process (pid: 13974)
-spawned uWSGI worker 1 (pid: 13979, cores: 1)
-spawned uWSGI http 1 (pid: 13980)
+# after a lot of lines
 [pid: 13979|app: 0|req: 1/1] 127.0.0.1 () {40 vars in 924 bytes} [Sat Jul 27 01:56:10 2013] GET / => generated 38 bytes in 3 msecs (HTTP/1.0 200) 2 headers in 79 bytes (1 switches on core 0)
 ```
+Check the [whole trace here](http://pastebin.com/F2JUkjNq)
 
 So what do we know ?
 
-- Set the correct directory
+- Set the directory correctly
 - Since we are still communicating via port use <code> --http :5000</code> syntax
 - Set the Environment Home directory <code>-H /var/www/stg.pythonhackers.com/venv/ </code>
 - Set process to 1 <code> -p 1 </code>
 - Set to master process <code> -m </code>
 - Set the worker <code>-w flask_app:app</code> There is a worker inside the <code>flask_app</code> py file and in that file use the variable called <code>app</code>
 
+<code>-p</code> Processes
+<code>-w</code> Worker
+<code>--http</code> HTTP listening port
+<code>-H</code> Environment
+<code>-m</code> Master Process
 
 ```conf
-command=uwsgi
-            --master
-            --http :5000
-            --virtualenv=/var/www/stg.pythonhackers.com/venv/
-            --workers=4
-            --chdir=/var/www/stg.pythonhackers.com/src
+[program:pythonhackers]
+killgroup=true
+environment=HOME=/var/www/stg.pythonhackers.com/venv/,
+directory=/var/www/stg.pythonhackers.com/src
+command=/var/www/stg.pythonhackers.com/venv/bin/uwsgi  -H /var/www/stg.pythonhackers.com/venv/ -w flask_app:app -M -p 2 --http :5000
+autostart=true
+autorestart=true
+redirect_stderr=true
+stopsignal=INT
+stdout_logfile=/var/log/python/pythonhackers/app.log
 ```
 
-more settings
+I screwed up something
 
-```conf
-#--socket=/tmp/stg.pythonhackers.com.sock
-#-C666
-uwsgi -s /tmp/multicdn.sock -H /var/www/stg.pythonhackers.com/venv/ -w spilmulticdn.wsgi -M -p 4 -C 666
+```bash
+root@PythonHackers:/var/www/stg.pythonhackers.com/src# cp /etc/supervisor/conf.d/stg.pythonhackers.com.conf /etc/supervisor/conf.d/stg.pythonhackers.com.conf2root@PythonHackers:/var/www/stg.pythonhackers.com/src# vim /etc/supervisor/conf.d/stg.pythonhackers.com.confroot@PythonHackers:/var/www/stg.pythonhackers.com/src# supervisorctl
+pythonhackers                    RUNNING    pid 14533, uptime 10:21:26
+supervisor> reread
+pythonhackers: changed
+supervisor> restart pythonhackers
+pythonhackers: stopped
+pythonhackers: ERROR (abnormal termination)
+supervisor>
 ```
+
+Log says
+
+```log
+2013-07-27 18:51:59,888 INFO exited: pythonhackers (exit status 1; not expected)
+2013-07-27 18:52:00,890 INFO gave up: pythonhackers entered FATAL state, too many start retries too quickly
+```
+
+I found out there was other processing running which was listening port 5000, caused the quick exit!!
+
+```bash
+root@PythonHackers:/var/www/stg.pythonhackers.com/src# ps aux | grep flask_app
+root     22949  0.0  0.3  57016 14168 ?        S    19:14   0:00 /var/www/stg.pythonhackers.com/venv/bin/python flask_app.py
+root     22954  0.4  0.3 133232 14844 ?        Sl   19:14   0:00 /var/www/stg.pythonhackers.com/venv/bin/python flask_app.py
+root     22974  0.0  0.0   9388   892 pts/0    R+   19:17   0:00 grep --color=auto flask
+```
+
+Viola!!

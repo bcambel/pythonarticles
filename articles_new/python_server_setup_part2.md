@@ -11,3 +11,8 @@ uWSGI master process for our program will take care of all the socket communicat
 request into python process(es).
 
 
+```conf
+#--socket=/tmp/stg.pythonhackers.com.sock
+#-C666
+uwsgi -s /tmp/multicdn.sock -H /var/www/stg.pythonhackers.com/venv/ -w spilmulticdn.wsgi -M -p 4 -C 666
+```
