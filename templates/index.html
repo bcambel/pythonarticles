@@ -6,9 +6,6 @@
         
         <a href="/{{article.slug}}.html">
             {{article.title}}
-            <p>
-                {{ article.description }}
-            </p>
         <span class='pull-left badge badge-info'>{{level}}</span>
             {% for tag in article.tags %}
             <span class='pull-left badge badge-warning'>{{tag}}</span>
