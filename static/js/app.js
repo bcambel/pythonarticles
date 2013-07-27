@@ -2,10 +2,10 @@
 	var $leftMenu, $article, html;
 	$(init);
 	function init(){
-		// $(".articles").masonry({
-		// 						   itemSelector : 'a',
-		// 						   columnWidth : 230
-		// 					   });
+		$(".articles").masonry({
+								   itemSelector : 'a',
+								   columnWidth : 230
+							   });
 		$article = $('article');
 		$leftMenu = $('#left-menu');
 		if($leftMenu.length>0){
