@@ -109,7 +109,11 @@ article, #disqus_thread, .socialism{
 article span.pull-right{
 	margin-right:5px;
 }
-
+@media (max-width: 480px) { 
+	article ,#disqus_thread {
+	margin-left:5px;
+}
+}
 article ,#disqus_thread {
 	margin-left:200px;
 }
