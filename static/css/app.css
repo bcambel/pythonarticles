@@ -117,6 +117,14 @@ article span.pull-right{
 	}
 }
 
+@media (max-width: 767px) { 
+	article ,#disqus_thread {
+		margin-left:10px !important;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+}
+
 @media (max-width: 480px) { 
 	article ,#disqus_thread {
 		margin-left:5px !important;
