@@ -109,14 +109,19 @@ article, #disqus_thread, .socialism{
 article span.pull-right{
 	margin-right:5px;
 }
+
+@media (min-width: 768px){
+	article ,#disqus_thread {
+		margin-left:200px;
+	}
+}
+
 @media (max-width: 480px) { 
 	article ,#disqus_thread {
-	margin-left:5px;
+	margin-left:5px !important;
+	}
 }
-}
-article ,#disqus_thread {
-	margin-left:200px;
-}
+
 
 article h1{
 	font-family: 'Amaranth','Domine',verdana,sans-serif;
