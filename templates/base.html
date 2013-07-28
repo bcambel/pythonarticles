@@ -26,8 +26,32 @@
 </head>
 <body>
 
+<div class="navbar navbar-fixed-top visible-phone">
+  <div class="navbar-inner">
+    <div class="container"> 
+    
+    <!--Button to collapse the Navigation--> 
+    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <i class='icon-collapse icon-2x'></i>
+    </a>
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li><a class="brand" href="/">&nbsp;Python Articles&nbsp;</a></li>
+          {% for article in articles %}
+                        <li>
+                            <a href="/{{article.slug}}.html" data-track='posts-{{article.slug}}'>
+                                {{article.title}}
+                            </a>
+                        </li>
+                        {% endfor %}
+        </ul>
+      </div>
+      <!--/.nav-collapse --> 
+    </div>
+  </div>
+</div>
 
-<div class="navbar">
+<div class="navbar hidden-phone">
     <div class="navbar-inner">
         <div class="container">
             <a class="brand" href="/">&nbsp;Python Articles&nbsp;</a>
