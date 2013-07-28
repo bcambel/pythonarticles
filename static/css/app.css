@@ -118,6 +118,10 @@ article span.pull-right{
 }
 
 @media (max-width: 767px) { 
+	body{
+		padding-left: 10px !important;
+		padding-right: 10px !important;
+	}
 	article ,#disqus_thread {
 		margin-left:10px !important;
 		padding-left: 10px;
@@ -126,6 +130,10 @@ article span.pull-right{
 }
 
 @media (max-width: 480px) { 
+	body{
+		padding-left: 5px !important;
+		padding-right: 5px !important;
+	}
 	article ,#disqus_thread {
 		margin-left:5px !important;
 		padding-left: 5px;
