@@ -24,7 +24,7 @@ The assumption is that you will use **Ubuntu**. Depending on the distribution, y
 <code>CentOS => yum</code>
 <code>Arch Linux => pacman</code>
 <code>Fedora => yum</code>
-<code>Debian => dpkg</code>
+<code>Debian => apt-get</code>
 
 ## Fake it
 
