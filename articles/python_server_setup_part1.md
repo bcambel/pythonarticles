@@ -174,7 +174,8 @@ user@PythonHackers:/var/log/nginx/stg.pythonhackers.com# tail -f access.log
 ```
 
 ```bash
-XX.XXX.XX.XX - - [26/Jul/2013:22:09:19 +0000] "GET / HTTP/1.1" 502 574 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36"
+XX.XXX.XX.XX - - [26/Jul/2013:22:09:19 +0000] "GET / HTTP/1.1" 502 574 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3)
+AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36"
 ```
 
 and the error.log will say
@@ -342,7 +343,7 @@ Cleaning up...
 ## Pip
 
 Once a virtualenv is initialized for a folder, python copied and linked to our <code>venv</code> folder , and pip is also installed
-Lets ask bash <code>which pip</code> we are using.
+Lets ask  <code>which pip</code> we are using.
 
 ```bash
 (venv)root@PythonHackers:/var/www/stg.pythonhackers.com# which pip

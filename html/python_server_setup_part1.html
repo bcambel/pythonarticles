@@ -406,7 +406,8 @@ Reloading nginx configuration: nginx.
 </code></pre></div>
 
 <p><code>bash
-XX.XXX.XX.XX - - [26/Jul/2013:22:09:19 +0000] "GET / HTTP/1.1" 502 574 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36"
+XX.XXX.XX.XX - - [26/Jul/2013:22:09:19 +0000] "GET / HTTP/1.1" 502 574 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3)
+AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36"
 </code></p>
 
 <p>and the error.log will say</p>
@@ -560,7 +561,7 @@ Cleaning up...
 <h2>Pip</h2>
 
 <p>Once a virtualenv is initialized for a folder, python copied and linked to our <code>venv</code> folder , and pip is also installed
-Lets ask bash <code>which pip</code> we are using.</p>
+Lets ask  <code>which pip</code> we are using.</p>
 
 <div class="syntax"><pre><code><span class="o">(</span>venv<span class="o">)</span>root@PythonHackers:/var/www/stg.pythonhackers.com# which pip
 /var/www/stg.pythonhackers.com/venv/bin/pip
