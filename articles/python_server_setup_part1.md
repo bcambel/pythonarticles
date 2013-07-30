@@ -263,7 +263,7 @@ only processes as well.
 
 ```bash
 user@PythonHackers:# cd /etc/supervisor/conf.d/
-user@@PythonHackers:/etc/supervisor/conf.d# vim stg.pythonhackers.com.conf
+user@PythonHackers:/etc/supervisor/conf.d# vim stg.pythonhackers.com.conf
 ```
 
 paste the following configuration
