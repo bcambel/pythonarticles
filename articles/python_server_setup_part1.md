@@ -347,7 +347,7 @@ Once a virtualenv is initialized for a folder, python copied and linked to our <
 Lets ask  <code>which pip</code> we are using.
 
 ```bash
-(venv)root@PythonHackers:/var/www/stg.pythonhackers.com# which pip
+(venv)user@PythonHackers:/var/www/stg.pythonhackers.com# which pip
 /var/www/stg.pythonhackers.com/venv/bin/pip
 (venv)user@PythonHackers:/var/www/stg.pythonhackers.com# pip freeze
 Flask==0.10.1
@@ -456,13 +456,13 @@ Let's introduce the awesomeness of uWSGI which will take care a lot for us.
 ```bash
 user@PythonHackers:~# source /var/www/stg.pythonhackers.com/venv/bin/activate
 pip install http://projects.unbit.it/downloads/uwsgi-lts.tar.gz
-(venv)root@PythonHackers:~# pip install [](http://projects.unbit.it/downloads/uwsgi-lts.tar.gz)
+(venv)user@PythonHackers:~# pip install [](http://projects.unbit.it/downloads/uwsgi-lts.tar.gz)
 ```
 
 Start our simple flask app with via uWSGI
 
 ```bash
-(venv)root@PythonHackers:/var/www/stg.pythonhackers.com/src# /var/www/stg.pythonhackers.com/venv/bin/uwsgi  -H /var/www/stg.pythonhackers.com/venv/ -w flask_app:app -M -p 1 --http :5000
+(venv)user@PythonHackers:/var/www/stg.pythonhackers.com/src# /var/www/stg.pythonhackers.com/venv/bin/uwsgi  -H /var/www/stg.pythonhackers.com/venv/ -w flask_app:app -M -p 1 --http :5000
 *** Starting uWSGI 1.4.9 (64bit) on [Sat Jul 27 01:56:06 2013] ***
 # after a lot of lines
 [pid: 13979|app: 0|req: 1/1] 127.0.0.1 () {40 vars in 924 bytes} [Sat Jul 27 01:56:10 2013] GET / => generated 38 bytes in 3 msecs (HTTP/1.0 200) 2 headers in 79 bytes (1 switches on core 0)
@@ -500,7 +500,7 @@ stdout_logfile=/var/log/python/pythonhackers/app.log
 I screwed up something
 
 ```bash
-root@PythonHackers:/var/www/stg.pythonhackers.com/src# cp /etc/supervisor/conf.d/stg.pythonhackers.com.conf /etc/supervisor/conf.d/stg.pythonhackers.com.conf2root@PythonHackers:/var/www/stg.pythonhackers.com/src# vim /etc/supervisor/conf.d/stg.pythonhackers.com.confroot@PythonHackers:/var/www/stg.pythonhackers.com/src# supervisorctl
+user@PythonHackers:/var/www/stg.pythonhackers.com/src# cp /etc/supervisor/conf.d/stg.pythonhackers.com.conf /etc/supervisor/conf.d/stg.pythonhackers.com.conf2user@PythonHackers:/var/www/stg.pythonhackers.com/src# vim /etc/supervisor/conf.d/stg.pythonhackers.com.confuser@PythonHackers:/var/www/stg.pythonhackers.com/src# supervisorctl
 pythonhackers                    RUNNING    pid 14533, uptime 10:21:26
 supervisor> reread
 pythonhackers: changed
@@ -520,7 +520,7 @@ Log says
 I found out there was other processing running which was listening port 5000, caused the quick exit!!
 
 ```bash
-root@PythonHackers:/var/www/stg.pythonhackers.com/src# ps aux | grep flask_app
+user@PythonHackers:/var/www/stg.pythonhackers.com/src# ps aux | grep flask_app
 root     22949  0.0  0.3  57016 14168 ?        S    19:14   0:00 /var/www/stg.pythonhackers.com/venv/bin/python flask_app.py
 root     22954  0.4  0.3 133232 14844 ?        Sl   19:14   0:00 /var/www/stg.pythonhackers.com/venv/bin/python flask_app.py
 root     22974  0.0  0.0   9388   892 pts/0    R+   19:17   0:00 grep --color=auto flask

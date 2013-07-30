@@ -563,7 +563,7 @@ Cleaning up...
 <p>Once a virtualenv is initialized for a folder, python copied and linked to our <code>venv</code> folder , and pip is also installed
 Lets ask  <code>which pip</code> we are using.</p>
 
-<div class="syntax"><pre><code><span class="o">(</span>venv<span class="o">)</span>root@PythonHackers:/var/www/stg.pythonhackers.com# which pip
+<div class="syntax"><pre><code><span class="o">(</span>venv<span class="o">)</span>user@PythonHackers:/var/www/stg.pythonhackers.com# which pip
 /var/www/stg.pythonhackers.com/venv/bin/pip
 <span class="o">(</span>venv<span class="o">)</span>user@PythonHackers:/var/www/stg.pythonhackers.com# pip freeze
 <span class="nv">Flask</span><span class="o">==</span>0.10.1
@@ -662,12 +662,12 @@ continue our development, and also we are running a single instance of our appli
 
 <div class="syntax"><pre><code>user@PythonHackers:~# <span class="nb">source</span> /var/www/stg.pythonhackers.com/venv/bin/activate
 pip install http://projects.unbit.it/downloads/uwsgi-lts.tar.gz
-<span class="o">(</span>venv<span class="o">)</span>root@PythonHackers:~# pip install <span class="o">[](</span>http://projects.unbit.it/downloads/uwsgi-lts.tar.gz<span class="o">)</span>
+<span class="o">(</span>venv<span class="o">)</span>user@PythonHackers:~# pip install <span class="o">[](</span>http://projects.unbit.it/downloads/uwsgi-lts.tar.gz<span class="o">)</span>
 </code></pre></div>
 
 <p>Start our simple flask app with via uWSGI</p>
 
-<div class="syntax"><pre><code><span class="o">(</span>venv<span class="o">)</span>root@PythonHackers:/var/www/stg.pythonhackers.com/src# /var/www/stg.pythonhackers.com/venv/bin/uwsgi  -H /var/www/stg.pythonhackers.com/venv/ -w flask_app:app -M -p 1 --http :5000
+<div class="syntax"><pre><code><span class="o">(</span>venv<span class="o">)</span>user@PythonHackers:/var/www/stg.pythonhackers.com/src# /var/www/stg.pythonhackers.com/venv/bin/uwsgi  -H /var/www/stg.pythonhackers.com/venv/ -w flask_app:app -M -p 1 --http :5000
 *** Starting uWSGI 1.4.9 <span class="o">(</span>64bit<span class="o">)</span> on <span class="o">[</span>Sat Jul 27 01:56:06 2013<span class="o">]</span> ***
 <span class="c"># after a lot of lines</span>
 <span class="o">[</span>pid: 13979|app: 0|req: 1/1<span class="o">]</span> 127.0.0.1 <span class="o">()</span> <span class="o">{</span>40 vars in 924 bytes<span class="o">}</span> <span class="o">[</span>Sat Jul 27 01:56:10 2013<span class="o">]</span> GET / <span class="o">=</span>&gt; generated 38 bytes in 3 msecs <span class="o">(</span>HTTP/1.0 200<span class="o">)</span> 2 headers in 79 bytes <span class="o">(</span>1 switches on core 0<span class="o">)</span>
@@ -706,7 +706,7 @@ stdout_logfile=/var/log/python/pythonhackers/app.log
 
 <p>I screwed up something</p>
 
-<div class="syntax"><pre><code>root@PythonHackers:/var/www/stg.pythonhackers.com/src# cp /etc/supervisor/conf.d/stg.pythonhackers.com.conf /etc/supervisor/conf.d/stg.pythonhackers.com.conf2root@PythonHackers:/var/www/stg.pythonhackers.com/src# vim /etc/supervisor/conf.d/stg.pythonhackers.com.confroot@PythonHackers:/var/www/stg.pythonhackers.com/src# supervisorctl
+<div class="syntax"><pre><code>user@PythonHackers:/var/www/stg.pythonhackers.com/src# cp /etc/supervisor/conf.d/stg.pythonhackers.com.conf /etc/supervisor/conf.d/stg.pythonhackers.com.conf2user@PythonHackers:/var/www/stg.pythonhackers.com/src# vim /etc/supervisor/conf.d/stg.pythonhackers.com.confuser@PythonHackers:/var/www/stg.pythonhackers.com/src# supervisorctl
 pythonhackers                    RUNNING    pid 14533, uptime 10:21:26
 supervisor&gt; reread
 pythonhackers: changed
@@ -724,7 +724,7 @@ supervisor&gt;
 
 <p>I found out there was other processing running which was listening port 5000, caused the quick exit!!</p>
 
-<div class="syntax"><pre><code>root@PythonHackers:/var/www/stg.pythonhackers.com/src# ps aux | grep flask_app
+<div class="syntax"><pre><code>user@PythonHackers:/var/www/stg.pythonhackers.com/src# ps aux | grep flask_app
 root     22949  0.0  0.3  57016 14168 ?        S    19:14   0:00 /var/www/stg.pythonhackers.com/venv/bin/python flask_app.py
 root     22954  0.4  0.3 133232 14844 ?        Sl   19:14   0:00 /var/www/stg.pythonhackers.com/venv/bin/python flask_app.py
 root     22974  0.0  0.0   9388   892 pts/0    R+   19:17   0:00 grep --color<span class="o">=</span>auto flask
