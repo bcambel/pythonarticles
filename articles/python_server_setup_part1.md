@@ -173,9 +173,10 @@ Open your browser and go to [stg.pythonhackers.com](stg.pythonhackers.com) and y
 user@PythonHackers:/var/log/nginx/stg.pythonhackers.com# tail -f access.log
 ```
 
+Access log will say something like this
+
 ```bash
-XX.XXX.XX.XX - - [26/Jul/2013:22:09:19 +0000] "GET / HTTP/1.1" 502 574 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3)
-AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36"
+XX.XXX.XX.XX - - [26/Jul/2013:22:09:19 +0000] "GET / HTTP/1.1" 502 574 "-" "Mozilla/5.0 "
 ```
 
 and the error.log will say

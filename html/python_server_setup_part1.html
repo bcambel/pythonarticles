@@ -405,10 +405,10 @@ Reloading nginx configuration: nginx.
 <div class="syntax"><pre><code>user@PythonHackers:/var/log/nginx/stg.pythonhackers.com# tail -f access.log
 </code></pre></div>
 
-<p><code>bash
-XX.XXX.XX.XX - - [26/Jul/2013:22:09:19 +0000] "GET / HTTP/1.1" 502 574 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3)
-AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36"
-</code></p>
+<p>Access log will say something like this</p>
+
+<div class="syntax"><pre><code>XX.XXX.XX.XX - - <span class="o">[</span>26/Jul/2013:22:09:19 +0000<span class="o">]</span> <span class="s2">&quot;GET / HTTP/1.1&quot;</span> 502 574 <span class="s2">&quot;-&quot;</span> <span class="s2">&quot;Mozilla/5.0 &quot;</span>
+</code></pre></div>
 
 <p>and the error.log will say</p>
 
