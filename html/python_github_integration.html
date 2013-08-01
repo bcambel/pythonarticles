@@ -270,10 +270,14 @@ to your application. For the develoment purposes you can modify your <code>/etc/
 <div class="syntax"><pre><code>sudo vim /etc/hosts
 </code></pre></div>
 
+<h2>RAuth</h2>
+
 <p>and add this entry to the hosts file <code>127.0.0.1 dev.yourapplication.com</code>. One thing to be careful with is that if your application uses port in your local
 environment, you have to specify the port on the Github settings as well. If the URL does not match, Github will complain that the URL is not matching.</p>
 
 <p>In order to integration with the Github OAuth2 we will use the <a href="https://github.com/litl/rauth">rauth</a> library.</p>
+
+<h2>Configuration</h2>
 
 <p>Let's do the things in proper way and create a configuration file. Here is mine.</p>
 
@@ -326,6 +330,8 @@ environment, you have to specify the port on the Github settings as well. If the
 <p>Once this file is included, the config parser will run and will expose the <code>config</code> variable to the external files. Lets include it to our github
 oauth file. Be careful with the name of your configuration file; mine is called <strong>app.local.cfg</strong></p>
 
+<h2>Initialize OAuth Service</h2>
+
 <div class="syntax"><pre><code><span class="kn">from</span> <span class="nn">rauth.service</span> <span class="kn">import</span> <span class="n">OAuth2Service</span>
 <span class="kn">from</span> <span class="nn">config</span> <span class="kn">import</span> <span class="n">config</span>
 <span class="kn">import</span> <span class="nn">requests</span>
@@ -339,6 +345,8 @@ oauth file. Be careful with the name of your configuration file; mine is called 
 </code></pre></div>
 
 <p>So, our github OAuth2Service is ready to take action. It's time to connect our Flask URL endpoints.</p>
+
+<h2>Flask Routing</h2>
 
 <div class="syntax"><pre><code><span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/oauth/github&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">login</span><span class="p">():</span>
@@ -354,6 +362,8 @@ This URL is going to be a special Github URL that will ask users if they are sur
 
 <p>After the user accepts the consequences, she will be redirected back to your application. Github will pass the code parameter.
 Lets implement the redirection</p>
+
+<h2>Github User Redirect</h2>
 
 <div class="syntax"><pre><code><span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/oauth/github/authorized&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">authorized</span><span class="p">():</span>
@@ -392,6 +402,8 @@ Since I only want to get the public information, I did not specified any <a href
 <pre><code>POST https://github.com/login/oauth/access_token
 </code></pre>
 
+<h2>Github User Details</h2>
+
 <p>translated to the following python code</p>
 
 <div class="syntax"><pre><code><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">&#39;https://github.com/login/oauth/access_token&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{</span>
@@ -406,6 +418,8 @@ Since I only want to get the public information, I did not specified any <a href
 <div class="syntax"><pre><code><span class="n">response_data</span> <span class="o">=</span>  <span class="p">(</span><span class="n">url_decode</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
 <span class="n">access_token</span> <span class="o">=</span> <span class="n">response_data</span><span class="p">[</span><span class="s">&#39;access_token&#39;</span><span class="p">]</span>
 </code></pre></div>
+
+<h2>Github User Data</h2>
 
 <p>Allright, we have a <code>access_token</code> now. It's time to query github API to learn who this user is;</p>
 
@@ -447,6 +461,8 @@ Since I only want to get the public information, I did not specified any <a href
     <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.github.com/users/bcambel&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
+
+<p>To see the full source go to the <a href="https://github.com/pythonhackers/pythonhackers/blob/github_integration/src/pyhackers/controllers/oauth/github.py">PythonHackers Github Repository</a></p>
 
 
     <hr />

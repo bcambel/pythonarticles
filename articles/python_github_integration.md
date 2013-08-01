@@ -15,12 +15,18 @@ After saving the application, Github will give you the <code>client_id</code> an
 sudo vim /etc/hosts
 ```
 
+## RAuth
+
 and add this entry to the hosts file <code>127.0.0.1 dev.yourapplication.com</code>. One thing to be careful with is that if your application uses port in your local
 environment, you have to specify the port on the Github settings as well. If the URL does not match, Github will complain that the URL is not matching.
 
 In order to integration with the Github OAuth2 we will use the [rauth](https://github.com/litl/rauth) library.
 
+
+## Configuration
+
 Let's do the things in proper way and create a configuration file. Here is mine.
+
 
 ```cfg
 [app]
@@ -73,6 +79,8 @@ logger.warn('Configuration files read: %s' % files_read)
 Once this file is included, the config parser will run and will expose the <code>config</code> variable to the external files. Lets include it to our github
 oauth file. Be careful with the name of your configuration file; mine is called **app.local.cfg**
 
+## Initialize OAuth Service
+
 ```python
 from rauth.service import OAuth2Service
 from config import config
@@ -87,6 +95,8 @@ github = OAuth2Service(name='github',
 ```
 
 So, our github OAuth2Service is ready to take action. It's time to connect our Flask URL endpoints.
+
+## Flask Routing
 
 ```python
 @app.route('/oauth/github')
@@ -103,6 +113,8 @@ This URL is going to be a special Github URL that will ask users if they are sur
 
 After the user accepts the consequences, she will be redirected back to your application. Github will pass the code parameter.
 Lets implement the redirection
+
+## Github User Redirect
 
 ```python
 @app.route('/oauth/github/authorized')
@@ -142,6 +154,8 @@ Since I only want to get the public information, I did not specified any [scopes
 POST https://github.com/login/oauth/access_token
 ```
 
+## Github User Details
+
 translated to the following python code
 
 ```python
@@ -159,12 +173,15 @@ response_data =  (url_decode(r.text))
 access_token = response_data['access_token']
 ```
 
+## Github User Data
+
 Allright, we have a <code>access_token</code> now. It's time to query github API to learn who this user is;
 
 ```python
 user_data = requests.get("https://api.github.com/user",params=dict(access_token=access_token))
 user_info = user_data.json()
 ```
+
 
 <code>user_info</code> is a Python dictionary contains the following information
 
@@ -202,6 +219,7 @@ user_info = user_data.json()
 }
 ```
 
+To see the full source go to the [PythonHackers Github Repository](https://github.com/pythonhackers/pythonhackers/blob/github_integration/src/pyhackers/controllers/oauth/github.py)
 
 
 
