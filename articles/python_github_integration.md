@@ -23,6 +23,9 @@ environment, you have to specify the port on the Github settings as well. If the
 
 Seems like the most updated python oauth project is [rauth](https://github.com/litl/rauth), claiming that the most updated and comprehensive oauth solution currently. In order to integration with the Github OAuth2 we will use the [rauth](https://github.com/litl/rauth) library.
 
+```bash
+pip install rauth
+```
 
 ## Configuration
 
