@@ -15,12 +15,13 @@ After saving the application, Github will give you the <code>client_id</code> an
 sudo vim /etc/hosts
 ```
 
-## RAuth
-
 and add this entry to the hosts file <code>127.0.0.1 dev.yourapplication.com</code>. One thing to be careful with is that if your application uses port in your local
 environment, you have to specify the port on the Github settings as well. If the URL does not match, Github will complain that the URL is not matching.
 
-In order to integration with the Github OAuth2 we will use the [rauth](https://github.com/litl/rauth) library.
+
+## RAuth
+
+Seems like the most updated python oauth project is [rauth](https://github.com/litl/rauth), claiming that the most updated and comprehensive oauth solution currently. In order to integration with the Github OAuth2 we will use the [rauth](https://github.com/litl/rauth) library.
 
 
 ## Configuration
