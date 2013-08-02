@@ -1,6 +1,8 @@
 # Integration with GitHub
 
-Go to [GitHub Application Section](https://github.com/settings/applications/new) to create a new application. This will require to write down;
+Building [PythonHackers.com](http://pythonhackers.com) series next post is about integration with Github for registration/login purposes. In the first part, we have setup the most basic things for our development. It's now time to start integrations. [PythonHackers Github Repository](https://github.com/pythonhackers/pythonhackers) contains all the code that is described here ands served at [stg.pythonhackers.com](http://stg.pythonhackers.com)
+
+Let's start with basic settings. Go to [GitHub Application Section](https://github.com/settings/applications/new) to create a new application. This will require to write down;
 
 - Application Name
 - HomePage URL
